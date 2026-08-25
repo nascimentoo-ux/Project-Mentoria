@@ -159,7 +159,7 @@
   .hero-photo-cap{
     position:absolute;
     left:clamp(.85rem, 2.5vw, 1.5rem);
-    bottom:clamp(2rem, 11%, 4.75rem);
+    bottom:clamp(1.15rem, 5%, 3rem);
     z-index:3;
     display:flex; align-items:center; gap:.55rem;
     padding:.5rem .7rem;
@@ -171,7 +171,7 @@
   @media (min-width:900px){
     .hero-photo-cap{
       left:clamp(1rem, 5%, 2rem);
-      bottom:clamp(2.75rem, 16%, 5.5rem);
+      bottom:clamp(1.5rem, 8%, 3.5rem);
     }
   }
   .hero-photo-cap img{ width:30px; height:30px; object-fit:contain; flex-shrink:0; }
