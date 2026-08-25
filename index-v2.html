@@ -36,6 +36,7 @@
     --font-mono:'JetBrains Mono',monospace;
 
     --container:1320px;
+    --hd-h:82px;
     --gap-section:clamp(4rem, 9vw, 7.5rem);
     --ease:cubic-bezier(.19,1,.22,1);
   }
@@ -96,9 +97,15 @@
   /* ===== HEADER ===== */
   header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,9,13,0.72); backdrop-filter:blur(14px) saturate(1.2); border-bottom:1px solid var(--line-on-ink); transition:transform .4s var(--ease); }
   header#hd.hide{ transform:translateY(-100%); }
-  .hd-inner{ position:relative; display:flex; align-items:center; justify-content:space-between; height:70px; width:100%; padding:0 clamp(.85rem,1.6vw,1.4rem); }
-  .brand{ display:flex; align-items:center; gap:.75rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
-  .brand img{ width:30px; height:30px; object-fit:contain; }
+  .hd-inner{ position:relative; display:flex; align-items:center; justify-content:space-between; height:var(--hd-h); width:100%; padding:0 clamp(.85rem,1.6vw,1.4rem); }
+  .brand{ display:flex; align-items:center; gap:.85rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
+  .brand img{
+    width:60px; height:60px; object-fit:contain; flex-shrink:0;
+    filter:drop-shadow(0 0 14px rgba(0,183,255,.32)) contrast(1.06) saturate(1.12);
+    transition:transform .35s var(--ease), filter .35s var(--ease);
+  }
+  .brand:hover img{ transform:scale(1.05); filter:drop-shadow(0 0 18px rgba(0,183,255,.5)) contrast(1.08) saturate(1.18); }
+  @media (max-width:560px){ .brand img{ width:48px; height:48px; } }
   .brand small{ display:block; font-family:var(--font-mono); font-size:.58rem; font-weight:400; letter-spacing:.14em; color:var(--muted-on-ink); margin-top:.15rem; }
   nav.dnav{ display:none; gap:2rem; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
   nav.dnav a{ font-size:.78rem; color:var(--muted-on-ink); text-transform:uppercase; letter-spacing:.08em; transition:color .25s; }
@@ -110,7 +117,7 @@
   .burger.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
   .burger.open span:nth-child(2){ opacity:0; }
   .burger.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
-  #mmenu{ position:fixed; inset:0; z-index:99; background:var(--ink); padding:100px 1.5rem 2rem; display:flex; flex-direction:column; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease); }
+  #mmenu{ position:fixed; inset:0; z-index:99; background:var(--ink); padding:calc(var(--hd-h) + 2rem) 1.5rem 2rem; display:flex; flex-direction:column; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease); }
   #mmenu.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
   #mmenu a{ font-family:var(--font-display); font-size:1.7rem; text-transform:uppercase; color:var(--paper); padding:.7rem 0; border-bottom:1px solid var(--line-on-ink); }
   #mmenu .btn{ margin-top:2rem; }
@@ -144,7 +151,7 @@
   }
   .hero-content{
     position:relative; z-index:2; width:100%;
-    padding-top:calc(70px + clamp(2.5rem, 8vh, 5rem));
+    padding-top:calc(var(--hd-h) + clamp(2.5rem, 8vh, 5rem));
     padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
   }
   /* texto à esquerda; a foto sangra atrás, pela direita */
@@ -200,6 +207,62 @@
   }
   .hero-chips li:hover{ border-color:rgba(0,183,255,.5); background:rgba(0,183,255,.08); }
   .hero-chips svg{ width:13px; height:13px; color:var(--accent); flex-shrink:0; }
+
+  /* trilha do método: liga o hero à seção Processo */
+  .hero-method{
+    margin:2.2rem 0 0; padding:1.4rem 0 0; list-style:none;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem 1.4rem;
+    border-top:1px solid rgba(245,247,250,.12);
+    opacity:0; transform:translateY(14px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
+  }
+  @media (min-width:620px){ .hero-method{ grid-template-columns:repeat(4,1fr); gap:1.2rem; } }
+  .hero-method.in{ opacity:1; transform:translateY(0); transition-delay:.68s; }
+  .hero-method li{ position:relative; padding-top:1rem; }
+  .hero-method li::before{
+    content:""; position:absolute; top:0; left:0; width:7px; height:7px; border-radius:50%;
+    background:var(--accent); box-shadow:0 0 0 4px rgba(0,183,255,.16);
+  }
+  .hero-method li::after{
+    content:""; position:absolute; top:3px; left:11px; right:-1.2rem; height:1px;
+    background:linear-gradient(90deg, rgba(0,183,255,.45), rgba(245,247,250,.08));
+  }
+  .hero-method li:last-child::after{ display:none; }
+  @media (max-width:619px){
+    .hero-method li:nth-child(2n)::after{ display:none; }
+  }
+  .hero-method .step-n{
+    display:block; font-family:var(--font-mono); font-size:.6rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--accent); margin-bottom:.25rem;
+  }
+  .hero-method .step-t{
+    display:block; font-size:.82rem; font-weight:500; color:rgba(245,247,250,.88);
+  }
+  .hero-method .step-d{
+    display:block; font-size:.72rem; color:rgba(245,247,250,.5); line-height:1.5; margin-top:.15rem;
+  }
+
+  /* status de atendimento com ponto pulsante */
+  .hero-status{
+    display:flex; align-items:center; gap:.55rem; margin:0;
+    font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em;
+    text-transform:uppercase; color:rgba(245,247,250,.62);
+    opacity:0; transition:opacity .8s var(--ease);
+  }
+  .hero-status.in{ opacity:1; transition-delay:.8s; }
+  .hero-status .dot{
+    position:relative; width:7px; height:7px; border-radius:50%;
+    background:#3DDC84; flex-shrink:0;
+  }
+  .hero-status .dot::after{
+    content:""; position:absolute; inset:0; border-radius:50%;
+    background:#3DDC84; animation:statusPulse 2.4s var(--ease) infinite;
+  }
+  @keyframes statusPulse{
+    0%{ transform:scale(1); opacity:.7; }
+    70%{ transform:scale(3.2); opacity:0; }
+    100%{ transform:scale(3.2); opacity:0; }
+  }
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
   .hero-photo{
@@ -467,6 +530,34 @@
             Ajuste contínuo
           </li>
         </ul>
+
+        <ol class="hero-method" data-hero-anim>
+          <li>
+            <span class="step-n">01</span>
+            <span class="step-t">Diagnóstico</span>
+            <span class="step-d">Onde você está hoje</span>
+          </li>
+          <li>
+            <span class="step-n">02</span>
+            <span class="step-t">Plano sob medida</span>
+            <span class="step-d">Para o seu objetivo</span>
+          </li>
+          <li>
+            <span class="step-n">03</span>
+            <span class="step-t">Execução</span>
+            <span class="step-d">Com correção de perto</span>
+          </li>
+          <li>
+            <span class="step-n">04</span>
+            <span class="step-t">Evolução</span>
+            <span class="step-d">Ajuste pela sua resposta</span>
+          </li>
+        </ol>
+
+        <p class="hero-status" data-hero-anim>
+          <span class="dot" aria-hidden="true"></span>
+          Consultoria 100% online · atendimento direto no WhatsApp
+        </p>
       </div>
     </div>
   </div>
