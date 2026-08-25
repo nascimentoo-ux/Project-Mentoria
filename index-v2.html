@@ -45,7 +45,10 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
-    .hero-grid, .hero-visual img{ animation:none !important; }
+    .hero-grid, .hero-photo-frame img{ animation:none !important; }
+    .reveal, .reveal-stagger > *, [data-hero-anim], #wa-float, header#hd{
+      opacity:1 !important; transform:none !important; transition:none !important;
+    }
   }
   body{margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
   img{max-width:100%; display:block;}
@@ -95,8 +98,7 @@
   }
 
   /* ===== HEADER ===== */
-  header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,9,13,0.72); backdrop-filter:blur(14px) saturate(1.2); border-bottom:1px solid var(--line-on-ink); transition:transform .4s var(--ease); }
-  header#hd.hide{ transform:translateY(-100%); }
+  header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,9,13,0.72); backdrop-filter:blur(14px) saturate(1.2); border-bottom:1px solid var(--line-on-ink); }
   .hd-inner{ position:relative; display:flex; align-items:center; justify-content:space-between; height:var(--hd-h); width:100%; padding:0 clamp(.85rem,1.6vw,1.4rem); }
   .brand{ display:flex; align-items:center; gap:.85rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
   .brand img{
@@ -178,25 +180,16 @@
   .hero-lede{
     margin:0; max-width:52ch; color:rgba(245,247,250,.7);
     font-size:clamp(.92rem, 1.1vw, 1rem); line-height:1.7;
-    opacity:0; transform:translateY(14px);
-    transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-lede.in{ opacity:1; transform:translateY(0); transition-delay:.3s; }
   .hero-cta-row{
     display:flex; flex-wrap:wrap; gap:.8rem; margin-top:.35rem;
-    opacity:0; transform:translateY(14px);
-    transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-cta-row.in{ opacity:1; transform:translateY(0); transition-delay:.44s; }
   .hero-cta-row .btn{ border-radius:999px; padding:.9rem 1.5rem; font-size:.76rem; }
   .hero-cta-row .btn svg{ transition:transform .3s var(--ease); }
   .hero-cta-row .btn:hover svg{ transform:translateX(3px); }
   .hero-chips{
     display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; padding:0; list-style:none;
-    opacity:0; transform:translateY(12px);
-    transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-chips.in{ opacity:1; transform:translateY(0); transition-delay:.56s; }
   .hero-chips li{
     display:flex; align-items:center; gap:.45rem;
     font-size:.72rem; color:rgba(245,247,250,.8);
@@ -213,11 +206,8 @@
     margin:2.2rem 0 0; padding:1.4rem 0 0; list-style:none;
     display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem 1.4rem;
     border-top:1px solid rgba(245,247,250,.12);
-    opacity:0; transform:translateY(14px);
-    transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
   @media (min-width:620px){ .hero-method{ grid-template-columns:repeat(4,1fr); gap:1.2rem; } }
-  .hero-method.in{ opacity:1; transform:translateY(0); transition-delay:.68s; }
   .hero-method li{ position:relative; padding-top:1rem; }
   .hero-method li::before{
     content:""; position:absolute; top:0; left:0; width:7px; height:7px; border-radius:50%;
@@ -247,9 +237,7 @@
     display:flex; align-items:center; gap:.55rem; margin:0;
     font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em;
     text-transform:uppercase; color:rgba(245,247,250,.62);
-    opacity:0; transition:opacity .8s var(--ease);
   }
-  .hero-status.in{ opacity:1; transition-delay:.8s; }
   .hero-status .dot{
     position:relative; width:7px; height:7px; border-radius:50%;
     background:#3DDC84; flex-shrink:0;
@@ -267,9 +255,7 @@
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
   .hero-photo{
     position:absolute; inset:0; z-index:0; margin:0; overflow:hidden;
-    opacity:0; transition:opacity 1.2s var(--ease);
   }
-  .hero-photo.in{ opacity:1; }
   @media (min-width:900px){
     .hero-photo{ left:auto; right:0; width:min(46%, 620px); }
   }
@@ -328,15 +314,66 @@
     border:1px solid rgba(0,183,255,.4); border-radius:999px;
     padding:.45rem .95rem; background:rgba(0,183,255,.09);
     backdrop-filter:blur(6px);
-    opacity:0; transform:translateY(10px);
-    transition:opacity .7s var(--ease), transform .7s var(--ease);
   }
-  .hero-badge.in{ opacity:1; transform:translateY(0); }
   .hero-badge svg{ width:14px; height:14px; flex-shrink:0; }
 
-  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-  .rd-1{ transition-delay:.08s; } .rd-2{ transition-delay:.16s; } .rd-3{ transition-delay:.24s; }
+  /* ===== ANIMAÇÕES — entrada + scroll reveal ===== */
+  header#hd{ transform:translateY(-100%); }
+  body.is-ready header#hd{ transform:translateY(0); transition:transform .55s var(--ease), background .4s var(--ease); }
+  body.is-ready header#hd.hide{ transform:translateY(-100%); }
+
+  #wa-float{
+    position:fixed; z-index:90; bottom:20px; right:20px; width:54px; height:54px;
+    background:var(--accent); color:#041018;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(.75) translateY(16px);
+    transition:opacity .65s var(--ease), transform .65s var(--ease), background .3s var(--ease);
+  }
+  body.is-ready #wa-float{ opacity:1; transform:scale(1) translateY(0); transition-delay:1.15s; }
+  #wa-float:hover{ transform:scale(1.06); background:var(--accent-soft); }
+
+  .reveal{
+    opacity:0; transform:translateY(32px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .reveal.in{ opacity:1; transform:none; }
+  .reveal-left{ transform:translateX(-40px); }
+  .reveal-left.in{ transform:none; }
+  .reveal-right{ transform:translateX(40px); }
+  .reveal-right.in{ transform:none; }
+  .reveal-scale{ transform:scale(.92); }
+  .reveal-scale.in{ transform:none; }
+  .rd-1{ transition-delay:.12s; }
+  .rd-2{ transition-delay:.24s; }
+  .rd-3{ transition-delay:.36s; }
+
+  /* filhos entram em sequência quando o bloco entra na tela */
+  .reveal-stagger > *{
+    opacity:0; transform:translateY(26px);
+    transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .reveal-stagger.in > *{ opacity:1; transform:none; }
+  .reveal-stagger.in > *:nth-child(1){ transition-delay:.08s; }
+  .reveal-stagger.in > *:nth-child(2){ transition-delay:.18s; }
+  .reveal-stagger.in > *:nth-child(3){ transition-delay:.28s; }
+  .reveal-stagger.in > *:nth-child(4){ transition-delay:.38s; }
+  .reveal-stagger.in > *:nth-child(5){ transition-delay:.48s; }
+  .reveal-stagger.in > *:nth-child(6){ transition-delay:.58s; }
+  .reveal-stagger.in > *:nth-child(7){ transition-delay:.68s; }
+  .reveal-stagger.in > *:nth-child(8){ transition-delay:.78s; }
+
+  /* hero — entrada escalonada ao abrir o site */
+  [data-hero-anim]{
+    opacity:0;
+    transition:opacity .85s var(--ease), transform .85s var(--ease);
+  }
+  [data-hero-anim].in{ opacity:1; transform:none; }
+  .hero-photo[data-hero-anim]{ transform:translateX(28px); }
+  .hero-photo[data-hero-anim].in{ transform:none; transition-duration:1.2s; }
+  .hero-badge[data-hero-anim], .hero-lede[data-hero-anim], .hero-cta-row[data-hero-anim],
+  .hero-chips[data-hero-anim], .hero-method[data-hero-anim], .hero-status[data-hero-anim]{
+    transform:translateY(18px);
+  }
 
   /* ===== TRANSFORMAÇÕES ===== */
   .transform-strip{ display:flex; gap:.9rem; overflow-x:auto; margin-top:2.6rem; padding-bottom:.5rem; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
@@ -444,8 +481,6 @@
   .ft-bottom{ border-top:1px solid var(--line-on-ink); padding-top:1.5rem; font-size:.75rem; display:flex; flex-direction:column; gap:.6rem; }
   @media (min-width:700px){ .ft-bottom{ flex-direction:row; justify-content:space-between; } }
 
-  #wa-float{ position:fixed; z-index:90; bottom:20px; right:20px; width:54px; height:54px; background:var(--accent); color:#041018; display:flex; align-items:center; justify-content:center; transition:transform .3s var(--ease), background .3s var(--ease); }
-  #wa-float:hover{ transform:scale(1.06); background:var(--accent-soft); }
 
   .skip-link{ position:absolute; left:-999px; background:var(--accent); color:#04070C; padding:.8rem 1.2rem; z-index:200; }
   .skip-link:focus{ left:0; top:0; }
@@ -571,7 +606,7 @@
       <h2 class="h-section" style="max-width:14ch;">Cada aluno, um processo diferente.</h2>
       <p class="lede" style="margin-top:1.1rem;">Nenhum resultado aqui é padrão. Cada estratégia é construída em cima da resposta real de quem está treinando.</p>
     </div>
-    <div class="transform-strip reveal rd-1" role="list">
+    <div class="transform-strip reveal-stagger" role="list">
       <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
       <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
       <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
@@ -583,11 +618,11 @@
 <!-- FUNDADOR -->
 <section id="fundador" class="section on-ink">
   <div class="container founder-grid">
-    <div class="founder-photo reveal">
+    <div class="founder-photo reveal reveal-left">
       <img src="assets/trainer-photo.png" alt="" data-fallback>
       <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
     </div>
-    <div class="reveal rd-1">
+    <div class="reveal reveal-right rd-1">
       <span class="kicker">Fundador</span>
       <p class="founder-quote">Não trabalho com plano pronto. Trabalho com <em>diagnóstico, ajuste e acompanhamento real</em> — porque cada corpo responde de um jeito.</p>
       <p style="color:var(--muted-on-ink); max-width:56ch;">Sou Marcos Aurílio, Personal Trainer e criador da metodologia Elite40+. Minha atuação é focada em transformar treino em processo — com diagnóstico técnico, planejamento individual e acompanhamento próximo em cada etapa.</p>
@@ -609,7 +644,7 @@
       <h2 class="h-section">A estratégia por trás de cada resultado.</h2>
     </div>
 
-    <div class="process-list reveal rd-1">
+    <div class="process-list reveal-stagger">
       <div class="process-row">
         <span class="process-num">01</span>
         <h3>Diagnóstico</h3>
@@ -641,7 +676,7 @@
       <span class="kicker">Jornada</span>
       <h2 class="h-section">Como funciona a consultoria.</h2>
     </div>
-    <div class="journey-row reveal rd-1">
+    <div class="journey-row reveal-stagger">
       <div class="journey-stub"><span class="num-tag">01 / ENTRADA</span><h3>Contato inicial</h3><p>Você entra em contato e conta seus objetivos e rotina.</p></div>
       <div class="journey-stub"><span class="num-tag">02 / ENTREGA</span><h3>Plano desenvolvido</h3><p>Seu planejamento é montado e entregue de forma organizada.</p></div>
       <div class="journey-stub"><span class="num-tag">03 / PROCESSO</span><h3>Acompanhamento ativo</h3><p>Monitoramento contínuo, com ajustes para manter a evolução.</p></div>
@@ -657,7 +692,7 @@
       <h2 class="h-section">Ela faz sentido para quem está disposto a seguir um processo.</h2>
     </div>
 
-    <div class="fit-grid reveal rd-1">
+    <div class="fit-grid reveal-stagger">
       <div class="fit-col yes">
         <h3 style="color:var(--paper);">É para você que:</h3>
         <ul class="fit-list">
@@ -687,7 +722,7 @@
       <h2 class="h-section">Tudo dentro de um único processo.</h2>
     </div>
 
-    <div class="reveal rd-1">
+    <div class="reveal-stagger">
       <div class="benefit-row">
         <div class="benefit-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
         <h3 class="h-card">Treino individualizado</h3>
@@ -748,7 +783,7 @@
     </div>
 
     <!-- mobile cards -->
-    <div class="plans-mobile reveal rd-1">
+    <div class="plans-mobile reveal-stagger">
       <div class="plan-m-card">
         <span class="num-tag">MENSAL</span>
         <div class="price">R$ XXX</div>
@@ -778,7 +813,7 @@
       <span class="kicker">Dúvidas</span>
       <h2 class="h-section">Perguntas frequentes.</h2>
     </div>
-    <div class="faq-list reveal rd-1">
+    <div class="faq-list reveal-stagger">
       <details class="faq-item"><summary>Preciso ter experiência para começar?<span class="faq-plus"></span></summary><div class="faq-answer">Não. O diagnóstico inicial define o ponto de partida certo, seja você iniciante ou avançado.</div></details>
       <details class="faq-item"><summary>Como funciona o acompanhamento?<span class="faq-plus"></span></summary><div class="faq-answer">Contato direto para dúvidas, com ajustes no plano conforme sua evolução real.</div></details>
       <details class="faq-item"><summary>Funciona treinando em casa?<span class="faq-plus"></span></summary><div class="faq-answer">Sim. O plano é adaptado ao ambiente que você tem disponível, casa ou academia.</div></details>
@@ -803,7 +838,7 @@
 
 </main>
 
-<footer>
+<footer class="reveal">
   <div class="container">
     <div class="ft-top">
       <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback data-fallback-src="assets/elite40-shield.svg"><span>Elite40+<small>Marcos Aurílio</small></span></a>
@@ -872,26 +907,45 @@
   }, { passive:true });
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const els = document.querySelectorAll(".reveal");
-  if (reduced || !("IntersectionObserver" in window)){
-    els.forEach(function(el){ el.classList.add("in"); });
-  } else {
+
+  function initAnimations(){
+    const scrollEls = document.querySelectorAll(".reveal, .reveal-stagger");
+    const heroEls = document.querySelectorAll("[data-hero-anim]");
+
+    function showAll(){
+      document.body.classList.add("is-ready");
+      scrollEls.forEach(function(el){ el.classList.add("in"); });
+      heroEls.forEach(function(el){ el.classList.add("in"); });
+    }
+
+    if (reduced || !("IntersectionObserver" in window)){
+      showAll();
+      return;
+    }
+
     const io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { threshold:.15, rootMargin:"0px 0px -40px 0px" });
-    els.forEach(function(el){ if (el.closest("#hero")) return; io.observe(el); });
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:0.1, rootMargin:"0px 0px -8% 0px" });
+
+    scrollEls.forEach(function(el){
+      if (el.closest("#hero")) return;
+      io.observe(el);
+    });
+
+    requestAnimationFrame(function(){
+      document.body.classList.add("is-ready");
+      heroEls.forEach(function(el, i){
+        setTimeout(function(){ el.classList.add("in"); }, 160 + i * 100);
+      });
+    });
   }
 
-  // hero entrance
-  const heroAnims = document.querySelectorAll("[data-hero-anim]");
-  function runHeroIn(){
-    heroAnims.forEach(function(el){ el.classList.add("in"); });
-  }
-  if (reduced){
-    runHeroIn();
-  } else {
-    requestAnimationFrame(function(){ setTimeout(runHeroIn, 80); });
-  }
+  initAnimations();
 })();
 </script>
 
