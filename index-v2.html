@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Marcos Aurílio — Elite40+ | Consultoria de Treinamento</title>
+<meta name="description" content="Elite40+: consultoria online de treinamento com método, diagnóstico e acompanhamento real. Sem plano pronto. Sem achismo.">
+
+<meta property="og:title" content="Marcos Aurílio — Elite40+">
+<meta property="og:description" content="Resultado não é sorte. É método. Consultoria online de treinamento com acompanhamento real.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/elite40-shield.png">
+<link rel="icon" href="assets/elite40-shield.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ===== TOKENS — modelo alternativo (editorial / alto contraste) ===== */
+    --ink:#0A0A0B;
+    --ink-soft:#141416;
+    --line-on-ink:#26272B;
+    --paper:#FFFFFF;
+    --paper-dim:#F1F1EF;
+    --line-on-paper:#E1E0DC;
+    --accent:#2E8FFF;
+    --accent-soft:#8FC1FF;
+    --muted-on-ink:#9C9FA6;
+    --muted-on-paper:#55575C;
+
+    --font-display:'Archivo Black','Inter',sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'IBM Plex Mono',monospace;
+
+    --container:1220px;
+    --gap-section:clamp(4rem, 9vw, 7.5rem);
+    --ease:cubic-bezier(.19,1,.22,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+  body{margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer;}
+  ::selection{background:var(--ink); color:var(--paper);}
+  .container{width:100%; max-width:var(--container); margin:0 auto; padding-left:clamp(1.25rem,5vw,2.5rem); padding-right:clamp(1.25rem,5vw,2.5rem);}
+  .section{ padding-top:var(--gap-section); padding-bottom:var(--gap-section); }
+  .on-ink{ background:var(--ink); color:var(--paper); }
+  .on-paper{ background:var(--paper); color:var(--ink); }
+  .on-paper-dim{ background:var(--paper-dim); color:var(--ink); }
+
+  .kicker{
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:.7em; margin-bottom:1.1rem;
+  }
+  .kicker::after{ content:""; flex:1; max-width:60px; height:1px; background:currentColor; opacity:.5; }
+  .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
+
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:400; line-height:0.98; margin:0; letter-spacing:-0.01em; text-transform:uppercase; }
+  .h-hero{ font-size:clamp(2.6rem, 8vw, 5.6rem); line-height:0.94; }
+  .h-section{ font-size:clamp(2rem, 5vw, 3.4rem); }
+  .h-card{ font-family:var(--font-body); font-weight:700; font-size:1.1rem; text-transform:none; letter-spacing:0; }
+  p{ line-height:1.7; }
+  .lede{ font-size:clamp(1rem,1.6vw,1.15rem); color:var(--muted-on-paper); max-width:44ch; }
+  .on-ink .lede{ color:var(--muted-on-ink); }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    font-weight:700; font-size:.85rem; letter-spacing:.04em; text-transform:uppercase;
+    padding:1.05rem 2rem; border:1.5px solid transparent; white-space:nowrap;
+    transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease);
+  }
+  .btn:active{ transform:scale(0.96); }
+  .btn-accent{ background:var(--accent); color:#04070C; }
+  .btn-accent:hover{ background:var(--accent-soft); }
+  .btn-line-ink{ border-color:var(--paper); color:var(--paper); }
+  .btn-line-ink:hover{ background:var(--paper); color:var(--ink); }
+  .btn-line-paper{ border-color:var(--ink); color:var(--ink); }
+  .btn-line-paper:hover{ background:var(--ink); color:var(--paper); }
+  .btn-block{ width:100%; }
+  .btn:focus-visible, a:focus-visible, summary:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  /* ===== HEADER ===== */
+  header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,11,0.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-on-ink); transition:transform .4s var(--ease); }
+  header#hd.hide{ transform:translateY(-100%); }
+  .hd-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+  .brand{ display:flex; align-items:center; gap:.7rem; color:var(--paper); font-weight:800; font-size:.95rem; letter-spacing:.02em; text-transform:uppercase; }
+  .brand img{ width:32px; height:32px; object-fit:contain; }
+  nav.dnav{ display:none; gap:2.2rem; }
+  nav.dnav a{ font-size:.82rem; color:var(--muted-on-ink); text-transform:uppercase; letter-spacing:.05em; transition:color .25s; }
+  nav.dnav a:hover{ color:var(--paper); }
+  .hd-actions{ display:flex; align-items:center; gap:1rem; }
+  .btn-hd{ display:none; }
+  .burger{ width:40px; height:40px; border:1px solid var(--line-on-ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; background:transparent; }
+  .burger span{ width:16px; height:1.5px; background:var(--paper); transition:transform .3s, opacity .3s; }
+  .burger.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
+  .burger.open span:nth-child(2){ opacity:0; }
+  .burger.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
+  #mmenu{ position:fixed; inset:0; z-index:99; background:var(--ink); padding:100px 1.5rem 2rem; display:flex; flex-direction:column; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease); }
+  #mmenu.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  #mmenu a{ font-family:var(--font-display); font-size:1.7rem; text-transform:uppercase; color:var(--paper); padding:.7rem 0; border-bottom:1px solid var(--line-on-ink); }
+  #mmenu .btn{ margin-top:2rem; }
+  @media (min-width:900px){ nav.dnav{ display:flex; } .btn-hd{ display:inline-flex; } .burger{ display:none; } }
+
+  #scroll-progress{ position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:110; }
+
+  /* ===== HERO ===== */
+  #hero{ padding-top:calc(70px + 3.2rem); padding-bottom:0; background:var(--ink); color:var(--paper); position:relative; overflow:hidden; }
+  .hero-top{ display:grid; grid-template-columns:1fr; gap:1.6rem; }
+  @media (min-width:800px){ .hero-top{ grid-template-columns:2.1fr 1fr; align-items:end; gap:2rem; } }
+  .hero-headline-mask{ overflow:hidden; }
+  .hero-headline-mask span{ display:block; transform:translateY(105%); transition:transform .9s var(--ease); }
+  .hero-headline-mask.in span{ transform:translateY(0); }
+  .hero-headline-mask:nth-of-type(2) span{ transition-delay:.08s; }
+  .hero-side{ font-size:.92rem; color:var(--muted-on-ink); max-width:34ch; border-left:2px solid var(--accent); padding-left:1.1rem; }
+  .hero-cta-row{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.1rem; }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.8rem; }
+  .hero-tags span{ font-family:var(--font-mono); font-size:.7rem; text-transform:uppercase; letter-spacing:.05em; border:1px solid var(--line-on-ink); padding:.4rem .8rem; color:var(--muted-on-ink); }
+
+  .hero-photo-band{ margin-top:3rem; position:relative; }
+  .hero-photo-frame{ position:relative; width:100%; aspect-ratio:16/8; overflow:hidden; }
+  @media (min-width:700px){ .hero-photo-frame{ aspect-ratio:21/8; } }
+  .hero-photo-frame img{ width:100%; height:100%; object-fit:cover; object-position:50% 15%; filter:grayscale(1) contrast(1.05); transition:filter 1.1s var(--ease); }
+  .hero-photo-frame.color img{ filter:grayscale(0) contrast(1.02); }
+  .hero-photo-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(10,10,11,0.05), rgba(10,10,11,0.55)); }
+  .hero-badge-line{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1rem clamp(1.25rem,5vw,2.5rem);
+    font-family:var(--font-mono); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--paper);
+  }
+  .hero-badge-line img{ width:26px; height:26px; object-fit:contain; }
+
+  .reveal{ opacity:0; transform:translateY(20px); transition:opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+  .rd-1{ transition-delay:.08s; } .rd-2{ transition-delay:.16s; } .rd-3{ transition-delay:.24s; }
+
+  /* ===== TRANSFORMAÇÕES ===== */
+  .transform-strip{ display:flex; gap:.9rem; overflow-x:auto; margin-top:2.6rem; padding-bottom:.5rem; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+  .transform-tile{
+    scroll-snap-align:start; flex:0 0 auto; width:min(230px,72vw); aspect-ratio:3/4;
+    background:var(--paper-dim); border:1px solid var(--line-on-paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem;
+    color:var(--muted-on-paper); text-align:center; padding:1.2rem;
+  }
+  .transform-tile span{ font-family:var(--font-mono); font-size:.66rem; text-transform:uppercase; letter-spacing:.05em; }
+
+  /* ===== FUNDADOR ===== */
+  .founder-grid{ display:grid; grid-template-columns:1fr; gap:2.6rem; }
+  @media (min-width:900px){ .founder-grid{ grid-template-columns:0.8fr 1.2fr; gap:4rem; align-items:center; } }
+  .founder-photo{ aspect-ratio:4/5; overflow:hidden; background:var(--ink-soft); }
+  .founder-photo img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.15); }
+  .founder-quote{ font-family:var(--font-display); text-transform:none; font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.25; letter-spacing:-0.005em; margin-bottom:1.4rem; }
+  .founder-quote em{ font-style:normal; color:var(--accent); }
+
+  /* ===== PROCESSO (números grandes) ===== */
+  .process-list{ margin-top:3rem; border-top:1px solid var(--line-on-ink); }
+  .process-row{ display:grid; grid-template-columns:1fr; gap:1rem; padding:2.1rem 0; border-bottom:1px solid var(--line-on-ink); align-items:baseline; }
+  @media (min-width:800px){ .process-row{ grid-template-columns:110px 1fr 1.4fr; gap:2rem; align-items:center; } }
+  .process-num{ font-family:var(--font-display); font-size:2.4rem; color:transparent; -webkit-text-stroke:1.5px var(--line-on-ink); transition:color .35s, -webkit-text-stroke .35s; }
+  .process-row:hover .process-num{ color:var(--accent); -webkit-text-stroke:1.5px var(--accent); }
+  .process-row h3{ font-family:var(--font-body); font-weight:800; font-size:1.15rem; text-transform:none; letter-spacing:0; }
+  .process-row p{ margin:0; font-size:.94rem; color:var(--muted-on-ink); }
+
+  /* ===== JORNADA (ticket stubs) ===== */
+  .journey-row{ display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem; }
+  @media (min-width:800px){ .journey-row{ grid-template-columns:repeat(3,1fr); gap:0; } }
+  .journey-stub{ border:1px solid var(--line-on-paper); padding:1.8rem 1.6rem; position:relative; }
+  @media (min-width:800px){ .journey-stub:not(:last-child){ border-right:none; } }
+  .journey-stub .num-tag{ display:block; margin-bottom:1rem; }
+  .journey-stub h3{ font-family:var(--font-body); text-transform:none; font-weight:700; font-size:1.05rem; margin-bottom:.5rem; letter-spacing:0; }
+  .journey-stub p{ margin:0; font-size:.9rem; color:var(--muted-on-paper); }
+
+  /* ===== PARA QUEM ===== */
+  .fit-grid{ display:grid; grid-template-columns:1fr; gap:0; margin-top:2.8rem; border:1px solid var(--line-on-ink); }
+  @media (min-width:840px){ .fit-grid{ grid-template-columns:1fr 1fr; } }
+  .fit-col{ padding:2.2rem; }
+  .fit-col.yes{ background:var(--ink-soft); }
+  .fit-col.no{ border-top:1px solid var(--line-on-ink); }
+  @media (min-width:840px){ .fit-col.no{ border-top:none; border-left:1px solid var(--line-on-ink); } }
+  .fit-col h3{ font-family:var(--font-body); text-transform:none; font-weight:700; font-size:1.05rem; margin-bottom:1.2rem; letter-spacing:0; }
+  .fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:.85rem; }
+  .fit-list li{ display:flex; gap:.7rem; font-size:.92rem; color:var(--muted-on-ink); align-items:flex-start; }
+  .fit-list li b{ color:var(--accent); font-weight:700; flex-shrink:0; }
+  .fit-col.no .fit-list li b{ color:var(--muted-on-ink); }
+
+  /* ===== BENEFÍCIOS (linhas alternadas) ===== */
+  .benefit-row{ display:grid; grid-template-columns:1fr; gap:.8rem; padding:1.7rem 0; border-bottom:1px solid var(--line-on-paper); align-items:center; }
+  @media (min-width:700px){ .benefit-row{ grid-template-columns:60px 1fr 2fr; gap:1.6rem; } }
+  .benefit-row:first-child{ border-top:1px solid var(--line-on-paper); }
+  .benefit-ico{ width:44px; height:44px; border:1px solid var(--ink); display:flex; align-items:center; justify-content:center; }
+  .benefit-row h3{ margin:0; }
+
+  /* ===== PLANOS (tabela) ===== */
+  .price-table{ margin-top:2.8rem; border:1px solid var(--line-on-ink); overflow-x:auto; }
+  table.plans{ width:100%; border-collapse:collapse; min-width:640px; }
+  table.plans th, table.plans td{ padding:1.1rem 1.3rem; text-align:left; border-bottom:1px solid var(--line-on-ink); font-size:.9rem; }
+  table.plans thead th{ font-family:var(--font-display); text-transform:uppercase; font-weight:400; font-size:.95rem; padding-top:1.6rem; padding-bottom:1.2rem; }
+  table.plans thead th span{ display:block; font-family:var(--font-mono); font-size:.68rem; color:var(--muted-on-ink); text-transform:none; margin-top:.4rem; }
+  table.plans td.price{ font-family:var(--font-display); font-size:1.3rem; }
+  table.plans td.feat-name{ color:var(--muted-on-ink); }
+  table.plans td.check{ text-align:center; color:var(--accent); font-weight:700; }
+  table.plans .col-featured{ background:rgba(46,143,255,0.06); position:relative; }
+  table.plans tbody tr:last-child td{ border-bottom:none; padding-top:1.6rem; }
+  .plan-cta-cell{ padding-top:1.5rem !important; }
+
+  /* mobile plan cards fallback */
+  .plans-mobile{ display:grid; gap:1.2rem; margin-top:2.8rem; }
+  .plan-m-card{ border:1px solid var(--line-on-ink); padding:1.8rem; }
+  .plan-m-card.featured{ background:rgba(46,143,255,0.06); border-color:var(--accent); }
+  .plan-m-card .num-tag{ display:block; margin-bottom:.6rem; }
+  .plan-m-card .price{ font-family:var(--font-display); font-size:1.8rem; margin-bottom:1.2rem; }
+  .plan-m-card ul{ list-style:none; margin:0 0 1.6rem; padding:0; display:grid; gap:.6rem; }
+  .plan-m-card li{ font-size:.88rem; color:var(--muted-on-ink); display:flex; gap:.6rem; }
+  .plan-m-card li b{ color:var(--accent); }
+  @media (min-width:820px){ .plans-mobile{ display:none; } }
+  @media (max-width:819px){ .price-table{ display:none; } }
+
+  /* ===== FAQ ===== */
+  .faq-list{ margin-top:2.6rem; border-top:1px solid var(--line-on-paper); }
+  .faq-item{ border-bottom:1px solid var(--line-on-paper); }
+  .faq-item summary{ list-style:none; display:flex; justify-content:space-between; gap:1.5rem; padding:1.5rem 0; font-weight:700; font-size:1rem; }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-plus{ width:24px; height:24px; border:1px solid var(--ink); position:relative; flex-shrink:0; transition:transform .3s; }
+  .faq-plus::before, .faq-plus::after{ content:""; position:absolute; background:var(--ink); top:50%; left:50%; transform:translate(-50%,-50%); }
+  .faq-plus::before{ width:10px; height:1.4px; } .faq-plus::after{ width:1.4px; height:10px; }
+  .faq-item[open] .faq-plus{ transform:rotate(45deg); }
+  .faq-answer{ padding:0 0 1.6rem; color:var(--muted-on-paper); font-size:.94rem; max-width:62ch; }
+
+  /* ===== CTA FINAL ===== */
+  #final{ text-align:center; }
+  #final h2{ max-width:18ch; margin:0 auto; }
+
+  /* ===== FOOTER ===== */
+  footer{ background:var(--ink); color:var(--muted-on-ink); padding:3rem 0 2rem; border-top:1px solid var(--line-on-ink); }
+  .ft-top{ display:flex; flex-direction:column; gap:1.8rem; margin-bottom:2rem; }
+  @media (min-width:700px){ .ft-top{ flex-direction:row; justify-content:space-between; align-items:center; } }
+  .ft-links{ display:flex; flex-wrap:wrap; gap:1.5rem; font-size:.85rem; }
+  .ft-links a:hover{ color:var(--paper); }
+  .ft-bottom{ border-top:1px solid var(--line-on-ink); padding-top:1.5rem; font-size:.75rem; display:flex; flex-direction:column; gap:.6rem; }
+  @media (min-width:700px){ .ft-bottom{ flex-direction:row; justify-content:space-between; } }
+
+  #wa-float{ position:fixed; z-index:90; bottom:20px; right:20px; width:56px; height:56px; background:var(--accent); color:#04070C; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 28px -8px rgba(46,143,255,0.55); transition:transform .3s var(--ease); }
+  #wa-float:hover{ transform:scale(1.07); }
+
+  .skip-link{ position:absolute; left:-999px; background:var(--accent); color:#04070C; padding:.8rem 1.2rem; z-index:200; }
+  .skip-link:focus{ left:0; top:0; }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+<header id="hd">
+  <div class="container hd-inner">
+    <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+">Marcos Aurílio</a>
+    <nav class="dnav" aria-label="Navegação">
+      <a href="#processo">Processo</a>
+      <a href="#fundador">Fundador</a>
+      <a href="#para-quem">Para quem</a>
+      <a href="#planos">Planos</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="hd-actions">
+      <a href="#" class="btn btn-accent btn-hd js-wa" data-msg="Olá, Marcos! Vim pelo site e quero entrar na consultoria.">Entrar na consultoria</a>
+      <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<nav id="mmenu" aria-label="Menu mobile">
+  <a href="#processo">Processo</a>
+  <a href="#fundador">Fundador</a>
+  <a href="#para-quem">Para quem</a>
+  <a href="#planos">Planos</a>
+  <a href="#duvidas">Dúvidas</a>
+  <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Vim pelo site e quero entrar na consultoria.">Entrar na consultoria</a>
+</nav>
+
+<main id="main">
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-top">
+      <div>
+        <span class="kicker reveal in">Método Elite40+</span>
+        <h1 class="h-hero">
+          <div class="hero-headline-mask in"><span>Resultado não</span></div>
+          <div class="hero-headline-mask in"><span>é sorte. <span style="color:var(--accent);">É método.</span></span></div>
+        </h1>
+        <div class="hero-cta-row reveal in rd-2">
+          <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero entrar na consultoria Elite40+.">Quero entrar na consultoria</a>
+          <a href="#processo" class="btn btn-line-ink">Ver o processo</a>
+        </div>
+        <div class="hero-tags reveal in rd-3">
+          <span>Diagnóstico real</span><span>Plano individual</span><span>Ajuste contínuo</span>
+        </div>
+      </div>
+      <p class="hero-side reveal in rd-1">Consultoria online de treinamento construída em cima de diagnóstico, plano sob medida e acompanhamento — sem fórmula pronta.</p>
+    </div>
+
+    <div class="hero-photo-band reveal in rd-2">
+      <div class="hero-photo-frame" id="hero-frame">
+        <img src="assets/trainer-photo.png" alt="Marcos Aurílio, Personal Trainer — Elite40+">
+        <div class="hero-badge-line">
+          <span>Marcos Aurílio — Personal Trainer</span>
+          <img src="assets/elite40-shield.png" alt="Elite40+">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMAÇÕES -->
+<section class="section on-paper">
+  <div class="container">
+    <div class="reveal">
+      <span class="kicker">Resultados</span>
+      <h2 class="h-section" style="max-width:14ch;">Cada aluno, um processo diferente.</h2>
+      <p class="lede" style="margin-top:1.1rem;">Nenhum resultado aqui é padrão. Cada estratégia é construída em cima da resposta real de quem está treinando.</p>
+    </div>
+    <div class="transform-strip reveal rd-1" role="list">
+      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDADOR -->
+<section id="fundador" class="section on-ink">
+  <div class="container founder-grid">
+    <div class="founder-photo reveal">
+      <img src="assets/trainer-photo.png" alt="Marcos Aurílio, fundador da metodologia Elite40+">
+    </div>
+    <div class="reveal rd-1">
+      <span class="kicker">Fundador</span>
+      <p class="founder-quote">Não trabalho com plano pronto. Trabalho com <em>diagnóstico, ajuste e acompanhamento real</em> — porque cada corpo responde de um jeito.</p>
+      <p style="color:var(--muted-on-ink); max-width:56ch;">Sou Marcos Aurílio, Personal Trainer e criador da metodologia Elite40+. Minha atuação é focada em transformar treino em processo — com diagnóstico técnico, planejamento individual e acompanhamento próximo em cada etapa.</p>
+      <p style="color:var(--muted-on-ink); max-width:56ch; margin-top:1rem;">Nada de achismo. Tudo baseado em resposta real e ajuste contínuo.</p>
+      <ul style="list-style:none; margin:1.6rem 0 0; padding:0; display:grid; gap:.7rem;">
+        <li style="font-size:.92rem; color:var(--paper);"><b style="color:var(--accent);">—</b>&nbsp; Personal Trainer — CREF [000000-G/UF]</li>
+        <li style="font-size:.92rem; color:var(--paper);"><b style="color:var(--accent);">—</b>&nbsp; Criador da metodologia Elite40+</li>
+        <li style="font-size:.92rem; color:var(--paper);"><b style="color:var(--accent);">—</b>&nbsp; Consultoria 100% online</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESSO -->
+<section id="processo" class="section on-ink" style="padding-top:0;">
+  <div class="container">
+    <div class="reveal" style="max-width:640px; padding-top:var(--gap-section);">
+      <span class="kicker">Metodologia</span>
+      <h2 class="h-section">A estratégia por trás de cada resultado.</h2>
+    </div>
+
+    <div class="process-list reveal rd-1">
+      <div class="process-row">
+        <span class="process-num">01</span>
+        <h3>Diagnóstico</h3>
+        <p>Entendemos exatamente onde você está e o que está travando sua evolução.</p>
+      </div>
+      <div class="process-row">
+        <span class="process-num">02</span>
+        <h3>Plano sob medida</h3>
+        <p>Uma estratégia de treino construída para o seu objetivo, tempo e nível de experiência.</p>
+      </div>
+      <div class="process-row">
+        <span class="process-num">03</span>
+        <h3>Execução acompanhada</h3>
+        <p>Acompanho sua execução de perto, com correções e orientação constante.</p>
+      </div>
+      <div class="process-row">
+        <span class="process-num">04</span>
+        <h3>Evolução contínua</h3>
+        <p>O plano muda conforme sua resposta — para o resultado se sustentar no tempo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JORNADA -->
+<section class="section on-paper-dim">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <span class="kicker">Jornada</span>
+      <h2 class="h-section">Como funciona a consultoria.</h2>
+    </div>
+    <div class="journey-row reveal rd-1">
+      <div class="journey-stub"><span class="num-tag">01 / ENTRADA</span><h3>Contato inicial</h3><p>Você entra em contato e conta seus objetivos e rotina.</p></div>
+      <div class="journey-stub"><span class="num-tag">02 / ENTREGA</span><h3>Plano desenvolvido</h3><p>Seu planejamento é montado e entregue de forma organizada.</p></div>
+      <div class="journey-stub"><span class="num-tag">03 / PROCESSO</span><h3>Acompanhamento ativo</h3><p>Monitoramento contínuo, com ajustes para manter a evolução.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUEM -->
+<section id="para-quem" class="section on-ink">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <span class="kicker">Essa consultoria não é para todo mundo</span>
+      <h2 class="h-section">Ela faz sentido para quem está disposto a seguir um processo.</h2>
+    </div>
+
+    <div class="fit-grid reveal rd-1">
+      <div class="fit-col yes">
+        <h3 style="color:var(--paper);">É para você que:</h3>
+        <ul class="fit-list">
+          <li><b>+</b> Tem 40 anos ou mais e quer treinar com método e segurança</li>
+          <li><b>+</b> Quer transformar o físico de forma sustentável</li>
+          <li><b>+</b> Precisa de direção e acompanhamento de verdade</li>
+          <li><b>+</b> Está disposto(a) a seguir ajustes ao longo do processo</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3 style="color:var(--paper);">Não é indicada para quem:</h3>
+        <ul class="fit-list">
+          <li><b>−</b> Procura atalho ou resultado sem processo</li>
+          <li><b>−</b> Não pretende manter constância</li>
+          <li><b>−</b> Não aceita orientação ou ajuste no plano</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="section on-paper">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <span class="kicker">O que você recebe</span>
+      <h2 class="h-section">Tudo dentro de um único processo.</h2>
+    </div>
+
+    <div class="reveal rd-1">
+      <div class="benefit-row">
+        <div class="benefit-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+        <h3 class="h-card">Treino individualizado</h3>
+        <p style="margin:0; color:var(--muted-on-paper); font-size:.92rem;">Planejado de acordo com seu objetivo, rotina e nível de experiência.</p>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+        <h3 class="h-card">Orientação de execução</h3>
+        <p style="margin:0; color:var(--muted-on-paper); font-size:.92rem;">Instruções claras para executar cada exercício com segurança.</p>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+        <h3 class="h-card">Suporte direto</h3>
+        <p style="margin:0; color:var(--muted-on-paper); font-size:.92rem;">Canal aberto para dúvidas e direcionamento durante toda a jornada.</p>
+      </div>
+      <div class="benefit-row">
+        <div class="benefit-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v6h6M20 20v-6h-6M20 4a9 9 0 00-14 3M4 20a9 9 0 0014-3"/></svg></div>
+        <h3 class="h-card">Ajustes periódicos</h3>
+        <p style="margin:0; color:var(--muted-on-paper); font-size:.92rem;">O plano evolui conforme sua resposta real ao treinamento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos" class="section on-ink">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <span class="kicker">Planos</span>
+      <h2 class="h-section">Mesma metodologia. O que muda é o tempo.</h2>
+    </div>
+
+    <!-- desktop table -->
+    <div class="price-table reveal rd-1">
+      <table class="plans">
+        <thead>
+          <tr>
+            <th style="width:38%;">Recurso</th>
+            <th>Mensal<span>R$ XXX</span></th>
+            <th class="col-featured">Trimestral<span>R$ XXX · melhor custo-benefício</span></th>
+            <th>Semestral<span>R$ XXX</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="feat-name">Treino individualizado</td><td class="check">✓</td><td class="check col-featured">✓</td><td class="check">✓</td></tr>
+          <tr><td class="feat-name">Casa ou academia</td><td class="check">✓</td><td class="check col-featured">✓</td><td class="check">✓</td></tr>
+          <tr><td class="feat-name">Orientação de execução</td><td class="check">✓</td><td class="check col-featured">✓</td><td class="check">✓</td></tr>
+          <tr><td class="feat-name">Suporte via WhatsApp</td><td class="check">✓</td><td class="check col-featured">✓</td><td class="check">✓</td></tr>
+          <tr><td class="feat-name">Ajustes periódicos</td><td class="check">1x</td><td class="check col-featured">Incluso</td><td class="check">Incluso</td></tr>
+          <tr>
+            <td></td>
+            <td class="plan-cta-cell"><a href="#" class="btn btn-line-ink btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano mensal.">Escolher</a></td>
+            <td class="plan-cta-cell col-featured"><a href="#" class="btn btn-accent btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano trimestral.">Escolher</a></td>
+            <td class="plan-cta-cell"><a href="#" class="btn btn-line-ink btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano semestral.">Escolher</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- mobile cards -->
+    <div class="plans-mobile reveal rd-1">
+      <div class="plan-m-card">
+        <span class="num-tag">MENSAL</span>
+        <div class="price">R$ XXX</div>
+        <ul><li><b>—</b> Treino individualizado</li><li><b>—</b> Casa ou academia</li><li><b>—</b> Suporte via WhatsApp</li><li><b>—</b> 1 ajuste no período</li></ul>
+        <a href="#" class="btn btn-line-ink btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano mensal.">Escolher</a>
+      </div>
+      <div class="plan-m-card featured">
+        <span class="num-tag" style="color:var(--accent);">TRIMESTRAL · MELHOR CUSTO-BENEFÍCIO</span>
+        <div class="price">R$ XXX</div>
+        <ul><li><b>—</b> Treino individualizado</li><li><b>—</b> Casa ou academia</li><li><b>—</b> Suporte via WhatsApp</li><li><b>—</b> Ajustes periódicos inclusos</li></ul>
+        <a href="#" class="btn btn-accent btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano trimestral.">Escolher</a>
+      </div>
+      <div class="plan-m-card">
+        <span class="num-tag">SEMESTRAL</span>
+        <div class="price">R$ XXX</div>
+        <ul><li><b>—</b> Treino individualizado</li><li><b>—</b> Casa ou academia</li><li><b>—</b> Suporte via WhatsApp</li><li><b>—</b> Ajustes periódicos inclusos</li></ul>
+        <a href="#" class="btn btn-line-ink btn-block js-wa" data-msg="Olá, Marcos! Tenho interesse no plano semestral.">Escolher</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="duvidas" class="section on-paper">
+  <div class="container">
+    <div class="reveal" style="max-width:640px;">
+      <span class="kicker">Dúvidas</span>
+      <h2 class="h-section">Perguntas frequentes.</h2>
+    </div>
+    <div class="faq-list reveal rd-1">
+      <details class="faq-item"><summary>Preciso ter experiência para começar?<span class="faq-plus"></span></summary><div class="faq-answer">Não. O diagnóstico inicial define o ponto de partida certo, seja você iniciante ou avançado.</div></details>
+      <details class="faq-item"><summary>Como funciona o acompanhamento?<span class="faq-plus"></span></summary><div class="faq-answer">Contato direto para dúvidas, com ajustes no plano conforme sua evolução real.</div></details>
+      <details class="faq-item"><summary>Funciona treinando em casa?<span class="faq-plus"></span></summary><div class="faq-answer">Sim. O plano é adaptado ao ambiente que você tem disponível, casa ou academia.</div></details>
+      <details class="faq-item"><summary>Com que frequência o plano é ajustado?<span class="faq-plus"></span></summary><div class="faq-answer">Conforme sua resposta ao treino e o plano contratado — sem ficar meses parado.</div></details>
+      <details class="faq-item"><summary>Como eu começo?<span class="faq-plus"></span></summary><div class="faq-answer">Direto pelo WhatsApp — conversamos sobre seu objetivo e o plano mais indicado.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="final" class="section on-ink">
+  <div class="container reveal">
+    <span class="kicker" style="justify-content:center;">Chega de tentar sozinho</span>
+    <h2 class="h-section">Tenha um método feito para gerar resultado.</h2>
+    <p class="lede" style="margin:1.2rem auto 0; text-align:center;">Diagnóstico, plano e acompanhamento — tudo em um único processo, direto no seu WhatsApp.</p>
+    <div style="margin-top:2rem;">
+      <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero começar minha transformação com a Elite40+.">Quero começar minha transformação</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="ft-top">
+      <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+">Marcos Aurílio</a>
+      <div class="ft-links">
+        <a href="#" class="js-ig">Instagram</a>
+        <a href="#" class="js-wa" data-msg="Olá, Marcos! Vim pelo site.">WhatsApp</a>
+        <a href="#planos">Planos</a>
+        <a href="#duvidas">Dúvidas</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>CREF [000000-G/UF]</span>
+      <span>© <span id="yr"></span> Marcos Aurílio · Metodologia Elite40+. Todos os direitos reservados.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" id="wa-float" class="js-wa" data-msg="Olá, Marcos! Vim pelo site e quero saber mais sobre a consultoria Elite40+." aria-label="Falar no WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.48 1.28 4.94L2 22l5.29-1.39a9.9 9.9 0 004.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.03c-.24.68-1.42 1.3-1.96 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.66-.6-2.92-1.26-4.82-4.2-4.97-4.4-.15-.19-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.26-.29.57-.36.76-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2.01.88 2.16.07.15.11.32.02.51-.09.19-.14.31-.27.47-.14.16-.29.36-.41.48-.14.14-.28.29-.12.57.15.28.68 1.13 1.47 1.83 1.01.9 1.86 1.18 2.14 1.31.28.13.44.11.6-.07.17-.18.71-.83.9-1.11.19-.28.38-.24.63-.14.26.09 1.65.78 1.93.92.28.14.47.21.53.33.07.12.07.68-.17 1.35z"/></svg>
+</a>
+
+<script>
+(function(){
+  const CONFIG = { name:"Marcos Aurílio", whatsappNumber:"5561999999999", instagram:"https://instagram.com/seu_perfil" };
+  function waLink(msg){ return "https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg); }
+  document.querySelectorAll(".js-wa").forEach(function(el){ el.href = waLink(el.getAttribute("data-msg")||"Olá, "+CONFIG.name+"!"); el.target="_blank"; el.rel="noopener"; });
+  document.querySelectorAll(".js-ig").forEach(function(el){ el.href = CONFIG.instagram; el.target="_blank"; el.rel="noopener"; });
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  const burger = document.getElementById("burger");
+  const menu = document.getElementById("mmenu");
+  burger.addEventListener("click", function(){
+    const open = menu.classList.toggle("open");
+    burger.classList.toggle("open", open);
+    burger.setAttribute("aria-expanded", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("open"); burger.classList.remove("open"); document.body.style.overflow=""; }); });
+
+  const hd = document.getElementById("hd");
+  let lastY = window.scrollY;
+  window.addEventListener("scroll", function(){
+    const y = window.scrollY;
+    if (y > lastY && y > 140) hd.classList.add("hide"); else hd.classList.remove("hide");
+    lastY = y;
+  }, { passive:true });
+
+  const bar = document.createElement("div"); bar.id="scroll-progress"; document.body.appendChild(bar);
+  window.addEventListener("scroll", function(){
+    const h = document.documentElement;
+    bar.style.width = (h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+"%";
+  }, { passive:true });
+
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)){
+    els.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold:.15, rootMargin:"0px 0px -40px 0px" });
+    els.forEach(function(el){ if (el.closest("#hero")) return; io.observe(el); });
+  }
+
+  // grayscale -> color reveal on hero photo once in view
+  const frame = document.getElementById("hero-frame");
+  if (frame && !reduced){
+    setTimeout(function(){ frame.classList.add("color"); }, 500);
+  } else if (frame){
+    frame.classList.add("color");
+  }
+})();
+</script>
+
+</body>
+</html>
