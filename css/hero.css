@@ -37,6 +37,16 @@
     content:""; position:absolute; left:0; right:0; bottom:.02em; height:2px;
     background:currentColor; transform-origin:left;
   }
+
+  /* título — linhas com máscara para animação de reveal */
+  .h-hero .hero-line{
+    display:block; overflow:hidden;
+  }
+  .h-hero .hero-line + .hero-line{ margin-top:.06em; }
+  .h-hero .hero-line-inner{
+    display:block;
+  }
+
   .hero-lede{
     margin:0; max-width:52ch; color:rgba(245,247,250,.7);
     font-size:clamp(.92rem, 1.1vw, 1rem); line-height:1.7;
@@ -171,7 +181,7 @@
   @media (min-width:900px){
     .hero-photo-cap{
       left:clamp(1rem, 5%, 2rem);
-      bottom:clamp(0.3rem, 2%, 1rem);
+      bottom:clamp(0.15rem, 1.5%, 0.75rem);
     }
   }
   .hero-photo-cap img{ width:30px; height:30px; object-fit:contain; flex-shrink:0; }

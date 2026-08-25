@@ -1,8 +1,24 @@
 export function initAnimations() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const scrollEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const root = document.documentElement;
 
-  if (reduced || !('IntersectionObserver' in window)) {
+  function startEntrance() {
+    root.classList.remove('anim-ready');
+    void root.offsetWidth;
+    requestAnimationFrame(() => {
+      root.classList.add('anim-ready');
+    });
+  }
+
+  if (reduced) {
+    root.classList.add('anim-ready');
+    scrollEls.forEach((el) => el.classList.add('in'));
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    root.classList.add('anim-ready');
     scrollEls.forEach((el) => el.classList.add('in'));
     return;
   }
@@ -20,4 +36,13 @@ export function initAnimations() {
   );
 
   scrollEls.forEach((el) => io.observe(el));
+
+  /* dispara animações após paint — também repete no F5/back-forward cache */
+  requestAnimationFrame(() => {
+    requestAnimationFrame(startEntrance);
+  });
+
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) startEntrance();
+  });
 }

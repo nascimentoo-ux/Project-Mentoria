@@ -1,4 +1,4 @@
-/* ===== ANIMAÇÕES — entrada no load (CSS puro) + reveal no scroll ===== */
+/* ===== ANIMAÇÕES — entrada no load + reveal no scroll ===== */
 
 @keyframes headerEnter {
   from { transform: translateY(-100%); }
@@ -8,11 +8,22 @@
 @keyframes enterUp {
   from {
     opacity: 0;
-    transform: translateY(32px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes headlineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(115%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -43,33 +54,82 @@
   }
 }
 
-/* dispara ao carregar — não depende de JS */
-header#hd {
-  animation: headerEnter 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+/* ---- estado inicial (só quando JS + motion permitido) ---- */
+html.js-anim:not(.anim-ready) header#hd {
+  transform: translateY(-100%);
 }
 
-.hero-enter {
-  animation: enterUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+html.js-anim:not(.anim-ready) .hero-enter,
+html.js-anim:not(.anim-ready) .hero-photo,
+html.js-anim:not(.anim-ready) #wa-float {
+  opacity: 0;
+  transform: translateY(40px);
 }
 
-.hero-photo {
-  animation: photoEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+html.js-anim:not(.anim-ready) .hero-photo {
+  transform: translateY(40px) scale(1.03);
 }
 
-.hero-stack .h-hero .accent::after {
+html.js-anim:not(.anim-ready) .hero-line-inner {
+  opacity: 0;
+  transform: translateY(115%);
+}
+
+html.js-anim:not(.anim-ready) .hero-stack .h-hero .accent::after {
+  transform: scaleX(0);
+}
+
+/* ---- animações ao carregar (classe .anim-ready via JS) ---- */
+html.anim-ready header#hd {
+  animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html.anim-ready .hero-line-inner {
+  animation: headlineReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html.anim-ready .hero-line:nth-child(1) .hero-line-inner {
+  animation-delay: 0.2s;
+}
+
+html.anim-ready .hero-line:nth-child(2) .hero-line-inner {
+  animation-delay: 0.38s;
+}
+
+html.anim-ready .hero-stack .h-hero .accent::after {
   transform: scaleX(0);
   transform-origin: left;
-  animation: underlineDraw 0.65s ease-out 0.75s both;
+  animation: underlineDraw 0.7s ease-out 0.85s both;
 }
 
-#wa-float {
-  opacity: 0;
-  animation: waEnter 0.65s ease-out 1s both;
+html.anim-ready .hero-enter {
+  animation: enterUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+html.anim-ready .hero-photo {
+  animation: photoEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+
+html.anim-ready #wa-float {
+  animation: waEnter 0.65s ease-out 1.1s both;
 }
 
 #wa-float:hover {
   transform: scale(1.06);
   background: var(--accent-soft);
+}
+
+/* fallback CSS puro se JS demorar — título anima mesmo sem .anim-ready */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.js-anim) .hero-line-inner {
+    animation: headlineReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  html:not(.js-anim) .hero-line:nth-child(2) .hero-line-inner {
+    animation-delay: 0.18s;
+  }
+  html:not(.js-anim) header#hd {
+    animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
 }
 
 /* fade-in + slide-up ao entrar na viewport (scroll) */

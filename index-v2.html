@@ -17,6 +17,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
+<script>
+  /* marca que JS está ativo — permite esconder texto antes da animação */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('js-anim');
+  }
+</script>
 
 </head>
 <body>
@@ -72,7 +78,10 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.5 6 .5-4.5 4 1.3 5.9L12 15l-5.2 2.9L8.1 12l-4.5-4 6-.5z"/></svg>
           Método Elite40+
         </span>
-        <h1 class="h-hero hero-enter">Resultado não<br>é sorte. <span class="accent">É método.</span></h1>
+        <h1 class="h-hero" id="hero-title">
+          <span class="hero-line"><span class="hero-line-inner">Resultado não</span></span>
+          <span class="hero-line"><span class="hero-line-inner">é sorte. <span class="accent">É método.</span></span></span>
+        </h1>
         <p class="hero-lede hero-enter">Consultoria online de treinamento construída em cima de diagnóstico, plano sob medida e acompanhamento — sem fórmula pronta.</p>
         <div class="hero-cta-row hero-enter">
           <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero entrar na consultoria Elite40+.">
