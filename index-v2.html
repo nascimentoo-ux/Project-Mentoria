@@ -14,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -30,7 +30,7 @@
     --muted-on-ink:#8B95A5;
     --muted-on-paper:#5A6370;
 
-    --font-display:'Syne',sans-serif;
+    --font-display:'Outfit',sans-serif;
     --font-body:'Sora',sans-serif;
     --font-mono:'JetBrains Mono',monospace;
 
@@ -63,9 +63,9 @@
   .kicker::after{ content:""; flex:1; max-width:72px; height:1px; background:currentColor; opacity:.45; }
   .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
 
-  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:700; line-height:0.98; margin:0; letter-spacing:-0.03em; text-transform:uppercase; }
-  .h-hero{ font-size:clamp(2.55rem, 7.2vw, 5.1rem); line-height:0.92; font-weight:800; }
-  .h-section{ font-size:clamp(2rem, 5vw, 3.35rem); }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; line-height:1.05; margin:0; letter-spacing:-0.025em; text-transform:none; }
+  .h-hero{ font-size:clamp(1.95rem, 3.5vw, 3.05rem); line-height:1.1; font-weight:700; letter-spacing:-0.03em; }
+  .h-section{ font-size:clamp(1.7rem, 3.4vw, 2.6rem); font-weight:600; }
   .h-card{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; text-transform:none; letter-spacing:0; }
   p{ line-height:1.7; }
   .lede{ font-size:clamp(1rem,1.5vw,1.12rem); color:var(--muted-on-paper); max-width:42ch; font-weight:400; }
@@ -115,90 +115,126 @@
 
   /* ===== HERO ===== */
   #hero{
-    position:relative; min-height:100svh; display:flex; align-items:flex-end;
+    position:relative; min-height:100svh; display:flex; align-items:center;
     color:var(--paper); overflow:hidden; isolation:isolate;
-    padding:0; background:var(--ink);
+    padding:0;
+    background:
+      radial-gradient(ellipse 70% 55% at 78% 32%, #14293C 0%, transparent 60%),
+      linear-gradient(150deg, #0A1018 0%, #07090D 58%, #0A131C 100%);
   }
+  /* faixa de imagem: ocupa a direita no desktop, fundo inteiro no mobile */
   .hero-visual{
     position:absolute; inset:0; z-index:0; overflow:hidden;
-    background:
-      radial-gradient(ellipse 80% 60% at 72% 28%, #16324A 0%, transparent 55%),
-      linear-gradient(145deg, #0A1018 0%, #07090D 55%, #0B1520 100%);
+  }
+  @media (min-width:900px){
+    .hero-visual{ left:42%; right:0; }
   }
   .hero-visual img{
-    width:100%; height:100%; object-fit:cover; object-position:50% 18%;
-    transform:scale(1.06); filter:saturate(.85) contrast(1.05);
-    animation:heroZoom 18s var(--ease) forwards;
+    width:100%; height:100%; object-fit:cover; object-position:50% 22%;
+    filter:saturate(.9) contrast(1.05);
+    animation:heroZoom 20s var(--ease) forwards;
   }
   @keyframes heroZoom{
-    from{ transform:scale(1.08); }
+    from{ transform:scale(1.07); }
     to{ transform:scale(1); }
   }
   .hero-visual::after{
     content:""; position:absolute; inset:0;
     background:
-      linear-gradient(90deg, rgba(7,9,13,.88) 0%, rgba(7,9,13,.55) 48%, rgba(7,9,13,.35) 100%),
-      linear-gradient(180deg, rgba(7,9,13,.55) 0%, rgba(7,9,13,.2) 35%, rgba(7,9,13,.92) 100%);
+      linear-gradient(90deg, rgba(7,9,13,.96) 0%, rgba(7,9,13,.7) 30%, rgba(7,9,13,.22) 100%),
+      linear-gradient(180deg, rgba(7,9,13,.6) 0%, rgba(7,9,13,.15) 40%, rgba(7,9,13,.85) 100%);
+  }
+  @media (min-width:900px){
+    .hero-visual::after{
+      background:
+        linear-gradient(90deg, rgba(7,9,13,1) 0%, rgba(7,9,13,.55) 22%, rgba(7,9,13,0) 60%),
+        linear-gradient(180deg, rgba(7,9,13,.45) 0%, rgba(7,9,13,0) 35%, rgba(7,9,13,.75) 100%);
+    }
   }
   .hero-grid{
-    position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.28;
+    position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.22;
     background-image:
-      linear-gradient(rgba(0,183,255,.12) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,183,255,.12) 1px, transparent 1px);
-    background-size:56px 56px;
-    mask-image:linear-gradient(180deg, rgba(0,0,0,.7), transparent 85%);
-    animation:gridDrift 22s linear infinite;
+      linear-gradient(rgba(0,183,255,.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,183,255,.1) 1px, transparent 1px);
+    background-size:58px 58px;
+    mask-image:linear-gradient(180deg, rgba(0,0,0,.65), transparent 80%);
+    animation:gridDrift 24s linear infinite;
   }
   @keyframes gridDrift{
     from{ background-position:0 0; }
-    to{ background-position:56px 56px; }
+    to{ background-position:58px 58px; }
   }
   .hero-content{
     position:relative; z-index:2; width:100%;
-    padding-top:calc(70px + clamp(3rem, 10vh, 6rem));
-    padding-bottom:clamp(2.8rem, 7vh, 4.5rem);
+    padding-top:calc(70px + clamp(2.5rem, 8vh, 5rem));
+    padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
   }
-  .hero-stack{ max-width:min(720px, 100%); display:grid; gap:1.25rem; }
-  .hero-brand{
-    font-family:var(--font-display); font-weight:800; font-size:clamp(2rem, 5.5vw, 3.4rem);
-    letter-spacing:-0.04em; line-height:.95; text-transform:uppercase; margin:0;
+  /* coluna de texto à esquerda, espaço livre à direita para a foto */
+  .hero-layout{ display:grid; grid-template-columns:1fr; gap:2rem; align-items:center; }
+  @media (min-width:900px){
+    .hero-layout{ grid-template-columns:minmax(0,1fr) minmax(0,.85fr); gap:3rem; }
   }
-  .hero-brand span{
-    display:inline-block; position:relative;
+  .hero-stack{ display:grid; gap:1.15rem; max-width:32ch; }
+  .hero-kicker{
+    margin:0; font-family:var(--font-mono); font-size:.66rem; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--accent);
+    display:flex; align-items:center; gap:.65em;
+    opacity:0; transition:opacity .7s var(--ease);
   }
-  .hero-brand span::after{
-    content:""; position:absolute; left:0; bottom:-.18em; width:100%; height:3px;
-    background:var(--accent); transform:scaleX(0); transform-origin:left;
-    animation:brandLine .9s var(--ease) .35s forwards;
-  }
-  @keyframes brandLine{ to{ transform:scaleX(1); } }
+  .hero-kicker::after{ content:""; width:44px; height:1px; background:currentColor; opacity:.5; }
+  .hero-kicker.in{ opacity:1; }
   .hero-headline-mask{ overflow:hidden; }
   .hero-headline-mask > span{
     display:block; transform:translateY(110%);
-    transition:transform 1s var(--ease);
+    transition:transform .95s var(--ease);
   }
   .hero-headline-mask.in > span{ transform:translateY(0); }
-  .h-hero .hero-headline-mask:nth-child(2) > span{ transition-delay:.12s; }
-  .hero-stack .h-hero .accent{ color:var(--accent); }
+  .h-hero .hero-headline-mask:nth-child(2) > span{ transition-delay:.1s; }
+  .h-hero .hero-headline-mask:nth-child(3) > span{ transition-delay:.2s; }
+  .hero-stack .h-hero .accent{
+    color:var(--accent); position:relative; display:inline-block;
+  }
+  .hero-stack .h-hero .accent::after{
+    content:""; position:absolute; left:0; right:0; bottom:.02em; height:2px;
+    background:currentColor; transform:scaleX(0); transform-origin:left;
+    transition:transform .8s var(--ease) .65s;
+  }
+  .hero-headline-mask.in .accent::after{ transform:scaleX(1); }
   .hero-lede{
-    margin:0; max-width:38ch; color:rgba(245,247,250,.78);
-    font-size:clamp(1rem, 1.5vw, 1.12rem); line-height:1.65;
+    margin:0; max-width:40ch; color:rgba(245,247,250,.7);
+    font-size:clamp(.92rem, 1.1vw, 1rem); line-height:1.7;
     opacity:0; transform:translateY(14px);
     transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-lede.in{ opacity:1; transform:translateY(0); transition-delay:.28s; }
+  .hero-lede.in{ opacity:1; transform:translateY(0); transition-delay:.3s; }
   .hero-cta-row{
-    display:flex; flex-wrap:wrap; gap:.85rem; margin-top:.55rem;
+    display:flex; flex-wrap:wrap; gap:.8rem; margin-top:.35rem;
     opacity:0; transform:translateY(14px);
     transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-cta-row.in{ opacity:1; transform:translateY(0); transition-delay:.42s; }
-  .hero-meta{
-    margin-top:1.4rem; font-family:var(--font-mono); font-size:.68rem;
-    letter-spacing:.14em; text-transform:uppercase; color:var(--muted-on-ink);
-    opacity:0; transition:opacity .8s var(--ease);
+  .hero-cta-row.in{ opacity:1; transform:translateY(0); transition-delay:.44s; }
+  .hero-cta-row .btn{ border-radius:999px; padding:.9rem 1.5rem; font-size:.76rem; }
+  .hero-cta-row .btn svg{ transition:transform .3s var(--ease); }
+  .hero-cta-row .btn:hover svg{ transform:translateX(3px); }
+  .hero-chips{
+    display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; padding:0; list-style:none;
+    opacity:0; transform:translateY(12px);
+    transition:opacity .8s var(--ease), transform .8s var(--ease);
   }
-  .hero-meta.in{ opacity:1; transition-delay:.55s; }
+  .hero-chips.in{ opacity:1; transform:translateY(0); transition-delay:.56s; }
+  .hero-chips li{
+    display:flex; align-items:center; gap:.45rem;
+    font-size:.72rem; color:rgba(245,247,250,.8);
+    border:1px solid rgba(245,247,250,.16); border-radius:999px;
+    padding:.42rem .85rem; background:rgba(245,247,250,.04);
+    backdrop-filter:blur(6px);
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .hero-chips li:hover{ border-color:rgba(0,183,255,.5); background:rgba(0,183,255,.08); }
+  .hero-chips svg{ width:13px; height:13px; color:var(--accent); flex-shrink:0; }
+  /* reserva do espaço da foto no desktop */
+  .hero-photo-slot{ display:none; }
+  @media (min-width:900px){ .hero-photo-slot{ display:block; min-height:clamp(360px, 52vh, 560px); } }
 
   .reveal{ opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
   .reveal.in{ opacity:1; transform:translateY(0); }
@@ -355,18 +391,37 @@
   </div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container hero-content">
-    <div class="hero-stack">
-      <p class="hero-brand"><span>Elite40+</span></p>
-      <h1 class="h-hero">
-        <div class="hero-headline-mask" data-hero-anim><span>Resultado não</span></div>
-        <div class="hero-headline-mask" data-hero-anim><span>é sorte. <span class="accent">É método.</span></span></div>
-      </h1>
-      <p class="hero-lede" data-hero-anim>Consultoria online com diagnóstico, plano sob medida e acompanhamento real — sem fórmula pronta.</p>
-      <div class="hero-cta-row" data-hero-anim>
-        <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero entrar na consultoria Elite40+.">Entrar na consultoria</a>
-        <a href="#processo" class="btn btn-line-ink">Ver o processo</a>
+    <div class="hero-layout">
+      <div class="hero-stack">
+        <p class="hero-kicker" data-hero-anim>Método Elite40+</p>
+        <h1 class="h-hero">
+          <div class="hero-headline-mask" data-hero-anim><span>Transforme hábitos,</span></div>
+          <div class="hero-headline-mask" data-hero-anim><span>construa performance</span></div>
+          <div class="hero-headline-mask" data-hero-anim><span>e alcance sua <span class="accent">melhor versão.</span></span></div>
+        </h1>
+        <p class="hero-lede" data-hero-anim>Mais do que treino: consultoria online com diagnóstico, plano sob medida e acompanhamento real em cada etapa.</p>
+        <div class="hero-cta-row" data-hero-anim>
+          <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero entrar na consultoria Elite40+.">
+            Entrar na consultoria
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <ul class="hero-chips" data-hero-anim>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            Resultados reais
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+            Método aplicado
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l5-6 4 4 4-7 5 5"/></svg>
+            Acompanhamento contínuo
+          </li>
+        </ul>
       </div>
-      <p class="hero-meta" data-hero-anim>Marcos Aurílio · Personal Trainer · Método Elite40+</p>
+      <div class="hero-photo-slot" aria-hidden="true"></div>
     </div>
   </div>
 </section>
