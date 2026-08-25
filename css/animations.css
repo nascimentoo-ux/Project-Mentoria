@@ -1,76 +1,171 @@
 /* ===== ANIMAÇÕES — entrada sincronizada + reveal no scroll ===== */
-header#hd{
-  transform:translateY(-100%);
-  transition:transform .65s ease-out, background .4s var(--ease);
-}
-body.is-ready header#hd{ transform:translateY(0); }
 
-#wa-float{
-  position:fixed; z-index:90; bottom:20px; right:20px; width:54px; height:54px;
-  background:var(--accent); color:#041018;
-  display:flex; align-items:center; justify-content:center;
-  opacity:0; transform:scale(.85) translateY(16px);
-  transition:opacity .65s ease-out, transform .65s ease-out, background .3s var(--ease);
+@keyframes headerEnter {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
 }
-body.is-ready #wa-float{
-  opacity:1; transform:scale(1) translateY(0);
-  transition-delay:.75s;
-}
-#wa-float:hover{ transform:scale(1.06); background:var(--accent-soft); }
 
-/* entrada sincronizada — hero, header, foto e legenda */
+@keyframes enterUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes photoEnter {
+  from {
+    opacity: 0;
+    transform: translateY(28px) scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes gridEnter {
+  from { opacity: 0; }
+  to { opacity: 0.22; }
+}
+
+@keyframes underlineDraw {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes waEnter {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* header */
+header#hd {
+  transform: translateY(-100%);
+}
+
+body.is-ready header#hd {
+  animation: headerEnter 0.7s ease-out forwards;
+}
+
+/* hero — estado inicial oculto até JS adicionar .is-ready */
 .hero-enter,
-.hero-grid,
-.hero-photo{
-  opacity:0;
-  transform:translateY(28px);
-  transition:opacity .65s ease-out, transform .65s ease-out;
-}
-.hero-photo{
-  transform:translateY(28px) scale(1.02);
-}
-body.is-ready .hero-enter,
-body.is-ready .hero-grid,
-body.is-ready .hero-photo{
-  opacity:1;
-  transform:none;
+.hero-photo {
+  opacity: 0;
+  transform: translateY(28px);
 }
 
-.hero-stack .h-hero .accent::after{
-  transform:scaleX(0);
-  transition:transform .6s ease-out .5s;
-}
-body.is-ready .hero-stack .h-hero .accent::after{
-  transform:scaleX(1);
+.hero-photo {
+  transform: translateY(28px) scale(1.02);
 }
 
-/* fade-in + slide-up ao entrar na viewport */
-.reveal{
-  opacity:0; transform:translateY(26px);
-  transition:opacity .6s ease-out, transform .6s ease-out;
+.hero-grid {
+  opacity: 0;
 }
-.reveal.in{ opacity:1; transform:none; }
 
-.reveal-left, .reveal-right, .reveal-scale{
-  opacity:0; transform:translateY(26px);
-  transition:opacity .6s ease-out, transform .6s ease-out;
+body.is-ready .hero-enter {
+  animation: enterUp 0.7s ease-out forwards;
 }
-.reveal-left.in, .reveal-right.in, .reveal-scale.in{ opacity:1; transform:none; }
 
-.rd-1{ transition-delay:.14s; }
-.rd-2{ transition-delay:.28s; }
-.rd-3{ transition-delay:.42s; }
-
-.reveal-stagger > *{
-  opacity:0; transform:translateY(24px);
-  transition:opacity .6s ease-out, transform .6s ease-out;
+body.is-ready .hero-photo {
+  animation: photoEnter 0.8s ease-out forwards;
 }
-.reveal-stagger.in > *{ opacity:1; transform:none; }
-.reveal-stagger.in > *:nth-child(1){ transition-delay:.05s; }
-.reveal-stagger.in > *:nth-child(2){ transition-delay:.12s; }
-.reveal-stagger.in > *:nth-child(3){ transition-delay:.19s; }
-.reveal-stagger.in > *:nth-child(4){ transition-delay:.26s; }
-.reveal-stagger.in > *:nth-child(5){ transition-delay:.33s; }
-.reveal-stagger.in > *:nth-child(6){ transition-delay:.4s; }
-.reveal-stagger.in > *:nth-child(7){ transition-delay:.47s; }
-.reveal-stagger.in > *:nth-child(8){ transition-delay:.54s; }
+
+body.is-ready .hero-grid {
+  animation: gridEnter 0.7s ease-out forwards;
+}
+
+.hero-stack .h-hero .accent::after {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+body.is-ready .hero-stack .h-hero .accent::after {
+  animation: underlineDraw 0.6s ease-out 0.55s forwards;
+}
+
+/* whatsapp flutuante */
+#wa-float {
+  position: fixed;
+  z-index: 90;
+  bottom: 20px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  background: var(--accent);
+  color: #041018;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.85) translateY(16px);
+}
+
+body.is-ready #wa-float {
+  animation: waEnter 0.65s ease-out 0.85s forwards;
+}
+
+#wa-float:hover {
+  transform: scale(1.06);
+  background: var(--accent-soft);
+}
+
+/* fade-in + slide-up ao entrar na viewport (scroll) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-left.in,
+.reveal-right.in,
+.reveal-scale.in {
+  opacity: 1;
+  transform: none;
+}
+
+.rd-1 { transition-delay: 0.14s; }
+.rd-2 { transition-delay: 0.28s; }
+.rd-3 { transition-delay: 0.42s; }
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.reveal-stagger.in > * {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-stagger.in > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.in > *:nth-child(2) { transition-delay: 0.12s; }
+.reveal-stagger.in > *:nth-child(3) { transition-delay: 0.19s; }
+.reveal-stagger.in > *:nth-child(4) { transition-delay: 0.26s; }
+.reveal-stagger.in > *:nth-child(5) { transition-delay: 0.33s; }
+.reveal-stagger.in > *:nth-child(6) { transition-delay: 0.4s; }
+.reveal-stagger.in > *:nth-child(7) { transition-delay: 0.47s; }
+.reveal-stagger.in > *:nth-child(8) { transition-delay: 0.54s; }

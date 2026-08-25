@@ -2,6 +2,17 @@ export function initAnimations() {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const scrollEls = document.querySelectorAll('.reveal, .reveal-stagger');
 
+  function finishEntrance() {
+    document.body.classList.add('is-ready');
+    scrollEls.forEach((el) => {
+      if (el.closest('#hero')) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.92) {
+        el.classList.add('in');
+      }
+    });
+  }
+
   function showAll() {
     document.body.classList.add('is-ready');
     scrollEls.forEach((el) => el.classList.add('in'));
@@ -29,7 +40,18 @@ export function initAnimations() {
     io.observe(el);
   });
 
-  requestAnimationFrame(() => {
-    document.body.classList.add('is-ready');
-  });
+  /* Aguarda paint + fontes antes de disparar a entrada — evita pular a animação */
+  function startEntrance() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        finishEntrance();
+      });
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(startEntrance).catch(startEntrance);
+  } else {
+    startEntrance();
+  }
 }
