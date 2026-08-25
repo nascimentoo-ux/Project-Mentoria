@@ -20,6 +20,7 @@
   .container{width:100%; max-width:var(--container); margin:0 auto; padding-left:clamp(1.25rem,5vw,2.5rem); padding-right:clamp(1.25rem,5vw,2.5rem);}
   .section{ padding-top:var(--gap-section); padding-bottom:var(--gap-section); }
   .on-ink{ background:var(--ink); color:var(--paper); }
+  .on-ink-soft{ background:var(--ink-soft); color:var(--paper); }
   .on-paper{ background:var(--paper); color:var(--ink); }
   .on-paper-dim{ background:var(--paper-dim); color:var(--ink); }
   .on-paper-brand{
