@@ -43,15 +43,17 @@
     --ease-soft:cubic-bezier(.22,1,.36,1);
   }
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; scroll-padding-top:var(--hd-h);}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
     .hero-grid, .hero-photo-frame img{ animation:none !important; }
-    .reveal, .reveal-stagger > *, [data-hero-anim], #wa-float, header#hd{
+    .reveal, .reveal-stagger > *, [data-hero-order], #wa-float, header#hd, .hero-photo, .hero-method, .hero-status{
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important;
     }
+    .hero-headline-mask > span{ transform:none !important; }
+    .marquee-track{ animation:none !important; }
   }
   body{margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
   img{max-width:100%; display:block;}
@@ -101,9 +103,15 @@
   }
 
   /* ===== HEADER ===== */
-  header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,9,13,0.72); backdrop-filter:blur(14px) saturate(1.2); border-bottom:1px solid var(--line-on-ink); }
+  header#hd{
+    position:sticky; top:0; left:0; right:0; z-index:100;
+    background:rgba(7,9,13,0.78); backdrop-filter:blur(10px) saturate(1.15);
+    border-bottom:1px solid var(--line-on-ink);
+    box-shadow:0 4px 24px rgba(0,0,0,.22);
+  }
   .hd-inner{ position:relative; display:flex; align-items:center; justify-content:space-between; height:var(--hd-h); width:100%; padding:0 clamp(.85rem,1.6vw,1.4rem); }
-  .brand{ display:flex; align-items:center; gap:.85rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
+  .brand{ display:flex; align-items:center; gap:.35rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
+  .brand > span{ margin-left:-.2rem; }
   .brand img{
     width:60px; height:60px; object-fit:contain; flex-shrink:0;
     filter:drop-shadow(0 0 14px rgba(0,183,255,.32)) contrast(1.06) saturate(1.12);
@@ -156,7 +164,7 @@
   }
   .hero-content{
     position:relative; z-index:2; width:100%;
-    padding-top:calc(var(--hd-h) + clamp(2.5rem, 8vh, 5rem));
+    padding-top:clamp(2.5rem, 8vh, 5rem);
     padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
   }
   /* texto à esquerda; a foto sangra atrás, pela direita */
@@ -165,19 +173,18 @@
   @media (min-width:900px){ .hero-stack{ max-width:min(56%, 640px); } }
   .hero-headline-mask{ overflow:hidden; }
   .hero-headline-mask > span{
-    display:block; transform:translateY(115%);
-    filter:blur(10px);
-    transition:transform 1.15s var(--ease-out), filter 1s var(--ease-out);
+    display:block; transform:translateY(110%);
+    transition:transform .6s ease-out;
   }
-  .hero-headline-mask.in > span{ transform:translateY(0); filter:blur(0); }
-  .h-hero .hero-headline-mask:nth-child(2) > span{ transition-delay:.14s; }
+  .hero-headline-mask.in > span{ transform:translateY(0); }
+  .h-hero .hero-headline-mask:nth-child(2) > span{ transition-delay:.08s; }
   .hero-stack .h-hero .accent{
     color:var(--accent); position:relative; display:inline-block;
   }
   .hero-stack .h-hero .accent::after{
     content:""; position:absolute; left:0; right:0; bottom:.02em; height:2px;
     background:currentColor; transform:scaleX(0); transform-origin:left;
-    transition:transform 1s var(--ease-out) .55s;
+    transition:transform .6s ease-out .45s;
   }
   .hero-headline-mask.in .accent::after{ transform:scaleX(1); }
 
@@ -326,13 +333,12 @@
   }
   .hero-badge svg{ width:14px; height:14px; flex-shrink:0; }
 
-  /* ===== ANIMAÇÕES — entrada cinematográfica + reveal no scroll ===== */
+  /* ===== ANIMAÇÕES — reveal no scroll + sequência do hero ===== */
   header#hd{ transform:translateY(-100%); }
   body.is-ready header#hd{
     transform:translateY(0);
-    transition:transform .8s var(--ease-out), background .4s var(--ease);
+    transition:transform .6s ease-out, background .4s var(--ease);
   }
-  body.is-ready header#hd.hide{ transform:translateY(-100%); transition-duration:.45s; }
 
   #wa-float{
     position:fixed; z-index:90; bottom:20px; right:20px; width:54px; height:54px;
@@ -348,29 +354,18 @@
   }
   #wa-float:hover{ transform:scale(1.06); background:var(--accent-soft); }
 
-  /* bloco único: sobe, desembaça e ganha escala */
+  /* fade-in + slide-up ao entrar na viewport */
   .reveal{
-    opacity:0; transform:translateY(44px) scale(.97);
-    filter:blur(10px);
-    transition:opacity 1.15s var(--ease-out), transform 1.15s var(--ease-out), filter 1.05s var(--ease-out);
+    opacity:0; transform:translateY(26px);
+    transition:opacity .6s ease-out, transform .6s ease-out;
   }
-  .reveal.in{ opacity:1; transform:none; filter:blur(0); }
+  .reveal.in{ opacity:1; transform:none; }
 
-  .reveal-left{
-    transform:translateX(-48px) scale(.97); filter:blur(8px);
-    clip-path:inset(0 0 0 100% round 0);
-    transition:opacity 1.15s var(--ease-out), transform 1.15s var(--ease-out),
-               filter 1.05s var(--ease-out), clip-path 1.2s var(--ease-out);
+  .reveal-left, .reveal-right, .reveal-scale{
+    opacity:0; transform:translateY(26px);
+    transition:opacity .6s ease-out, transform .6s ease-out;
   }
-  .reveal-left.in{ transform:none; filter:blur(0); clip-path:inset(0 0 0 0 round 0); }
-
-  .reveal-right{
-    transform:translateX(48px) scale(.97); filter:blur(8px);
-  }
-  .reveal-right.in{ transform:none; filter:blur(0); }
-
-  .reveal-scale{ transform:scale(.88); filter:blur(6px); }
-  .reveal-scale.in{ transform:none; filter:blur(0); }
+  .reveal-left.in, .reveal-right.in, .reveal-scale.in{ opacity:1; transform:none; }
 
   .rd-1{ transition-delay:.14s; }
   .rd-2{ transition-delay:.28s; }
@@ -378,38 +373,39 @@
 
   /* filhos entram em cascata dentro de cada seção */
   .reveal-stagger > *{
-    opacity:0; transform:translateY(36px) scale(.96);
-    filter:blur(6px);
-    transition:opacity 1s var(--ease-out), transform 1s var(--ease-out), filter .95s var(--ease-out);
+    opacity:0; transform:translateY(24px);
+    transition:opacity .6s ease-out, transform .6s ease-out;
   }
-  .reveal-stagger.in > *{ opacity:1; transform:none; filter:blur(0); }
-  .reveal-stagger.in > *:nth-child(1){ transition-delay:.06s; }
-  .reveal-stagger.in > *:nth-child(2){ transition-delay:.16s; }
-  .reveal-stagger.in > *:nth-child(3){ transition-delay:.26s; }
-  .reveal-stagger.in > *:nth-child(4){ transition-delay:.36s; }
-  .reveal-stagger.in > *:nth-child(5){ transition-delay:.46s; }
-  .reveal-stagger.in > *:nth-child(6){ transition-delay:.56s; }
-  .reveal-stagger.in > *:nth-child(7){ transition-delay:.66s; }
-  .reveal-stagger.in > *:nth-child(8){ transition-delay:.76s; }
+  .reveal-stagger.in > *{ opacity:1; transform:none; }
+  .reveal-stagger.in > *:nth-child(1){ transition-delay:.05s; }
+  .reveal-stagger.in > *:nth-child(2){ transition-delay:.12s; }
+  .reveal-stagger.in > *:nth-child(3){ transition-delay:.19s; }
+  .reveal-stagger.in > *:nth-child(4){ transition-delay:.26s; }
+  .reveal-stagger.in > *:nth-child(5){ transition-delay:.33s; }
+  .reveal-stagger.in > *:nth-child(6){ transition-delay:.4s; }
+  .reveal-stagger.in > *:nth-child(7){ transition-delay:.47s; }
+  .reveal-stagger.in > *:nth-child(8){ transition-delay:.54s; }
 
-  /* hero — sequência ao abrir */
-  [data-hero-anim]{
-    opacity:0;
-    filter:blur(8px);
-    transition:opacity 1s var(--ease-out), transform 1s var(--ease-out), filter .95s var(--ease-out);
+  /* hero — sequência: badge → título → subtítulo → CTA → pills */
+  [data-hero-order]:not(.hero-headline-mask){
+    opacity:0; transform:translateY(24px);
+    transition:opacity .6s ease-out, transform .6s ease-out;
   }
-  [data-hero-anim].in{ opacity:1; transform:none; filter:blur(0); }
+  [data-hero-order].in{ opacity:1; transform:none; }
 
-  .hero-photo[data-hero-anim]{
-    transform:translateX(36px) scale(1.05);
-    transition-duration:1.35s;
+  .hero-photo{
+    opacity:0; transform:translateX(20px);
+    transition:opacity .8s ease-out .2s, transform .8s ease-out .2s;
   }
-  .hero-badge[data-hero-anim]{
-    transform:translateY(22px) scale(.92);
+  body.is-ready .hero-photo{ opacity:1; transform:none; }
+
+  .hero-method, .hero-status{
+    opacity:0; transform:translateY(20px);
+    transition:opacity .6s ease-out, transform .6s ease-out;
   }
-  .hero-lede[data-hero-anim], .hero-cta-row[data-hero-anim],
-  .hero-chips[data-hero-anim], .hero-method[data-hero-anim], .hero-status[data-hero-anim]{
-    transform:translateY(24px);
+  body.is-ready .hero-method, body.is-ready .hero-status{
+    opacity:1; transform:none;
+    transition-delay:.85s;
   }
 
   .section-intro{ max-width:640px; }
@@ -419,11 +415,25 @@
   #final .reveal-stagger .lede{ margin:1.2rem auto 0; }
   #final .reveal-stagger > *:last-child{ margin-top:2rem; }
 
-  /* ===== TRANSFORMAÇÕES ===== */
-  .transform-strip{ display:flex; gap:.9rem; overflow-x:auto; margin-top:2.6rem; padding-bottom:.5rem; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; }
+  /* ===== TRANSFORMAÇÕES — marquee infinito ===== */
+  .marquee-wrap{
+    overflow:hidden; margin-top:2.6rem; width:100%;
+    mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    -webkit-mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .marquee-track{
+    display:flex; width:max-content;
+    animation:marqueeScroll 38s linear infinite;
+    will-change:transform;
+  }
+  @keyframes marqueeScroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .marquee-group{ display:flex; gap:.9rem; flex-shrink:0; padding-right:.9rem; }
   .transform-tile{
-    scroll-snap-align:start; flex:0 0 auto; width:min(230px,72vw); aspect-ratio:3/4;
-    background:var(--paper-dim); border:1px solid var(--line-on-paper);
+    flex:0 0 auto; width:min(230px,72vw); aspect-ratio:3/4;
+    background:var(--paper-dim); border:1px solid var(--line-on-paper); border-radius:8px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem;
     color:var(--muted-on-paper); text-align:center; padding:1.2rem;
   }
@@ -456,23 +466,48 @@
   .journey-stub p{ margin:0; font-size:.9rem; color:var(--muted-on-paper); }
 
   /* ===== PARA QUEM ===== */
-  .fit-grid{ display:grid; grid-template-columns:1fr; gap:0; margin-top:2.8rem; border:1px solid var(--line-on-ink); }
-  @media (min-width:840px){ .fit-grid{ grid-template-columns:1fr 1fr; } }
-  .fit-col{ padding:2.2rem; }
-  .fit-col.yes{ background:var(--ink-soft); }
-  .fit-col.no{ border-top:1px solid var(--line-on-ink); }
-  @media (min-width:840px){ .fit-col.no{ border-top:none; border-left:1px solid var(--line-on-ink); } }
+  .fit-grid{
+    display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem;
+  }
+  @media (min-width:840px){ .fit-grid{ grid-template-columns:1fr 1fr; gap:1.2rem; } }
+  .fit-col{
+    padding:2.2rem; border-radius:12px;
+    border:1px solid transparent;
+  }
+  .fit-col.yes{
+    background:rgba(59,130,246,0.08);
+    border-color:rgba(52,211,153,0.28);
+  }
+  .fit-col.no{
+    background:rgba(239,68,68,0.06);
+    border-color:rgba(248,113,113,0.25);
+  }
   .fit-col h3{ font-family:var(--font-body); text-transform:none; font-weight:700; font-size:1.05rem; margin-bottom:1.2rem; letter-spacing:0; }
   .fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:.85rem; }
   .fit-list li{ display:flex; gap:.7rem; font-size:.92rem; color:var(--muted-on-ink); align-items:flex-start; }
-  .fit-list li b{ color:var(--accent); font-weight:700; flex-shrink:0; }
-  .fit-col.no .fit-list li b{ color:var(--muted-on-ink); }
+  .fit-list li b{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:1.35rem; height:1.35rem; border-radius:4px; font-size:.72rem; font-weight:700; flex-shrink:0;
+  }
+  .fit-col.yes .fit-list li b{
+    color:#34D399; background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3);
+  }
+  .fit-col.no .fit-list li b{
+    color:#F87171; background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.28);
+  }
 
   /* ===== BENEFÍCIOS (linhas alternadas) ===== */
   .benefit-row{ display:grid; grid-template-columns:1fr; gap:.8rem; padding:1.7rem 0; border-bottom:1px solid var(--line-on-paper); align-items:center; }
   @media (min-width:700px){ .benefit-row{ grid-template-columns:60px 1fr 2fr; gap:1.6rem; } }
   .benefit-row:first-child{ border-top:1px solid var(--line-on-paper); }
-  .benefit-ico{ width:44px; height:44px; border:1px solid var(--ink); display:flex; align-items:center; justify-content:center; }
+  .benefit-ico{
+    width:44px; height:44px; border-radius:10px;
+    border:1px solid rgba(59,130,246,0.25);
+    background:rgba(59,130,246,0.15);
+    box-shadow:0 0 20px rgba(59,130,246,0.3);
+    color:var(--accent);
+    display:flex; align-items:center; justify-content:center;
+  }
   .benefit-row h3{ margin:0; }
 
   /* ===== PLANOS (tabela) ===== */
@@ -565,7 +600,7 @@
 
 <!-- HERO -->
 <section id="hero">
-  <figure class="hero-photo" data-hero-anim>
+  <figure class="hero-photo">
     <div class="hero-photo-frame">
       <img src="assets/trainer-photo.png" alt="" data-fallback>
       <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
@@ -579,23 +614,23 @@
   <div class="container hero-content">
     <div class="hero-layout">
       <div class="hero-stack">
-        <span class="hero-badge" data-hero-anim>
+        <span class="hero-badge" data-hero-order="0">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.5 6 .5-4.5 4 1.3 5.9L12 15l-5.2 2.9L8.1 12l-4.5-4 6-.5z"/></svg>
           Método Elite40+
         </span>
         <h1 class="h-hero">
-          <div class="hero-headline-mask" data-hero-anim><span>Resultado não</span></div>
-          <div class="hero-headline-mask" data-hero-anim><span>é sorte. <span class="accent">É método.</span></span></div>
+          <div class="hero-headline-mask" data-hero-order="1"><span>Resultado não</span></div>
+          <div class="hero-headline-mask" data-hero-order="1"><span>é sorte. <span class="accent">É método.</span></span></div>
         </h1>
-        <p class="hero-lede" data-hero-anim>Consultoria online de treinamento construída em cima de diagnóstico, plano sob medida e acompanhamento — sem fórmula pronta.</p>
-        <div class="hero-cta-row" data-hero-anim>
+        <p class="hero-lede" data-hero-order="2">Consultoria online de treinamento construída em cima de diagnóstico, plano sob medida e acompanhamento — sem fórmula pronta.</p>
+        <div class="hero-cta-row" data-hero-order="3">
           <a href="#" class="btn btn-accent js-wa" data-msg="Olá, Marcos! Quero entrar na consultoria Elite40+.">
             Quero entrar na consultoria
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
           <a href="#processo" class="btn btn-line-ink">Ver o processo</a>
         </div>
-        <ul class="hero-chips" data-hero-anim>
+        <ul class="hero-chips" data-hero-order="4">
           <li>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
             Diagnóstico real
@@ -610,7 +645,7 @@
           </li>
         </ul>
 
-        <ol class="hero-method" data-hero-anim>
+        <ol class="hero-method">
           <li>
             <span class="step-n">01</span>
             <span class="step-t">Diagnóstico</span>
@@ -633,7 +668,7 @@
           </li>
         </ol>
 
-        <p class="hero-status" data-hero-anim>
+        <p class="hero-status">
           <span class="dot" aria-hidden="true"></span>
           Consultoria 100% online · atendimento direto no WhatsApp
         </p>
@@ -650,11 +685,21 @@
       <h2 class="h-section" style="max-width:14ch;">Cada aluno, um processo diferente.</h2>
       <p class="lede">Nenhum resultado aqui é padrão. Cada estratégia é construída em cima da resposta real de quem está treinando.</p>
     </div>
-    <div class="transform-strip reveal-stagger" role="list">
-      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
-      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
-      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
-      <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+    <div class="marquee-wrap reveal" aria-label="Galeria de transformações">
+      <div class="marquee-track">
+        <div class="marquee-group" role="list">
+          <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile" role="listitem"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <div class="transform-tile"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+          <div class="transform-tile"><span>Antes / Depois</span>Espaço reservado<br>para foto real de aluno</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -740,18 +785,18 @@
       <div class="fit-col yes">
         <h3 style="color:var(--paper);">É para você que:</h3>
         <ul class="fit-list">
-          <li><b>+</b> Tem 40 anos ou mais e quer treinar com método e segurança</li>
-          <li><b>+</b> Quer transformar o físico de forma sustentável</li>
-          <li><b>+</b> Precisa de direção e acompanhamento de verdade</li>
-          <li><b>+</b> Está disposto(a) a seguir ajustes ao longo do processo</li>
+          <li><b>✓</b> Tem 40 anos ou mais e quer treinar com método e segurança</li>
+          <li><b>✓</b> Quer transformar o físico de forma sustentável</li>
+          <li><b>✓</b> Precisa de direção e acompanhamento de verdade</li>
+          <li><b>✓</b> Está disposto(a) a seguir ajustes ao longo do processo</li>
         </ul>
       </div>
       <div class="fit-col no">
         <h3 style="color:var(--paper);">Não é indicada para quem:</h3>
         <ul class="fit-list">
-          <li><b>−</b> Procura atalho ou resultado sem processo</li>
-          <li><b>−</b> Não pretende manter constância</li>
-          <li><b>−</b> Não aceita orientação ou ajuste no plano</li>
+          <li><b>✗</b> Procura atalho ou resultado sem processo</li>
+          <li><b>✗</b> Não pretende manter constância</li>
+          <li><b>✗</b> Não aceita orientação ou ajuste no plano</li>
         </ul>
       </div>
     </div>
@@ -907,6 +952,26 @@
 <script>
 (function(){
   const CONFIG = { name:"Marcos Aurílio", whatsappNumber:"5561999999999", instagram:"https://instagram.com/seu_perfil" };
+
+  /* F5 / reload sempre volta ao topo da home */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+  window.addEventListener("pageshow", function(e){
+    if (e.persisted) window.scrollTo(0, 0);
+  });
+
+  function scrollToTop(smooth){
+    window.scrollTo({ top:0, left:0, behavior: smooth ? "smooth" : "auto" });
+    if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  }
+
+  document.querySelectorAll('a.brand, a[href="#hero"]').forEach(function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      scrollToTop(true);
+    });
+  });
+
   function waLink(msg){ return "https://wa.me/"+CONFIG.whatsappNumber+"?text="+encodeURIComponent(msg); }
   document.querySelectorAll(".js-wa").forEach(function(el){ el.href = waLink(el.getAttribute("data-msg")||"Olá, "+CONFIG.name+"!"); el.target="_blank"; el.rel="noopener"; });
   document.querySelectorAll(".js-ig").forEach(function(el){ el.href = CONFIG.instagram; el.target="_blank"; el.rel="noopener"; });
@@ -936,14 +1001,6 @@
   });
   menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", function(){ menu.classList.remove("open"); burger.classList.remove("open"); document.body.style.overflow=""; }); });
 
-  const hd = document.getElementById("hd");
-  let lastY = window.scrollY;
-  window.addEventListener("scroll", function(){
-    const y = window.scrollY;
-    if (y > lastY && y > 140) hd.classList.add("hide"); else hd.classList.remove("hide");
-    lastY = y;
-  }, { passive:true });
-
   const bar = document.createElement("div"); bar.id="scroll-progress"; document.body.appendChild(bar);
   window.addEventListener("scroll", function(){
     const h = document.documentElement;
@@ -951,13 +1008,11 @@
   }, { passive:true });
 
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const HERO_STEP_MS = 120;
 
   function initAnimations(){
     const scrollEls = document.querySelectorAll(".reveal, .reveal-stagger");
-    const heroEls = document.querySelectorAll("[data-hero-anim]");
-    const heroStack = document.querySelector(".hero-stack");
-    const heroFrame = document.querySelector(".hero-photo-frame");
-    const heroSection = document.getElementById("hero");
+    const heroEls = document.querySelectorAll("[data-hero-order]");
 
     function showAll(){
       document.body.classList.add("is-ready");
@@ -986,33 +1041,11 @@
 
     requestAnimationFrame(function(){
       document.body.classList.add("is-ready");
-      heroEls.forEach(function(el, i){
-        setTimeout(function(){ el.classList.add("in"); }, 220 + i * 130);
+      heroEls.forEach(function(el){
+        var order = parseInt(el.getAttribute("data-hero-order"), 10) || 0;
+        setTimeout(function(){ el.classList.add("in"); }, 160 + order * HERO_STEP_MS);
       });
     });
-
-    /* parallax leve: foto desce mais devagar; texto do hero recua ao rolar */
-    var ticking = false;
-    function onScrollFx(){
-      ticking = false;
-      if (!heroSection) return;
-      var y = window.scrollY;
-      var vh = window.innerHeight;
-      if (heroFrame && y < vh * 1.1){
-        heroFrame.style.transform = "translateY(" + (y * 0.09) + "px)";
-      }
-      if (heroStack){
-        var p = Math.min(1, Math.max(0, y / (vh * 0.72)));
-        heroStack.style.opacity = String(1 - p * 0.42);
-        heroStack.style.transform = "translateY(" + (p * 28) + "px)";
-      }
-    }
-    window.addEventListener("scroll", function(){
-      if (!ticking){
-        ticking = true;
-        requestAnimationFrame(onScrollFx);
-      }
-    }, { passive:true });
   }
 
   initAnimations();
