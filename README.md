@@ -16,8 +16,15 @@ O Vite recarrega a página automaticamente quando o `index-v2.html` é salvo.
 ## Arquivos principais
 
 - `index-v2.html` — página completa (edite este)
-- `assets/` — imagens (`elite40-shield.png`, `trainer-photo.png`)
+- `assets/` — imagens da marca e do personal
 
-## Observação
+## Imagens necessárias
 
-Sem as imagens em `assets/`, o layout aparece, mas os espaços de foto ficam quebrados até você adicionar os arquivos.
+Coloque os dois arquivos em `assets/` com estes nomes exatos:
+
+| Arquivo | Conteúdo | Onde aparece |
+| --- | --- | --- |
+| `assets/elite40-shield.png` | Escudo "Metodologia Elite40+" | header, menu mobile, legenda da foto do hero, CTA final, rodapé, favicon, og:image |
+| `assets/trainer-photo.png` | Foto do personal (retrato) | moldura do hero e seção Fundador |
+
+Enquanto os arquivos não existirem, a página mostra um marcador no lugar da foto em vez de um ícone de imagem quebrada.

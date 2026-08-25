@@ -34,7 +34,7 @@
     --font-body:'Sora',sans-serif;
     --font-mono:'JetBrains Mono',monospace;
 
-    --container:1220px;
+    --container:1320px;
     --gap-section:clamp(4rem, 9vw, 7.5rem);
     --ease:cubic-bezier(.19,1,.22,1);
   }
@@ -113,6 +113,8 @@
   #mmenu.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
   #mmenu a{ font-family:var(--font-display); font-size:1.7rem; text-transform:uppercase; color:var(--paper); padding:.7rem 0; border-bottom:1px solid var(--line-on-ink); }
   #mmenu .btn{ margin-top:2rem; }
+  .mm-logo{ display:block; margin-bottom:1.6rem; }
+  .mm-logo img{ width:56px; height:56px; object-fit:contain; }
   @media (min-width:900px){ nav.dnav{ display:flex; } .btn-hd{ display:inline-flex; } .burger{ display:none; } }
 
   #scroll-progress{ position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:110; transition:width .05s linear; }
@@ -125,35 +127,6 @@
     background:
       radial-gradient(ellipse 70% 55% at 78% 32%, #14293C 0%, transparent 60%),
       linear-gradient(150deg, #0A1018 0%, #07090D 58%, #0A131C 100%);
-  }
-  /* faixa de imagem: ocupa a direita no desktop, fundo inteiro no mobile */
-  .hero-visual{
-    position:absolute; inset:0; z-index:0; overflow:hidden;
-  }
-  @media (min-width:900px){
-    .hero-visual{ left:42%; right:0; }
-  }
-  .hero-visual img{
-    width:100%; height:100%; object-fit:cover; object-position:50% 22%;
-    filter:saturate(.9) contrast(1.05);
-    animation:heroZoom 20s var(--ease) forwards;
-  }
-  @keyframes heroZoom{
-    from{ transform:scale(1.07); }
-    to{ transform:scale(1); }
-  }
-  .hero-visual::after{
-    content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(90deg, rgba(7,9,13,.96) 0%, rgba(7,9,13,.7) 30%, rgba(7,9,13,.22) 100%),
-      linear-gradient(180deg, rgba(7,9,13,.6) 0%, rgba(7,9,13,.15) 40%, rgba(7,9,13,.85) 100%);
-  }
-  @media (min-width:900px){
-    .hero-visual::after{
-      background:
-        linear-gradient(90deg, rgba(7,9,13,1) 0%, rgba(7,9,13,.55) 22%, rgba(7,9,13,0) 60%),
-        linear-gradient(180deg, rgba(7,9,13,.45) 0%, rgba(7,9,13,0) 35%, rgba(7,9,13,.75) 100%);
-    }
   }
   .hero-grid{
     position:absolute; inset:0; z-index:1; pointer-events:none; opacity:.22;
@@ -173,12 +146,12 @@
     padding-top:calc(70px + clamp(2.5rem, 8vh, 5rem));
     padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
   }
-  /* coluna de texto à esquerda, espaço livre à direita para a foto */
-  .hero-layout{ display:grid; grid-template-columns:1fr; gap:2rem; align-items:center; }
+  /* texto à esquerda ocupando toda a largura útil; foto contida à direita */
+  .hero-layout{ display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:center; }
   @media (min-width:900px){
-    .hero-layout{ grid-template-columns:minmax(0,1fr) minmax(0,.85fr); gap:3rem; }
+    .hero-layout{ grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); gap:clamp(2.5rem,5vw,5rem); }
   }
-  .hero-stack{ display:grid; gap:1.15rem; max-width:32ch; }
+  .hero-stack{ display:grid; gap:1.3rem; max-width:none; }
   .hero-kicker{
     margin:0; font-family:var(--font-mono); font-size:.66rem; letter-spacing:.2em;
     text-transform:uppercase; color:var(--accent);
@@ -205,7 +178,7 @@
   }
   .hero-headline-mask.in .accent::after{ transform:scaleX(1); }
   .hero-lede{
-    margin:0; max-width:40ch; color:rgba(245,247,250,.7);
+    margin:0; max-width:52ch; color:rgba(245,247,250,.7);
     font-size:clamp(.92rem, 1.1vw, 1rem); line-height:1.7;
     opacity:0; transform:translateY(14px);
     transition:opacity .8s var(--ease), transform .8s var(--ease);
@@ -236,9 +209,54 @@
   }
   .hero-chips li:hover{ border-color:rgba(0,183,255,.5); background:rgba(0,183,255,.08); }
   .hero-chips svg{ width:13px; height:13px; color:var(--accent); flex-shrink:0; }
-  /* reserva do espaço da foto no desktop */
-  .hero-photo-slot{ display:none; }
-  @media (min-width:900px){ .hero-photo-slot{ display:block; min-height:clamp(360px, 52vh, 560px); } }
+
+  /* foto do personal: moldura contida, sem dominar o hero */
+  .hero-photo{
+    position:relative; justify-self:center; width:100%; max-width:340px;
+    opacity:0; transform:translateY(20px);
+    transition:opacity .9s var(--ease), transform .9s var(--ease);
+  }
+  .hero-photo.in{ opacity:1; transform:translateY(0); transition-delay:.35s; }
+  @media (min-width:900px){ .hero-photo{ justify-self:end; max-width:380px; } }
+  .hero-photo-frame{
+    position:relative; aspect-ratio:3/4; overflow:hidden;
+    border:1px solid rgba(245,247,250,.12);
+    background:linear-gradient(160deg, #101922 0%, #0A121A 100%);
+  }
+  .hero-photo-frame img{
+    width:100%; height:100%; object-fit:cover; object-position:50% 12%;
+    filter:saturate(.95) contrast(1.04);
+    animation:heroZoom 20s var(--ease) forwards;
+  }
+  @keyframes heroZoom{
+    from{ transform:scale(1.06); }
+    to{ transform:scale(1); }
+  }
+  .hero-photo-frame::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(180deg, rgba(7,9,13,0) 45%, rgba(7,9,13,.75) 100%);
+  }
+  .ph-empty{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:.6rem; text-align:center; padding:1.5rem;
+    font-family:var(--font-mono); font-size:.64rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted-on-ink);
+  }
+  .ph-empty[hidden]{ display:none; }
+  .hero-photo-cap{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    display:flex; align-items:center; gap:.6rem; padding:.9rem 1rem;
+  }
+  .hero-photo-cap img{ width:26px; height:26px; object-fit:contain; flex-shrink:0; }
+  .hero-photo-cap span{
+    font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
+    text-transform:uppercase; color:rgba(245,247,250,.92); line-height:1.5;
+  }
+  .hero-photo-tag{
+    position:absolute; top:.9rem; left:.9rem; z-index:2;
+    font-family:var(--font-mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink); background:var(--accent); padding:.32rem .6rem;
+  }
 
   .reveal{ opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
   .reveal.in{ opacity:1; transform:translateY(0); }
@@ -257,7 +275,7 @@
   /* ===== FUNDADOR ===== */
   .founder-grid{ display:grid; grid-template-columns:1fr; gap:2.6rem; }
   @media (min-width:900px){ .founder-grid{ grid-template-columns:0.8fr 1.2fr; gap:4rem; align-items:center; } }
-  .founder-photo{ aspect-ratio:4/5; overflow:hidden; background:var(--ink-soft); }
+  .founder-photo{ position:relative; aspect-ratio:4/5; overflow:hidden; background:var(--ink-soft); }
   .founder-photo img{ width:100%; height:100%; object-fit:cover; filter:grayscale(0.15); }
   .founder-quote{ font-family:var(--font-display); text-transform:none; font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.25; letter-spacing:-0.005em; margin-bottom:1.4rem; }
   .founder-quote em{ font-style:normal; color:var(--accent); }
@@ -338,7 +356,8 @@
 
   /* ===== CTA FINAL ===== */
   #final{ text-align:center; }
-  #final h2{ max-width:18ch; margin:0 auto; }
+  #final h2{ max-width:20ch; margin:0 auto; }
+  .final-logo{ width:clamp(72px,9vw,104px); height:auto; margin:0 auto 1.6rem; object-fit:contain; }
 
   /* ===== FOOTER ===== */
   footer{ background:var(--ink); color:var(--muted-on-ink); padding:3rem 0 2rem; border-top:1px solid var(--line-on-ink); }
@@ -362,7 +381,7 @@
 
 <header id="hd">
   <div class="hd-inner">
-    <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+"><span>Elite40+<small>Marcos Aurílio</small></span></a>
+    <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback><span>Elite40+<small>Marcos Aurílio</small></span></a>
     <nav class="dnav" aria-label="Navegação">
       <a href="#processo">Processo</a>
       <a href="#fundador">Fundador</a>
@@ -378,6 +397,7 @@
 </header>
 
 <nav id="mmenu" aria-label="Menu mobile">
+  <span class="mm-logo"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback></span>
   <a href="#processo">Processo</a>
   <a href="#fundador">Fundador</a>
   <a href="#para-quem">Para quem</a>
@@ -390,9 +410,6 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-visual" aria-hidden="true">
-    <img src="assets/trainer-photo.png" alt="">
-  </div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container hero-content">
     <div class="hero-layout">
@@ -425,7 +442,17 @@
           </li>
         </ul>
       </div>
-      <div class="hero-photo-slot" aria-hidden="true"></div>
+      <figure class="hero-photo" data-hero-anim>
+        <div class="hero-photo-frame">
+          <img src="assets/trainer-photo.png" alt="" data-fallback>
+          <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
+          <span class="hero-photo-tag">Personal Trainer</span>
+          <figcaption class="hero-photo-cap">
+            <img src="assets/elite40-shield.png" alt="" data-fallback>
+            <span>Marcos Aurílio<br>Metodologia Elite40+</span>
+          </figcaption>
+        </div>
+      </figure>
     </div>
   </div>
 </section>
@@ -451,7 +478,8 @@
 <section id="fundador" class="section on-ink">
   <div class="container founder-grid">
     <div class="founder-photo reveal">
-      <img src="assets/trainer-photo.png" alt="Marcos Aurílio, fundador da metodologia Elite40+">
+      <img src="assets/trainer-photo.png" alt="" data-fallback>
+      <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
     </div>
     <div class="reveal rd-1">
       <span class="kicker">Fundador</span>
@@ -657,6 +685,7 @@
 <!-- CTA FINAL -->
 <section id="final" class="section on-ink">
   <div class="container reveal">
+    <img class="final-logo" src="assets/elite40-shield.png" alt="Metodologia Elite40+" data-fallback>
     <span class="kicker" style="justify-content:center;">Chega de tentar sozinho</span>
     <h2 class="h-section">Tenha um método feito para gerar resultado.</h2>
     <p class="lede" style="margin:1.2rem auto 0; text-align:center;">Diagnóstico, plano e acompanhamento — tudo em um único processo, direto no seu WhatsApp.</p>
@@ -671,7 +700,7 @@
 <footer>
   <div class="container">
     <div class="ft-top">
-      <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+"><span>Elite40+<small>Marcos Aurílio</small></span></a>
+      <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback><span>Elite40+<small>Marcos Aurílio</small></span></a>
       <div class="ft-links">
         <a href="#" class="js-ig">Instagram</a>
         <a href="#" class="js-wa" data-msg="Olá, Marcos! Vim pelo site.">WhatsApp</a>
@@ -697,6 +726,18 @@
   document.querySelectorAll(".js-wa").forEach(function(el){ el.href = waLink(el.getAttribute("data-msg")||"Olá, "+CONFIG.name+"!"); el.target="_blank"; el.rel="noopener"; });
   document.querySelectorAll(".js-ig").forEach(function(el){ el.href = CONFIG.instagram; el.target="_blank"; el.rel="noopener"; });
   document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // enquanto os arquivos de imagem não estiverem em assets/, evita o ícone de imagem quebrada
+  function markBroken(img){
+    img.style.display = "none";
+    const ph = img.parentElement && img.parentElement.querySelector(".ph-empty");
+    if (ph) ph.hidden = false;
+  }
+  document.querySelectorAll("img[data-fallback]").forEach(function(img){
+    img.addEventListener("error", function(){ markBroken(img); });
+    // o erro pode ter ocorrido antes deste script ser executado
+    if (img.complete && img.naturalWidth === 0) markBroken(img);
+  });
 
   const burger = document.getElementById("burger");
   const menu = document.getElementById("mmenu");
