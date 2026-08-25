@@ -159,14 +159,14 @@
   .hero-photo-cap{
     position:absolute;
     left:clamp(.85rem, 2.5vw, 1.5rem);
-    bottom:clamp(0.2rem, 1%, 0.85rem);
+    bottom:clamp(0.1rem, 0.5%, 0.65rem);
     z-index:3;
     display:flex; align-items:center; gap:.55rem;
     padding:.5rem .7rem;
     border-radius:8px;
-    background:rgba(7,9,13,.28);
-    backdrop-filter:blur(10px) saturate(1.15);
-    border:1px solid rgba(245,247,250,.18);
+    background:rgba(7,9,13,.18);
+    backdrop-filter:blur(12px) saturate(1.1);
+    border:1px solid rgba(245,247,250,.14);
   }
   @media (min-width:900px){
     .hero-photo-cap{
