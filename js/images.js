@@ -12,6 +12,6 @@ function markBroken(img) {
 export function initImages() {
   document.querySelectorAll('img[data-fallback]').forEach((img) => {
     img.addEventListener('error', () => markBroken(img));
-    if (img.complete && img.naturalWidth === 0) markBroken(img);
+    /* só troca no evento error — evita “piscar” da logo ao carregar */
   });
 }
