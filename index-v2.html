@@ -466,35 +466,17 @@
   .journey-stub p{ margin:0; font-size:.9rem; color:var(--muted-on-paper); }
 
   /* ===== PARA QUEM ===== */
-  .fit-grid{
-    display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem;
-  }
-  @media (min-width:840px){ .fit-grid{ grid-template-columns:1fr 1fr; gap:1.2rem; } }
-  .fit-col{
-    padding:2.2rem; border-radius:12px;
-    border:1px solid transparent;
-  }
-  .fit-col.yes{
-    background:rgba(59,130,246,0.08);
-    border-color:rgba(52,211,153,0.28);
-  }
-  .fit-col.no{
-    background:rgba(239,68,68,0.06);
-    border-color:rgba(248,113,113,0.25);
-  }
+  .fit-grid{ display:grid; grid-template-columns:1fr; gap:0; margin-top:2.8rem; border:1px solid var(--line-on-ink); }
+  @media (min-width:840px){ .fit-grid{ grid-template-columns:1fr 1fr; } }
+  .fit-col{ padding:2.2rem; }
+  .fit-col.yes{ background:var(--ink-soft); }
+  .fit-col.no{ border-top:1px solid var(--line-on-ink); }
+  @media (min-width:840px){ .fit-col.no{ border-top:none; border-left:1px solid var(--line-on-ink); } }
   .fit-col h3{ font-family:var(--font-body); text-transform:none; font-weight:700; font-size:1.05rem; margin-bottom:1.2rem; letter-spacing:0; }
   .fit-list{ list-style:none; margin:0; padding:0; display:grid; gap:.85rem; }
   .fit-list li{ display:flex; gap:.7rem; font-size:.92rem; color:var(--muted-on-ink); align-items:flex-start; }
-  .fit-list li b{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:1.35rem; height:1.35rem; border-radius:4px; font-size:.72rem; font-weight:700; flex-shrink:0;
-  }
-  .fit-col.yes .fit-list li b{
-    color:#34D399; background:rgba(52,211,153,0.12); border:1px solid rgba(52,211,153,0.3);
-  }
-  .fit-col.no .fit-list li b{
-    color:#F87171; background:rgba(248,113,113,0.1); border:1px solid rgba(248,113,113,0.28);
-  }
+  .fit-list li b{ color:var(--accent); font-weight:700; flex-shrink:0; }
+  .fit-col.no .fit-list li b{ color:var(--muted-on-ink); }
 
   /* ===== BENEFÍCIOS (linhas alternadas) ===== */
   .benefit-row{ display:grid; grid-template-columns:1fr; gap:.8rem; padding:1.7rem 0; border-bottom:1px solid var(--line-on-paper); align-items:center; }
@@ -785,18 +767,18 @@
       <div class="fit-col yes">
         <h3 style="color:var(--paper);">É para você que:</h3>
         <ul class="fit-list">
-          <li><b>✓</b> Tem 40 anos ou mais e quer treinar com método e segurança</li>
-          <li><b>✓</b> Quer transformar o físico de forma sustentável</li>
-          <li><b>✓</b> Precisa de direção e acompanhamento de verdade</li>
-          <li><b>✓</b> Está disposto(a) a seguir ajustes ao longo do processo</li>
+          <li><b>+</b> Tem 40 anos ou mais e quer treinar com método e segurança</li>
+          <li><b>+</b> Quer transformar o físico de forma sustentável</li>
+          <li><b>+</b> Precisa de direção e acompanhamento de verdade</li>
+          <li><b>+</b> Está disposto(a) a seguir ajustes ao longo do processo</li>
         </ul>
       </div>
       <div class="fit-col no">
         <h3 style="color:var(--paper);">Não é indicada para quem:</h3>
         <ul class="fit-list">
-          <li><b>✗</b> Procura atalho ou resultado sem processo</li>
-          <li><b>✗</b> Não pretende manter constância</li>
-          <li><b>✗</b> Não aceita orientação ou ajuste no plano</li>
+          <li><b>−</b> Procura atalho ou resultado sem processo</li>
+          <li><b>−</b> Não pretende manter constância</li>
+          <li><b>−</b> Não aceita orientação ou ajuste no plano</li>
         </ul>
       </div>
     </div>
