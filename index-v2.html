@@ -235,7 +235,7 @@
   }
   .hero-photo-frame::after{
     content:""; position:absolute; inset:0; pointer-events:none;
-    background:linear-gradient(180deg, rgba(7,9,13,0) 45%, rgba(7,9,13,.75) 100%);
+    background:linear-gradient(180deg, rgba(7,9,13,0) 46%, rgba(7,9,13,.5) 70%, rgba(7,9,13,.97) 100%);
   }
   .ph-empty{
     position:absolute; inset:0; display:flex; flex-direction:column;
@@ -252,11 +252,6 @@
   .hero-photo-cap span{
     font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
     text-transform:uppercase; color:rgba(245,247,250,.92); line-height:1.5;
-  }
-  .hero-photo-tag{
-    position:absolute; top:.9rem; left:.9rem; z-index:2;
-    font-family:var(--font-mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--ink); background:var(--accent); padding:.32rem .6rem;
   }
 
   .reveal{ opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
@@ -447,7 +442,6 @@
         <div class="hero-photo-frame">
           <img src="assets/trainer-photo.png" alt="" data-fallback>
           <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
-          <span class="hero-photo-tag">Personal Trainer</span>
           <figcaption class="hero-photo-cap">
             <img src="assets/elite40-shield.png" alt="" data-fallback data-fallback-src="assets/elite40-shield.svg">
             <span>Marcos Aurílio<br>Metodologia Elite40+</span>
