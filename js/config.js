@@ -1,7 +1,7 @@
 export const CONFIG = {
   name: 'Marcos Aurílio',
   whatsappNumber: '5561999999999',
-  instagram: 'https://instagram.com/seu_perfil',
+  instagram: 'https://www.instagram.com/treinador.marcosaurilio?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==',
 };
 
 export function waLink(msg) {

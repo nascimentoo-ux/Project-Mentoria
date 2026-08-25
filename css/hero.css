@@ -73,7 +73,7 @@
 
   /* trilha do método: liga o hero à seção Processo */
   .hero-method{
-    margin:2.2rem 0 0; padding:1.4rem 0 0; list-style:none;
+    margin:5.5rem 0 0; padding:1.4rem 0 0; list-style:none;
     display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem 1.4rem;
     border-top:1px solid rgba(245,247,250,.12);
   }
@@ -104,7 +104,7 @@
 
   /* status de atendimento com ponto pulsante */
   .hero-status{
-    display:flex; align-items:center; gap:.55rem; margin:0;
+    display:flex; align-items:center; gap:.55rem; margin:1.2rem 0 0;
     font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em;
     text-transform:uppercase; color:rgba(245,247,250,.62);
   }
