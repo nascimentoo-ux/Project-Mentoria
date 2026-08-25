@@ -65,7 +65,7 @@
   .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
 
   h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; line-height:1.05; margin:0; letter-spacing:-0.025em; text-transform:none; }
-  .h-hero{ font-size:clamp(1.95rem, 3.5vw, 3.05rem); line-height:1.1; font-weight:700; letter-spacing:-0.03em; }
+  .h-hero{ font-size:clamp(2.1rem, 4.1vw, 3.55rem); line-height:1.08; font-weight:700; letter-spacing:-0.03em; }
   .h-section{ font-size:clamp(1.7rem, 3.4vw, 2.6rem); font-weight:600; }
   .h-card{ font-family:var(--font-body); font-weight:700; font-size:1.05rem; text-transform:none; letter-spacing:0; }
   p{ line-height:1.7; }
@@ -147,20 +147,10 @@
     padding-top:calc(70px + clamp(2.5rem, 8vh, 5rem));
     padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
   }
-  /* texto à esquerda ocupando toda a largura útil; foto contida à direita */
-  .hero-layout{ display:grid; grid-template-columns:1fr; gap:2.5rem; align-items:center; }
-  @media (min-width:900px){
-    .hero-layout{ grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr); gap:clamp(2.5rem,5vw,5rem); }
-  }
+  /* texto à esquerda; a foto sangra atrás, pela direita */
+  .hero-layout{ display:grid; grid-template-columns:1fr; }
   .hero-stack{ display:grid; gap:1.3rem; max-width:none; }
-  .hero-kicker{
-    margin:0; font-family:var(--font-mono); font-size:.66rem; letter-spacing:.2em;
-    text-transform:uppercase; color:var(--accent);
-    display:flex; align-items:center; gap:.65em;
-    opacity:0; transition:opacity .7s var(--ease);
-  }
-  .hero-kicker::after{ content:""; width:44px; height:1px; background:currentColor; opacity:.5; }
-  .hero-kicker.in{ opacity:1; }
+  @media (min-width:900px){ .hero-stack{ max-width:min(56%, 640px); } }
   .hero-headline-mask{ overflow:hidden; }
   .hero-headline-mask > span{
     display:block; transform:translateY(110%);
@@ -211,31 +201,44 @@
   .hero-chips li:hover{ border-color:rgba(0,183,255,.5); background:rgba(0,183,255,.08); }
   .hero-chips svg{ width:13px; height:13px; color:var(--accent); flex-shrink:0; }
 
-  /* foto do personal: moldura contida, sem dominar o hero */
+  /* foto do personal sangrando pela direita e dissolvendo no fundo */
   .hero-photo{
-    position:relative; justify-self:center; width:100%; max-width:340px;
-    opacity:0; transform:translateY(20px);
-    transition:opacity .9s var(--ease), transform .9s var(--ease);
+    position:absolute; inset:0; z-index:0; margin:0; overflow:hidden;
+    opacity:0; transition:opacity 1.2s var(--ease);
   }
-  .hero-photo.in{ opacity:1; transform:translateY(0); transition-delay:.35s; }
-  @media (min-width:900px){ .hero-photo{ justify-self:end; max-width:380px; } }
-  .hero-photo-frame{
-    position:relative; aspect-ratio:3/4; overflow:hidden;
-    border:1px solid rgba(245,247,250,.12);
-    background:linear-gradient(160deg, #101922 0%, #0A121A 100%);
+  .hero-photo.in{ opacity:1; }
+  @media (min-width:900px){
+    .hero-photo{ left:auto; right:0; width:min(46%, 620px); }
   }
+  .hero-photo-frame{ position:relative; width:100%; height:100%; overflow:hidden; }
   .hero-photo-frame img{
-    width:100%; height:100%; object-fit:cover; object-position:50% 12%;
+    width:100%; height:100%; object-fit:cover; object-position:62% 20%;
     filter:saturate(.95) contrast(1.04);
-    animation:heroZoom 20s var(--ease) forwards;
+    animation:heroZoom 22s var(--ease) forwards;
+    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
+    mask-image:linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
   }
   @keyframes heroZoom{
-    from{ transform:scale(1.06); }
+    from{ transform:scale(1.07); }
     to{ transform:scale(1); }
   }
+  /* no mobile a foto vira fundo, então precisa de véu forte para o texto ler */
   .hero-photo-frame::after{
     content:""; position:absolute; inset:0; pointer-events:none;
-    background:linear-gradient(180deg, rgba(7,9,13,0) 46%, rgba(7,9,13,.5) 70%, rgba(7,9,13,.97) 100%);
+    background:linear-gradient(180deg, rgba(7,9,13,.82) 0%, rgba(7,9,13,.86) 45%, rgba(7,9,13,.96) 100%);
+  }
+  @media (min-width:900px){
+    /* a foto perde opacidade até desaparecer antes da coluna de texto */
+    .hero-photo-frame img{
+      object-position:50% 8%;
+      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+    }
+    .hero-photo-frame::after{
+      background:linear-gradient(180deg, rgba(7,9,13,.45) 0%, rgba(7,9,13,0) 30%, rgba(7,9,13,.28) 82%, rgba(7,9,13,.8) 100%);
+      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+    }
   }
   .ph-empty{
     position:absolute; inset:0; display:flex; flex-direction:column;
@@ -245,14 +248,28 @@
   }
   .ph-empty[hidden]{ display:none; }
   .hero-photo-cap{
-    position:absolute; left:0; right:0; bottom:0; z-index:2;
-    display:flex; align-items:center; gap:.6rem; padding:.9rem 1rem;
+    position:absolute; right:clamp(1.25rem,5vw,2.5rem); bottom:5.5rem; z-index:2;
+    display:flex; align-items:center; gap:.6rem;
   }
-  .hero-photo-cap img{ width:26px; height:26px; object-fit:contain; flex-shrink:0; }
+  .hero-photo-cap img{ width:30px; height:30px; object-fit:contain; flex-shrink:0; }
   .hero-photo-cap span{
     font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
-    text-transform:uppercase; color:rgba(245,247,250,.92); line-height:1.5;
+    text-transform:uppercase; color:rgba(245,247,250,.9); line-height:1.5;
   }
+  @media (max-width:899px){ .hero-photo-cap{ display:none; } }
+
+  /* selo acima do título */
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:.5rem; justify-self:start;
+    font-size:.74rem; font-weight:500; color:var(--accent);
+    border:1px solid rgba(0,183,255,.4); border-radius:999px;
+    padding:.45rem .95rem; background:rgba(0,183,255,.09);
+    backdrop-filter:blur(6px);
+    opacity:0; transform:translateY(10px);
+    transition:opacity .7s var(--ease), transform .7s var(--ease);
+  }
+  .hero-badge.in{ opacity:1; transform:translateY(0); }
+  .hero-badge svg{ width:14px; height:14px; flex-shrink:0; }
 
   .reveal{ opacity:0; transform:translateY(22px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
   .reveal.in{ opacity:1; transform:translateY(0); }
@@ -406,14 +423,27 @@
 
 <!-- HERO -->
 <section id="hero">
+  <figure class="hero-photo" data-hero-anim>
+    <div class="hero-photo-frame">
+      <img src="assets/trainer-photo.png" alt="" data-fallback>
+      <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
+      <figcaption class="hero-photo-cap">
+        <img src="assets/elite40-shield.png" alt="" data-fallback data-fallback-src="assets/elite40-shield.svg">
+        <span>Marcos Aurílio<br>Metodologia Elite40+</span>
+      </figcaption>
+    </div>
+  </figure>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="container hero-content">
     <div class="hero-layout">
       <div class="hero-stack">
-        <p class="hero-kicker" data-hero-anim>Método Elite40+</p>
+        <span class="hero-badge" data-hero-anim>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.5 6 .5-4.5 4 1.3 5.9L12 15l-5.2 2.9L8.1 12l-4.5-4 6-.5z"/></svg>
+          Método comprovado
+        </span>
         <h1 class="h-hero">
           <div class="hero-headline-mask" data-hero-anim><span>Transforme hábitos,</span></div>
-          <div class="hero-headline-mask" data-hero-anim><span>construa performance</span></div>
+          <div class="hero-headline-mask" data-hero-anim><span>desenvolva performance</span></div>
           <div class="hero-headline-mask" data-hero-anim><span>e alcance sua <span class="accent">melhor versão.</span></span></div>
         </h1>
         <p class="hero-lede" data-hero-anim>Mais do que treino: consultoria online com diagnóstico, plano sob medida e acompanhamento real em cada etapa.</p>
@@ -438,16 +468,6 @@
           </li>
         </ul>
       </div>
-      <figure class="hero-photo" data-hero-anim>
-        <div class="hero-photo-frame">
-          <img src="assets/trainer-photo.png" alt="" data-fallback>
-          <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
-          <figcaption class="hero-photo-cap">
-            <img src="assets/elite40-shield.png" alt="" data-fallback data-fallback-src="assets/elite40-shield.svg">
-            <span>Marcos Aurílio<br>Metodologia Elite40+</span>
-          </figcaption>
-        </div>
-      </figure>
     </div>
   </div>
 </section>
