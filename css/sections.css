@@ -23,7 +23,7 @@
   .marquee-group{ display:flex; gap:.9rem; flex-shrink:0; padding-right:.9rem; }
   .transform-tile{
     flex:0 0 auto; width:min(230px,72vw); aspect-ratio:3/4;
-    background:var(--paper-dim); border:1px solid var(--line-on-paper); border-radius:8px;
+    background:rgba(255,255,255,.55); border:1px solid rgba(0,183,255,.12); border-radius:8px;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.6rem;
     color:var(--muted-on-paper); text-align:center; padding:1.2rem;
   }

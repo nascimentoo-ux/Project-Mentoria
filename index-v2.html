@@ -18,9 +18,12 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/main.css">
 <script>
-  /* marca que JS está ativo — permite esconder texto antes da animação */
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('js-anim');
+    /* fallback se o módulo JS não carregar */
+    setTimeout(function () {
+      document.documentElement.classList.add('anim-ready');
+    }, 400);
   }
 </script>
 
@@ -138,7 +141,7 @@
 </section>
 
 <!-- TRANSFORMAÇÕES -->
-<section class="section on-paper">
+<section class="section on-paper-brand">
   <div class="container">
     <div class="reveal-stagger section-intro">
       <span class="kicker">Resultados</span>

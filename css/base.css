@@ -22,6 +22,12 @@
   .on-ink{ background:var(--ink); color:var(--paper); }
   .on-paper{ background:var(--paper); color:var(--ink); }
   .on-paper-dim{ background:var(--paper-dim); color:var(--ink); }
+  .on-paper-brand{
+    background:
+      radial-gradient(ellipse 90% 70% at 50% -10%, rgba(0,183,255,.07) 0%, transparent 55%),
+      linear-gradient(180deg, #EDF2F7 0%, var(--paper-brand) 100%);
+    color:var(--ink);
+  }
 
   .kicker{
     font-family:var(--font-mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
