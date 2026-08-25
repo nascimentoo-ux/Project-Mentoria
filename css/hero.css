@@ -73,7 +73,7 @@
 
   /* trilha do método: liga o hero à seção Processo */
   .hero-method{
-    margin:5.5rem 0 0; padding:1.4rem 0 0; list-style:none;
+    margin:3rem 0 0; padding:1rem 0 0; list-style:none;
     display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem 1.4rem;
     border-top:1px solid rgba(245,247,250,.12);
   }
@@ -104,7 +104,7 @@
 
   /* status de atendimento com ponto pulsante */
   .hero-status{
-    display:flex; align-items:center; gap:.55rem; margin:1.2rem 0 0;
+    display:flex; align-items:center; gap:.55rem; margin:.85rem 0 0;
     font-family:var(--font-mono); font-size:.66rem; letter-spacing:.1em;
     text-transform:uppercase; color:rgba(245,247,250,.62);
   }
@@ -124,7 +124,8 @@
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
   .hero-photo{
-    position:absolute; inset:0; z-index:0; margin:0; overflow:hidden;
+    position:absolute; top:0; left:0; right:0; height:100svh;
+    z-index:0; margin:0; overflow:hidden;
   }
   @media (min-width:900px){
     .hero-photo{ left:auto; right:0; width:min(46%, 620px); }
@@ -169,7 +170,7 @@
   .hero-photo-cap{
     position:absolute;
     left:clamp(.85rem, 2.5vw, 1.5rem);
-    bottom:clamp(0.1rem, 0.5%, 0.65rem);
+    bottom:clamp(1rem, 3.5vh, 2rem);
     z-index:3;
     display:flex; align-items:center; gap:.55rem;
     padding:.5rem .7rem;
@@ -181,7 +182,7 @@
   @media (min-width:900px){
     .hero-photo-cap{
       left:clamp(1rem, 5%, 2rem);
-      bottom:clamp(0.15rem, 1.5%, 0.75rem);
+      bottom:clamp(1.25rem, 4vh, 2.5rem);
     }
   }
   .hero-photo-cap img{ width:30px; height:30px; object-fit:contain; flex-shrink:0; }
