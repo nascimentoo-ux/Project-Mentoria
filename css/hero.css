@@ -164,9 +164,9 @@
     display:flex; align-items:center; gap:.55rem;
     padding:.5rem .7rem;
     border-radius:8px;
-    background:rgba(7,9,13,.58);
-    backdrop-filter:blur(8px);
-    border:1px solid rgba(245,247,250,.14);
+    background:rgba(7,9,13,.28);
+    backdrop-filter:blur(10px) saturate(1.15);
+    border:1px solid rgba(245,247,250,.18);
   }
   @media (min-width:900px){
     .hero-photo-cap{
