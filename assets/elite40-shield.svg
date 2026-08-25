@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Metodologia Elite40+">
+  <title>Metodologia Elite40+</title>
+  <defs>
+    <linearGradient id="e40-edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2C4C7E"/>
+      <stop offset=".5" stop-color="#16233B"/>
+      <stop offset="1" stop-color="#25406B"/>
+    </linearGradient>
+    <linearGradient id="e40-banner" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0B4FA8"/>
+      <stop offset=".5" stop-color="#1E7BE0"/>
+      <stop offset="1" stop-color="#0B4FA8"/>
+    </linearGradient>
+    <linearGradient id="e40-blue" x1="0" y1="0" x2=".8" y2="1">
+      <stop offset="0" stop-color="#4FA8FF"/>
+      <stop offset=".55" stop-color="#0B6BD6"/>
+      <stop offset="1" stop-color="#08498F"/>
+    </linearGradient>
+    <linearGradient id="e40-steel" x1="0" y1="0" x2=".7" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset=".55" stop-color="#DDE3EA"/>
+      <stop offset="1" stop-color="#9AA6B4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- moldura do escudo -->
+  <path d="M196 120h632l44 52v390c0 168-118 296-360 378-242-82-360-210-360-378V172z" fill="url(#e40-edge)"/>
+  <path d="M210 148h604l32 38v376c0 152-108 270-334 346-226-76-334-194-334-346V186z" fill="none" stroke="#EDF1F6" stroke-width="10"/>
+  <path d="M226 172h572l26 30v360c0 140-100 250-312 320-212-70-312-180-312-320V202z" fill="#1F2226"/>
+
+  <!-- faixa "METODOLOGIA" -->
+  <path d="M258 206h508l14 70H244z" fill="url(#e40-banner)"/>
+  <text x="512" y="255" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+        font-size="40" font-weight="700" letter-spacing="14" fill="#F4F8FF">METODOLOGIA</text>
+
+  <!-- chevrons laterais -->
+  <path d="M206 336l68 80-68 80v-38l38-42-38-42z" fill="#1663C0" opacity=".8"/>
+  <path d="M818 336l-68 80 68 80v-38l-38-42 38-42z" fill="#1663C0" opacity=".8"/>
+
+  <!-- monograma MA -->
+  <g transform="translate(512 316) scale(0.815) translate(-512 -232)">
+    <path d="M336 232L188 560h96l64-150v150h84V232z" fill="url(#e40-blue)"/>
+    <path d="M556 232L408 560h96l52-122 52 122h96L556 232z" fill="url(#e40-steel)"/>
+    <path d="M556 372l-40 96h80z" fill="#1F2226"/>
+  </g>
+
+  <!-- halter -->
+  <g fill="url(#e40-blue)" transform="translate(0 46)">
+    <rect x="404" y="576" width="216" height="15" rx="7"/>
+    <rect x="370" y="558" width="24" height="52" rx="7"/>
+    <rect x="345" y="548" width="19" height="72" rx="7"/>
+    <rect x="630" y="558" width="24" height="52" rx="7"/>
+    <rect x="660" y="548" width="19" height="72" rx="7"/>
+  </g>
+
+  <!-- ELITE40+ -->
+  <text x="512" y="762" text-anchor="middle" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif"
+        font-size="98" font-weight="700" letter-spacing="2">
+    <tspan fill="url(#e40-steel)">ELITE</tspan><tspan fill="url(#e40-blue)">40+</tspan>
+  </text>
+
+  <!-- filete inferior -->
+  <path d="M336 806h146l30 20 30-20h146" fill="none" stroke="#1663C0" stroke-width="6"/>
+  <path d="M512 795l15 11-15 11-15-11z" fill="#2E8FFF"/>
+</svg>

@@ -27,4 +27,7 @@ Coloque os dois arquivos em `assets/` com estes nomes exatos:
 | `assets/elite40-shield.png` | Escudo "Metodologia Elite40+" | header, menu mobile, legenda da foto do hero, CTA final, rodapé, favicon, og:image |
 | `assets/trainer-photo.png` | Foto do personal (retrato) | moldura do hero e seção Fundador |
 
-Enquanto os arquivos não existirem, a página mostra um marcador no lugar da foto em vez de um ícone de imagem quebrada.
+Comportamento quando um arquivo não existe:
+
+- **Logo:** o site cai automaticamente para `assets/elite40-shield.svg`, uma recriação em vetor do escudo. Ao adicionar o PNG oficial, ele passa a ser usado sem nenhuma mudança no código.
+- **Foto do personal:** aparece um marcador discreto no lugar, em vez de um ícone de imagem quebrada.

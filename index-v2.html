@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="assets/elite40-shield.png">
 <link rel="icon" href="assets/elite40-shield.png">
+<link rel="icon" href="assets/elite40-shield.svg" type="image/svg+xml">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -381,7 +382,7 @@
 
 <header id="hd">
   <div class="hd-inner">
-    <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback><span>Elite40+<small>Marcos Aurílio</small></span></a>
+    <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback data-fallback-src="assets/elite40-shield.svg"><span>Elite40+<small>Marcos Aurílio</small></span></a>
     <nav class="dnav" aria-label="Navegação">
       <a href="#processo">Processo</a>
       <a href="#fundador">Fundador</a>
@@ -397,7 +398,7 @@
 </header>
 
 <nav id="mmenu" aria-label="Menu mobile">
-  <span class="mm-logo"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback></span>
+  <span class="mm-logo"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback data-fallback-src="assets/elite40-shield.svg"></span>
   <a href="#processo">Processo</a>
   <a href="#fundador">Fundador</a>
   <a href="#para-quem">Para quem</a>
@@ -448,7 +449,7 @@
           <div class="ph-empty" hidden>Foto do personal<br>assets/trainer-photo.png</div>
           <span class="hero-photo-tag">Personal Trainer</span>
           <figcaption class="hero-photo-cap">
-            <img src="assets/elite40-shield.png" alt="" data-fallback>
+            <img src="assets/elite40-shield.png" alt="" data-fallback data-fallback-src="assets/elite40-shield.svg">
             <span>Marcos Aurílio<br>Metodologia Elite40+</span>
           </figcaption>
         </div>
@@ -685,7 +686,7 @@
 <!-- CTA FINAL -->
 <section id="final" class="section on-ink">
   <div class="container reveal">
-    <img class="final-logo" src="assets/elite40-shield.png" alt="Metodologia Elite40+" data-fallback>
+    <img class="final-logo" src="assets/elite40-shield.png" alt="Metodologia Elite40+" data-fallback data-fallback-src="assets/elite40-shield.svg">
     <span class="kicker" style="justify-content:center;">Chega de tentar sozinho</span>
     <h2 class="h-section">Tenha um método feito para gerar resultado.</h2>
     <p class="lede" style="margin:1.2rem auto 0; text-align:center;">Diagnóstico, plano e acompanhamento — tudo em um único processo, direto no seu WhatsApp.</p>
@@ -700,7 +701,7 @@
 <footer>
   <div class="container">
     <div class="ft-top">
-      <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback><span>Elite40+<small>Marcos Aurílio</small></span></a>
+      <a href="#hero" class="brand" style="color:var(--paper);"><img src="assets/elite40-shield.png" alt="Elite40+" data-fallback data-fallback-src="assets/elite40-shield.svg"><span>Elite40+<small>Marcos Aurílio</small></span></a>
       <div class="ft-links">
         <a href="#" class="js-ig">Instagram</a>
         <a href="#" class="js-wa" data-msg="Olá, Marcos! Vim pelo site.">WhatsApp</a>
@@ -729,6 +730,8 @@
 
   // enquanto os arquivos de imagem não estiverem em assets/, evita o ícone de imagem quebrada
   function markBroken(img){
+    const alt = img.getAttribute("data-fallback-src");
+    if (alt && img.src.indexOf(alt) === -1){ img.src = alt; return; }
     img.style.display = "none";
     const ph = img.parentElement && img.parentElement.querySelector(".ph-empty");
     if (ph) ph.hidden = false;
