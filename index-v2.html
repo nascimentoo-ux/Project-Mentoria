@@ -91,11 +91,11 @@
   /* ===== HEADER ===== */
   header#hd{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(7,9,13,0.72); backdrop-filter:blur(14px) saturate(1.2); border-bottom:1px solid var(--line-on-ink); transition:transform .4s var(--ease); }
   header#hd.hide{ transform:translateY(-100%); }
-  .hd-inner{ display:flex; align-items:center; justify-content:space-between; height:70px; }
+  .hd-inner{ position:relative; display:flex; align-items:center; justify-content:space-between; height:70px; width:100%; padding:0 clamp(.85rem,1.6vw,1.4rem); }
   .brand{ display:flex; align-items:center; gap:.75rem; color:var(--paper); font-family:var(--font-display); font-weight:700; font-size:.95rem; letter-spacing:.04em; text-transform:uppercase; }
   .brand img{ width:30px; height:30px; object-fit:contain; }
   .brand small{ display:block; font-family:var(--font-mono); font-size:.58rem; font-weight:400; letter-spacing:.14em; color:var(--muted-on-ink); margin-top:.15rem; }
-  nav.dnav{ display:none; gap:2rem; }
+  nav.dnav{ display:none; gap:2rem; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
   nav.dnav a{ font-size:.78rem; color:var(--muted-on-ink); text-transform:uppercase; letter-spacing:.08em; transition:color .25s; }
   nav.dnav a:hover{ color:var(--paper); }
   .hd-actions{ display:flex; align-items:center; gap:1rem; }
@@ -321,7 +321,7 @@
 <a href="#main" class="skip-link">Pular para o conteúdo</a>
 
 <header id="hd">
-  <div class="container hd-inner">
+  <div class="hd-inner">
     <a href="#hero" class="brand"><img src="assets/elite40-shield.png" alt="Elite40+"><span>Elite40+<small>Marcos Aurílio</small></span></a>
     <nav class="dnav" aria-label="Navegação">
       <a href="#processo">Processo</a>
