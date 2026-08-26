@@ -258,8 +258,10 @@
     max-width: none;
     min-height: 52px;
     padding: 0.95rem 1.15rem;
-    font-size: 0.74rem;
+    font-size: 0.82rem;
+    font-weight: 700;
     letter-spacing: 0.06em;
+    color: #071018;
     justify-content: center;
     align-items: center;
     gap: 0.55rem;
@@ -302,10 +304,15 @@
 
   #cta-float .cta-float-ico {
     display: inline-flex;
-    width: 1.15rem;
-    height: 1.15rem;
+    width: 1.2rem;
+    height: 1.2rem;
     flex-shrink: 0;
+    color: #071018;
     animation: ctaIconBob 1.6s ease-in-out infinite;
+  }
+
+  #cta-float .cta-float-ico:last-child {
+    animation-delay: 0.2s;
   }
 
   #cta-float .cta-float-ico svg {
