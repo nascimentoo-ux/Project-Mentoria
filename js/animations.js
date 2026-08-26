@@ -49,7 +49,7 @@ export function initAnimations() {
   });
 }
 
-/** Cards 01–04 no mobile: efeito chamativo só após o usuário rolar a página (não no F5). */
+/** Cards 01–04 no mobile: cascata suave só após scroll (não no F5). */
 function initHeroMethodScrollReveal() {
   const method = document.querySelector('.hero-method');
   if (!method) return;
@@ -58,26 +58,42 @@ function initHeroMethodScrollReveal() {
   if (!mobile.matches) return;
 
   let scrolled = false;
-  let revealed = false;
 
-  const reveal = () => {
-    if (revealed || !scrolled) return;
-
-    const rect = method.getBoundingClientRect();
-    const vh = window.innerHeight;
-    if (rect.top < vh * 0.84 && rect.bottom > vh * 0.1) {
-      revealed = true;
-      method.classList.add('method-scroll-in');
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('touchmove', onScroll);
-    }
-  };
-
-  const onScroll = () => {
+  const markScrolled = () => {
     scrolled = true;
-    reveal();
   };
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('touchmove', onScroll, { passive: true });
+  window.addEventListener('scroll', markScrolled, { passive: true });
+  window.addEventListener('touchmove', markScrolled, { passive: true });
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || !scrolled || method.classList.contains('method-scroll-in')) {
+          return;
+        }
+
+        const items = method.querySelectorAll('li');
+        items.forEach((li) => {
+          li.style.opacity = '0';
+          li.style.transform = 'translateY(14px)';
+        });
+
+        requestAnimationFrame(() => {
+          method.classList.add('method-scroll-in');
+          items.forEach((li) => {
+            li.style.opacity = '';
+            li.style.transform = '';
+          });
+        });
+
+        io.disconnect();
+        window.removeEventListener('scroll', markScrolled);
+        window.removeEventListener('touchmove', markScrolled);
+      });
+    },
+    { threshold: 0.22, rootMargin: '0px 0px -8% 0px' }
+  );
+
+  io.observe(method);
 }
