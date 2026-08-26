@@ -335,9 +335,9 @@
     pointer-events:none;
   }
   @media (min-width:900px){
-    /* acompanha a largura fluida da foto */
+    /* legenda ancorada na própria coluna da foto */
     .hero-photo-cap{
-      left:calc(100% - var(--hero-photo-w) + clamp(1rem, 1.2vw, 2rem));
+      left:clamp(1rem, 5%, 2rem);
       bottom:clamp(0.5rem, 1.5vh, 1.25rem);
     }
   }

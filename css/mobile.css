@@ -123,41 +123,56 @@
   }
 }
 
-/* ---- HERO ---- */
+/* ---- HERO (foto em cima + conteúdo organizado embaixo) ---- */
 @media (max-width: 899px) {
-  .hero-content {
-    padding-top: calc(var(--hd-h) + 1.15rem);
-    padding-bottom: clamp(4.75rem, 14vh, 6.5rem);
-  }
-
-  .hero-stack {
-    gap: 1rem;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .hero-cta-row {
+  #hero {
+    display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.65rem;
-    width: 100%;
+    justify-content: flex-start;
+    min-height: auto;
+    padding-top: var(--hd-h);
   }
 
-  .hero-cta-row .btn {
+  /* faixa de foto no topo — não cobre mais o conteúdo */
+  .hero-photo {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
     width: 100%;
-    min-height: 48px;
-    padding: 0.95rem 1.2rem;
-    font-size: 0.74rem;
-    justify-content: center;
+    height: min(46vh, 360px);
+    z-index: 1;
+    flex-shrink: 0;
+    order: 0;
+  }
+
+  .hero-photo-frame img {
+    object-position: 50% 12%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .hero-photo-frame::after {
+    background: linear-gradient(
+      180deg,
+      rgba(7, 9, 13, 0.15) 0%,
+      rgba(7, 9, 13, 0.05) 45%,
+      rgba(7, 9, 13, 0.55) 78%,
+      #07090D 100%
+    );
   }
 
   .hero-photo-cap {
-    left: max(0.75rem, env(safe-area-inset-left));
+    left: max(0.85rem, env(safe-area-inset-left));
     right: auto;
-    bottom: max(0.55rem, env(safe-area-inset-bottom));
-    max-width: calc(100% - 1.5rem);
-    padding: 0.4rem 0.55rem;
+    bottom: 0.85rem;
+    max-width: calc(100% - 1.7rem);
+    padding: 0.45rem 0.6rem;
     gap: 0.45rem;
+    z-index: 4;
   }
 
   .hero-photo-cap img {
@@ -170,15 +185,57 @@
     letter-spacing: 0.1em;
   }
 
+  /* bloco de conteúdo abaixo da foto */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    order: 1;
+    width: 100%;
+    padding-top: 1.35rem;
+    padding-bottom: clamp(2.75rem, 8vh, 4rem);
+    background:
+      linear-gradient(180deg, #07090D 0%, #0A1018 100%);
+  }
+
+  .hero-stack {
+    gap: 1.05rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-badge {
+    justify-self: start;
+  }
+
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    width: 100%;
+    margin-top: 0.15rem;
+  }
+
+  .hero-cta-row .btn {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.95rem 1.2rem;
+    font-size: 0.74rem;
+    justify-content: center;
+  }
+
+  .hero-chips {
+    margin-top: 0.15rem;
+  }
+
   .hero-method {
-    margin-top: 1rem;
-    padding-top: 1.45rem;
-    gap: 0.85rem 0.7rem;
+    margin-top: 0.35rem;
+    padding-top: 1.35rem;
+    gap: 0.95rem 0.85rem;
     width: 100%;
   }
 
   .hero-method .step-t {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
   }
 
   .hero-method .step-d {
@@ -189,8 +246,10 @@
     align-items: flex-start;
     border-radius: 14px;
     max-width: 100%;
-    width: fit-content;
-    padding: 0.55rem 0.8rem 0.55rem 0.7rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0.35rem;
+    padding: 0.6rem 0.85rem 0.6rem 0.75rem;
   }
 
   .hero-status-txt {
@@ -248,16 +307,24 @@
 }
 
 @media (max-width: 479px) {
+  .hero-photo {
+    height: min(42vh, 320px);
+  }
+
+  .hero-content {
+    padding-top: 1.15rem;
+  }
+
   .hero-stack {
-    gap: 0.85rem;
+    gap: 0.9rem;
   }
 
   .h-hero {
-    font-size: clamp(1.85rem, 8.6vw, 2.15rem);
+    font-size: clamp(1.9rem, 8.4vw, 2.2rem);
   }
 
   .hero-lede {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     max-width: 100%;
   }
@@ -268,7 +335,7 @@
   }
 
   .hero-chips {
-    margin-top: 0.45rem;
+    margin-top: 0.1rem;
     gap: 0.4rem;
   }
 
@@ -277,18 +344,84 @@
     padding: 0.38rem 0.7rem;
   }
 
-  .hero-photo-frame::after {
-    background: linear-gradient(
-      180deg,
-      rgba(7, 9, 13, 0.72) 0%,
-      rgba(7, 9, 13, 0.8) 42%,
-      rgba(7, 9, 13, 0.95) 100%
-    );
-  }
-
   .hero-status {
     font-size: 0.56rem;
     letter-spacing: 0.06em;
+  }
+}
+
+/* ---- FUNDADOR (foto em cima + texto organizado) ---- */
+@media (max-width: 979px) {
+  #fundador.section {
+    padding-top: clamp(2.75rem, 8vw, 4rem);
+    padding-bottom: clamp(2.75rem, 8vw, 4rem);
+  }
+
+  .founder-shell {
+    gap: 1.5rem;
+  }
+
+  .founder-photo {
+    aspect-ratio: 3 / 4;
+    max-height: min(58vh, 440px);
+    width: 100%;
+  }
+
+  .founder-content {
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .founder-head .kicker {
+    margin-bottom: 0.55rem;
+  }
+
+  .founder-quote,
+  .founder-body {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .founder-quote {
+    font-size: clamp(1.1rem, 4.6vw, 1.35rem);
+    line-height: 1.4;
+  }
+
+  .founder-body {
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .founder-note {
+    padding: 1.05rem 1.1rem;
+  }
+
+  .founder-note p {
+    max-width: 100%;
+  }
+
+  .founder-tags {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .founder-badge {
+    left: 0.85rem;
+    bottom: 0.85rem;
+    max-width: calc(100% - 1.7rem);
+    font-size: 0.62rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .founder-name {
+    font-size: clamp(1.9rem, 9vw, 2.2rem);
+  }
+
+  .founder-photo {
+    max-height: min(52vh, 380px);
   }
 }
 
