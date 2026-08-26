@@ -10,7 +10,7 @@
     margin-top:1rem;
   }
   #transformacoes.section{
-    padding-top: clamp(2.75rem, 6.5vw, 5.5rem);
+    padding-top: clamp(2rem, 5.5vw, 4.25rem);
   }
   #final .reveal-stagger{ text-align:center; }
   #final .reveal-stagger .kicker{ justify-content:center; }
