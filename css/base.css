@@ -3,12 +3,11 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
-    .hero-grid, .hero-photo-frame img{ animation:none !important; }
+    .hero-photo-frame img{ animation:none !important; }
     .reveal, .reveal-stagger > *, .hero-enter, #wa-float, header#hd, .hero-photo, .hero-line-inner{
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important; animation:none !important;
     }
-    .hero-grid{ opacity:.22 !important; }
     .hero-stack .h-hero .accent::after{ transform:scaleX(1) !important; }
     .marquee-track, .marquee-track--reverse{ animation:none !important; }
   }
