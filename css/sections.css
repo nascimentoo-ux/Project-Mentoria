@@ -134,10 +134,6 @@
   .process-card p{ margin:0; font-size:.9rem; color:var(--muted-on-ink); line-height:1.65; }
 
   /* ===== PARA QUEM ===== */
-  #para-quem.section{
-    padding-top: 0;
-    margin-top: clamp(-2.5rem, -5vw, -4rem);
-  }
   .fit-grid{
     display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem;
   }
