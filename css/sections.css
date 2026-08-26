@@ -308,7 +308,7 @@
   }
   .method-cycle{
     list-style:none; margin:0; padding:0;
-    display:grid; grid-template-columns:1fr 1fr; gap:.85rem;
+    display:grid; grid-template-columns:1fr 1fr; gap:.65rem;
   }
   .method-cycle li{
     position:relative; overflow:hidden;
@@ -316,8 +316,8 @@
     background:
       linear-gradient(160deg, rgba(0,183,255,.1) 0%, transparent 55%),
       rgba(7,9,13,.72);
-    padding:1.2rem 1.1rem 1.15rem;
-    display:grid; gap:.45rem;
+    padding:.85rem .85rem .9rem;
+    display:grid; gap:.3rem;
     transition:border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease);
   }
   .method-cycle li:hover{
@@ -326,15 +326,15 @@
     box-shadow:0 10px 28px rgba(0,0,0,.28), 0 0 20px rgba(0,183,255,.1);
   }
   .method-cycle-n{
-    font-family:var(--font-display); font-size:1.55rem; font-weight:700; line-height:1;
+    font-family:var(--font-display); font-size:1.2rem; font-weight:700; line-height:1;
     letter-spacing:.02em; color:var(--accent);
     text-shadow:0 0 18px rgba(0,183,255,.35);
   }
   .method-cycle strong{
-    font-family:var(--font-body); font-size:1rem; font-weight:700; color:var(--paper);
+    font-family:var(--font-body); font-size:.9rem; font-weight:700; color:var(--paper);
   }
   .method-cycle li > span:last-child{
-    font-size:.84rem; color:var(--muted-on-ink); line-height:1.5;
+    font-size:.78rem; color:var(--muted-on-ink); line-height:1.45;
   }
 
   /* ===== PARA QUEM ===== */
