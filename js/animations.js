@@ -37,6 +37,8 @@ export function initAnimations() {
 
   scrollEls.forEach((el) => io.observe(el));
 
+  initHeroMethodScrollReveal();
+
   /* dispara animações após paint — também repete no F5/back-forward cache */
   requestAnimationFrame(() => {
     requestAnimationFrame(startEntrance);
@@ -45,4 +47,37 @@ export function initAnimations() {
   window.addEventListener('pageshow', (event) => {
     if (event.persisted) startEntrance();
   });
+}
+
+/** Cards 01–04 no mobile: efeito chamativo só após o usuário rolar a página (não no F5). */
+function initHeroMethodScrollReveal() {
+  const method = document.querySelector('.hero-method');
+  if (!method) return;
+
+  const mobile = window.matchMedia('(max-width: 899px)');
+  if (!mobile.matches) return;
+
+  let scrolled = false;
+  let revealed = false;
+
+  const reveal = () => {
+    if (revealed || !scrolled) return;
+
+    const rect = method.getBoundingClientRect();
+    const vh = window.innerHeight;
+    if (rect.top < vh * 0.84 && rect.bottom > vh * 0.1) {
+      revealed = true;
+      method.classList.add('method-scroll-in');
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('touchmove', onScroll);
+    }
+  };
+
+  const onScroll = () => {
+    scrolled = true;
+    reveal();
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('touchmove', onScroll, { passive: true });
 }
