@@ -145,17 +145,20 @@
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
-    max-height: min(50vh, 400px);
+    max-height: min(48vh, 380px);
     z-index: 1;
     flex-shrink: 0;
     order: 0;
   }
 
   .hero-photo-frame img {
-    /* sobe o corte (menos vazio acima) e desce o enquadramento para os braços */
-    object-position: 50% 42%;
+    /* corta o vazio acima da cabeça e desce o quadro para os braços */
+    object-fit: cover;
+    object-position: 50% 56%;
     -webkit-mask-image: none;
     mask-image: none;
+    animation: none;
+    transform: none;
   }
 
   .hero-photo-frame::after {
@@ -312,11 +315,13 @@
 @media (max-width: 479px) {
   .hero-photo {
     aspect-ratio: 4 / 5;
-    max-height: min(48vh, 380px);
+    max-height: min(46vh, 360px);
   }
 
   .hero-photo-frame img {
-    object-position: 50% 44%;
+    object-position: 50% 58%;
+    animation: none;
+    transform: none;
   }
 
   .hero-content {
