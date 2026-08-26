@@ -665,22 +665,19 @@
   }
 }
 
-/* ---- CTA final + float WhatsApp ---- */
+/* ---- CTA final + CTA fixo do hero ---- */
 @media (max-width: 899px) {
-  #wa-float {
-    bottom: max(14px, env(safe-area-inset-bottom));
-    right: max(14px, env(safe-area-inset-right));
-    width: 52px;
-    height: 52px;
+  #main {
+    padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
 
   #final .reveal-stagger > *:last-child {
-    margin-bottom: 4.75rem;
+    margin-bottom: 1.5rem;
   }
 
   #final .btn {
     width: 100%;
-    max-width: 22rem;
+    max-width: 20rem;
     min-height: 48px;
   }
 
