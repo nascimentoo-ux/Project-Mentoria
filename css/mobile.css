@@ -246,24 +246,72 @@
     display: none !important;
   }
 
-  /* CTA fixo no canto inferior direito (como o WhatsApp antigo) */
+  /* CTA fixo quase full-width na base, com leve margem lateral */
   #cta-float {
     display: inline-flex;
     position: fixed;
+    left: max(14px, env(safe-area-inset-left));
     right: max(14px, env(safe-area-inset-right));
     bottom: max(14px, env(safe-area-inset-bottom));
-    left: auto;
     z-index: 95;
     width: auto;
-    max-width: min(18.5rem, calc(100vw - 2rem));
+    max-width: none;
     min-height: 52px;
-    padding: 0.95rem 1.2rem;
+    padding: 0.95rem 1.15rem;
     font-size: 0.74rem;
+    letter-spacing: 0.06em;
     justify-content: center;
     align-items: center;
+    gap: 0.55rem;
     border-radius: 999px;
     margin: 0;
-    animation: heroCtaPulse 2.2s ease-in-out infinite;
+    overflow: hidden;
+    isolation: isolate;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+    /* sem filter/brightness no botão inteiro — isso fazia o texto “tremer” */
+    filter: none !important;
+    animation: heroCtaGlow 2.2s ease-in-out infinite;
+  }
+
+  #cta-float:hover,
+  #cta-float:active {
+    letter-spacing: 0.06em !important;
+    transform: translateZ(0) !important;
+  }
+
+  /* pulso de cor só no fundo (texto fica estável) */
+  #cta-float::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: var(--accent-soft);
+    opacity: 0;
+    z-index: 0;
+    pointer-events: none;
+    animation: heroCtaBg 2.2s ease-in-out infinite;
+  }
+
+  #cta-float > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  #cta-float .cta-float-ico {
+    display: inline-flex;
+    width: 1.15rem;
+    height: 1.15rem;
+    flex-shrink: 0;
+    animation: ctaIconBob 1.6s ease-in-out infinite;
+  }
+
+  #cta-float .cta-float-ico svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   /* “Ver o processo” menor e com margem lateral */
@@ -277,21 +325,27 @@
     justify-content: center;
   }
 
-  @keyframes heroCtaPulse {
+  @keyframes heroCtaGlow {
     0%, 100% {
-      background: var(--accent);
       box-shadow:
-        0 0 0 0 rgba(0, 183, 255, 0.45),
-        0 10px 28px rgba(0, 183, 255, 0.35);
-      filter: brightness(1);
+        0 0 0 0 rgba(0, 183, 255, 0.4),
+        0 10px 28px rgba(0, 183, 255, 0.32);
     }
     50% {
-      background: var(--accent-soft);
       box-shadow:
-        0 0 0 12px rgba(0, 183, 255, 0),
-        0 12px 32px rgba(0, 183, 255, 0.5);
-      filter: brightness(1.08);
+        0 0 0 10px rgba(0, 183, 255, 0),
+        0 12px 32px rgba(0, 183, 255, 0.48);
     }
+  }
+
+  @keyframes heroCtaBg {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes ctaIconBob {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-2px) scale(1.08); }
   }
 
   /* chips: 2 em cima + 1 centralizado embaixo */
@@ -376,7 +430,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    #cta-float {
+    #cta-float,
+    #cta-float::before,
+    #cta-float .cta-float-ico {
       animation: none;
     }
   }
