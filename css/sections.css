@@ -1,12 +1,16 @@
   .section-intro{ max-width:640px; }
   .section-intro .lede{ margin-top:1.1rem; }
-  .transform-intro{ max-width:36rem; }
+  .transform-intro{
+    max-width: min(100%, 52rem);
+  }
   .transform-intro .h-section{
     max-width:none;
+    white-space: nowrap;
+    font-size: clamp(1.35rem, 2.85vw, 2.6rem);
     line-height:1.12;
   }
   .transform-intro .lede{
-    max-width:40ch;
+    max-width: min(100%, 48ch);
     margin-top:1rem;
   }
   #transformacoes.section{
