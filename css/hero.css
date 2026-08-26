@@ -122,6 +122,12 @@
   }
 
   @keyframes methodDotOn{
+    from{
+      background:rgba(0,183,255,.28);
+      box-shadow:0 0 0 3px rgba(0,183,255,.08);
+      transform:scale(.7);
+      opacity:.45;
+    }
     to{
       background:var(--accent);
       box-shadow:0 0 0 3px rgba(0,183,255,.18), 0 0 12px rgba(0,183,255,.55);
@@ -130,9 +136,14 @@
     }
   }
   @keyframes methodLineOn{
+    from{ transform:scaleX(0); }
     to{ transform:scaleX(1); }
   }
   @keyframes methodNumOn{
+    from{
+      color:rgba(0,183,255,.4);
+      text-shadow:none;
+    }
     to{
       color:var(--accent);
       text-shadow:0 0 14px rgba(0,183,255,.35);
