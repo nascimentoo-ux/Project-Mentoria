@@ -19,7 +19,7 @@
 
   /* ===== TRANSFORMAÇÕES — marquee infinito ===== */
   .marquee-stack{
-    display:grid; gap:.85rem; margin-top:2.6rem; width:100%;
+    display:grid; gap:1.35rem; margin-top:2.6rem; width:100%;
   }
   .marquee-wrap{
     overflow:hidden; width:100%;
