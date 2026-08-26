@@ -93,8 +93,8 @@
 
   /* ===== PROCESSO (cards) ===== */
   #processo.section{
-    padding-top: 0;
-    margin-top: clamp(-2.5rem, -5vw, -4rem);
+    padding-top: clamp(0.75rem, 1.8vw, 1.35rem);
+    margin-top: clamp(-1rem, -2.5vw, -1.75rem);
   }
   .process-cards{
     display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem;
