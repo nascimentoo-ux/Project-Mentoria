@@ -132,7 +132,7 @@
     justify-content: flex-start;
     min-height: auto;
     /* espaço real abaixo do header fixo para a cabeça não ficar sob a barra */
-    padding-top: calc(var(--hd-h) + env(safe-area-inset-top, 0px));
+    padding-top: calc(var(--hd-h) + env(safe-area-inset-top, 0px) + 0.65rem);
   }
 
   /* faixa de foto no topo — não cobre mais o conteúdo */
@@ -155,7 +155,7 @@
   .hero-photo-frame img {
     /* sobe um pouco o quadro para a cabeça não colar/cortar na barra */
     object-fit: cover;
-    object-position: 50% 30%;
+    object-position: 50% 26%;
     -webkit-mask-image: none;
     mask-image: none;
     animation: none !important;
@@ -359,7 +359,7 @@
   }
 
   .hero-photo-frame img {
-    object-position: 50% 28%;
+    object-position: 50% 24%;
     animation: none !important;
     transform: none !important;
   }
