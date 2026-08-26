@@ -131,8 +131,8 @@
     align-items: stretch;
     justify-content: flex-start;
     min-height: auto;
-    /* espaço real abaixo do header fixo para a cabeça não ficar sob a barra */
-    padding-top: calc(var(--hd-h) + env(safe-area-inset-top, 0px) + 0.65rem);
+    /* foto começa exatamente abaixo da barra fixa */
+    padding-top: calc(var(--hd-h) + env(safe-area-inset-top, 0px));
   }
 
   /* faixa de foto no topo — não cobre mais o conteúdo */
@@ -150,10 +150,10 @@
     z-index: 1;
     flex-shrink: 0;
     order: 0;
+    margin: 0;
   }
 
   .hero-photo-frame img {
-    /* sobe um pouco o quadro para a cabeça não colar/cortar na barra */
     object-fit: cover;
     object-position: 50% 26%;
     -webkit-mask-image: none;
@@ -199,7 +199,8 @@
     order: 1;
     width: 100%;
     padding-top: 1.35rem;
-    padding-bottom: clamp(2.75rem, 8vh, 4rem);
+    /* espaço para o CTA fixo no rodapé */
+    padding-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
     background:
       linear-gradient(180deg, #07090D 0%, #0A1018 100%);
   }
@@ -219,6 +220,13 @@
   .hero-lede {
     margin-inline: auto;
     text-align: center;
+    max-width: min(32ch, 86%);
+    padding-inline: 0.35rem;
+    box-sizing: border-box;
+  }
+
+  .h-hero {
+    max-width: 92%;
   }
 
   .h-hero .hero-line {
@@ -227,45 +235,88 @@
 
   .hero-cta-row {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 0.65rem;
     width: 100%;
     margin-top: 0.15rem;
   }
 
-  .hero-cta-row .btn {
-    width: 100%;
-    min-height: 48px;
+  /* CTA principal fixo (substitui o float do WhatsApp) */
+  .hero-cta-row .btn-accent {
+    position: fixed;
+    left: 50%;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 95;
+    width: calc(100% - 2.75rem);
+    max-width: 22rem;
+    min-height: 52px;
     padding: 0.95rem 1.2rem;
     font-size: 0.74rem;
     justify-content: center;
+    border-radius: 999px;
+    animation: heroCtaPulse 2.2s ease-in-out infinite;
   }
 
-  /* chips: os 3 lado a lado */
-  .hero-chips {
-    display: flex;
-    flex-wrap: nowrap;
+  /* “Ver o processo” menor e com margem lateral */
+  .hero-cta-row .btn-line-ink {
+    width: auto;
+    min-width: 10.5rem;
+    max-width: 68%;
+    min-height: 44px;
+    padding: 0.72rem 1.35rem;
+    font-size: 0.68rem;
     justify-content: center;
-    align-items: stretch;
-    gap: 0.35rem;
+  }
+
+  @keyframes heroCtaPulse {
+    0%, 100% {
+      background: var(--accent);
+      box-shadow:
+        0 0 0 0 rgba(0, 183, 255, 0.45),
+        0 10px 28px rgba(0, 183, 255, 0.35);
+      filter: brightness(1);
+    }
+    50% {
+      background: var(--accent-soft);
+      box-shadow:
+        0 0 0 12px rgba(0, 183, 255, 0),
+        0 12px 32px rgba(0, 183, 255, 0.5);
+      filter: brightness(1.08);
+    }
+  }
+
+  /* chips: 2 em cima + 1 centralizado embaixo */
+  .hero-chips {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 0.5rem 0.55rem;
     margin-top: 0.15rem;
     width: 100%;
   }
 
   .hero-chips li {
-    flex: 1 1 0;
-    min-width: 0;
+    width: max-content;
+    max-width: 100%;
     justify-content: center;
     text-align: center;
-    font-size: 0.58rem;
+    font-size: 0.68rem;
     letter-spacing: 0.01em;
-    padding: 0.4rem 0.35rem;
+    padding: 0.42rem 0.85rem;
     white-space: nowrap;
   }
 
+  .hero-chips li:nth-child(3) {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
   .hero-chips svg {
-    width: 11px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
   }
 
   .hero-method {
@@ -303,10 +354,21 @@
     text-align: center;
   }
 
+  /* remove WhatsApp flutuante no mobile */
+  #wa-float {
+    display: none !important;
+  }
+
   /* alivia animações contínuas no mobile */
   .hero-status,
   .hero-status::before {
     animation: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta-row .btn-accent {
+      animation: none;
+    }
   }
 
   /* trilha mais rápida no mobile (desktop permanece lento) */
@@ -379,7 +441,7 @@
   .hero-lede {
     font-size: 0.9rem;
     line-height: 1.6;
-    max-width: 100%;
+    max-width: min(30ch, 84%);
   }
 
   .hero-badge {
@@ -388,18 +450,18 @@
   }
 
   .hero-chips {
-    gap: 0.28rem;
+    gap: 0.45rem 0.5rem;
   }
 
   .hero-chips li {
-    font-size: 0.52rem;
-    padding: 0.36rem 0.28rem;
-    gap: 0.28rem;
+    font-size: 0.64rem;
+    padding: 0.4rem 0.75rem;
+    gap: 0.35rem;
   }
 
   .hero-chips svg {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
 
   .hero-status {
