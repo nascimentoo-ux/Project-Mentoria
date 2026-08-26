@@ -9,6 +9,9 @@
     max-width:40ch;
     margin-top:1rem;
   }
+  #transformacoes.section{
+    padding-top: clamp(2.75rem, 6.5vw, 5.5rem);
+  }
   #final .reveal-stagger{ text-align:center; }
   #final .reveal-stagger .kicker{ justify-content:center; }
   #final .reveal-stagger .lede{ margin:1.2rem auto 0; }
