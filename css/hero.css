@@ -7,15 +7,23 @@
       radial-gradient(ellipse 70% 55% at 78% 32%, #14293C 0%, transparent 60%),
       linear-gradient(150deg, #0A1018 0%, #07090D 58%, #0A131C 100%);
   }
+  /* monitores altos: evita “vazio” enorme no meio */
+  @media (min-width:900px) and (min-height:1180px){
+    #hero{ align-items:flex-start; }
+  }
   .hero-content{
     position:relative; z-index:2; width:100%;
-    padding-top:calc(var(--hd-h) + clamp(2.5rem, 8vh, 5rem));
-    padding-bottom:clamp(2.5rem, 7vh, 4.5rem);
+    padding-top:calc(var(--hd-h) + clamp(2.25rem, 6.5vh, 5.5rem));
+    padding-bottom:clamp(2.25rem, 6vh, 5rem);
   }
   /* texto à esquerda; a foto sangra atrás, pela direita */
   .hero-layout{ display:grid; grid-template-columns:1fr; }
-  .hero-stack{ display:grid; gap:1.3rem; max-width:none; }
-  @media (min-width:900px){ .hero-stack{ max-width:min(56%, 640px); } }
+  .hero-stack{ display:grid; gap:clamp(1.05rem, 1.4vw, 1.55rem); max-width:none; }
+  @media (min-width:900px){
+    .hero-stack{
+      max-width:min(var(--hero-stack-w), calc(100% - var(--hero-photo-w) * .42));
+    }
+  }
   .hero-stack .h-hero .accent{
     color:var(--accent); position:relative; display:inline-block;
   }
@@ -34,8 +42,8 @@
   }
 
   .hero-lede{
-    margin:0; max-width:52ch; color:rgba(245,247,250,.7);
-    font-size:clamp(.92rem, 1.1vw, 1rem); line-height:1.7;
+    margin:0; max-width:min(52ch, 100%); color:rgba(245,247,250,.7);
+    font-size:clamp(.92rem, 0.7rem + 0.35vw, 1.05rem); line-height:1.7;
   }
   .hero-cta-row{
     display:flex; flex-wrap:wrap; gap:.8rem; margin-top:.35rem;
@@ -60,7 +68,7 @@
   /* trilha do método: liga o hero à seção Processo */
   .hero-method{
     margin:1.4rem 0 0; padding:2.6rem 0 0; list-style:none;
-    display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem 1.4rem;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:1.1rem clamp(1rem, 1.5vw, 1.5rem);
     border-top:1px solid rgba(0,183,255,.22);
     box-shadow:inset 0 1px 0 rgba(0,183,255,.08);
   }
@@ -265,11 +273,13 @@
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
   .hero-photo{
-    position:absolute; top:0; left:0; right:0; height:100svh;
+    position:absolute; top:0; left:0; right:0; bottom:0;
     z-index:0; margin:0; overflow:hidden;
   }
   @media (min-width:900px){
-    .hero-photo{ left:auto; right:0; width:min(46%, 620px); }
+    .hero-photo{
+      left:auto; right:0; width:var(--hero-photo-w);
+    }
   }
   .hero-photo-frame{ position:relative; width:100%; height:100%; overflow:hidden; }
   .hero-photo-frame img{
@@ -325,10 +335,10 @@
     pointer-events:none;
   }
   @media (min-width:900px){
-    /* mesma posição de antes (borda esquerda da coluna da foto), sem herdar a máscara */
+    /* acompanha a largura fluida da foto */
     .hero-photo-cap{
-      left:calc(100% - min(46%, 620px) + clamp(1rem, 5%, 2rem));
-      bottom:clamp(0.5rem, 1.5vh, 1rem);
+      left:calc(100% - var(--hero-photo-w) + clamp(1rem, 1.2vw, 2rem));
+      bottom:clamp(0.5rem, 1.5vh, 1.25rem);
     }
   }
   .hero-photo-cap img{
