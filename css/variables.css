@@ -19,8 +19,8 @@
     /* base de design: 1600×1024 — escala fluida até monitores maiores */
     --design-w:1600;
     --scale:clamp(.88, calc(100vw / 1600px), 1.2);
-    /* 1320px em 1600 ≈ 82.5vw; cresce até ~1580 em 1920+ */
-    --container:clamp(1040px, 82.5vw, 1580px);
+    /* 1320px em 1600 ≈ 82.5vw; cresce em telas maiores sem forçar mínimo em mobile */
+    --container:clamp(1320px, 82.5vw, 1580px);
     --hd-h:clamp(72px, calc(82px * var(--scale)), 92px);
     --gap-section:clamp(3.5rem, 7.5vw, 8.5rem);
     --hero-photo-w:clamp(500px, 38.75vw, 760px); /* 620px em 1600 */
