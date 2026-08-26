@@ -144,15 +144,16 @@
     bottom: auto;
     width: 100%;
     height: auto;
-    aspect-ratio: 3 / 4;
-    max-height: min(68vh, 560px);
+    aspect-ratio: 4 / 5;
+    max-height: min(54vh, 440px);
     z-index: 1;
     flex-shrink: 0;
     order: 0;
   }
 
   .hero-photo-frame img {
-    object-position: 50% 10%;
+    /* sobe o corte (menos vazio acima) e desce o enquadramento para os braços */
+    object-position: 50% 42%;
     -webkit-mask-image: none;
     mask-image: none;
   }
@@ -310,12 +311,12 @@
 
 @media (max-width: 479px) {
   .hero-photo {
-    aspect-ratio: 3 / 4;
-    max-height: min(64vh, 520px);
+    aspect-ratio: 4 / 5;
+    max-height: min(52vh, 420px);
   }
 
   .hero-photo-frame img {
-    object-position: 50% 8%;
+    object-position: 50% 30%;
   }
 
   .hero-content {
