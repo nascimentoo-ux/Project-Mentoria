@@ -241,20 +241,28 @@
     margin-top: 0.15rem;
   }
 
-  /* CTA principal fixo (substitui o float do WhatsApp) */
+  /* esconde o CTA do fluxo do hero; usa o float no canto */
   .hero-cta-row .btn-accent {
+    display: none !important;
+  }
+
+  /* CTA fixo no canto inferior direito (como o WhatsApp antigo) */
+  #cta-float {
+    display: inline-flex;
     position: fixed;
-    left: 50%;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    transform: translateX(-50%);
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+    left: auto;
     z-index: 95;
-    width: calc(100% - 2.75rem);
-    max-width: 22rem;
+    width: auto;
+    max-width: min(18.5rem, calc(100vw - 2rem));
     min-height: 52px;
     padding: 0.95rem 1.2rem;
     font-size: 0.74rem;
     justify-content: center;
+    align-items: center;
     border-radius: 999px;
+    margin: 0;
     animation: heroCtaPulse 2.2s ease-in-out infinite;
   }
 
@@ -359,6 +367,8 @@
     display: none !important;
   }
 
+  /* CTA float só no mobile; no desktop fica oculto pelo default abaixo */
+
   /* alivia animações contínuas no mobile */
   .hero-status,
   .hero-status::before {
@@ -366,7 +376,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-cta-row .btn-accent {
+    #cta-float {
       animation: none;
     }
   }
