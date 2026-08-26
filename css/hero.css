@@ -82,15 +82,13 @@
   .hero-method li{ position:relative; padding-top:1rem; }
   .hero-method li::before{
     content:""; position:absolute; top:0; left:0; width:8px; height:8px; border-radius:50%;
-    background:rgba(0,183,255,.28);
-    box-shadow:0 0 0 3px rgba(0,183,255,.08);
-    transform:scale(.7);
-    opacity:.45;
+    background:var(--accent);
+    box-shadow:0 0 0 3px rgba(0,183,255,.18), 0 0 12px rgba(0,183,255,.55);
   }
   .hero-method li::after{
     content:""; position:absolute; top:3.5px; left:12px; right:-1.2rem; height:1px;
     background:linear-gradient(90deg, rgba(0,183,255,.85), rgba(0,183,255,.25));
-    transform:scaleX(0);
+    transform:scaleX(1);
     transform-origin:left center;
   }
   .hero-method li:last-child::after{ display:none; }
@@ -99,7 +97,8 @@
   }
   .hero-method .step-n{
     display:block; font-family:var(--font-mono); font-size:.62rem; letter-spacing:.16em;
-    text-transform:uppercase; color:rgba(0,183,255,.4); margin-bottom:.28rem;
+    text-transform:uppercase; color:var(--accent); margin-bottom:.28rem;
+    text-shadow:0 0 14px rgba(0,183,255,.35);
   }
   .hero-method .step-t{
     display:block; font-size:.84rem; font-weight:600; color:rgba(245,247,250,.95);
@@ -107,6 +106,19 @@
   }
   .hero-method .step-d{
     display:block; font-size:.72rem; color:rgba(245,247,250,.58); line-height:1.5; margin-top:.18rem;
+  }
+
+  /* estado inicial da animação (só com JS) */
+  html.js-anim .hero-method li::before{
+    background:rgba(0,183,255,.28);
+    box-shadow:0 0 0 3px rgba(0,183,255,.08);
+    transform:scale(.7);
+    opacity:.45;
+  }
+  html.js-anim .hero-method li::after{ transform:scaleX(0); }
+  html.js-anim .hero-method .step-n{
+    color:rgba(0,183,255,.4);
+    text-shadow:none;
   }
 
   @keyframes methodDotOn{
@@ -152,13 +164,18 @@
   html.anim-ready .hero-method li:nth-child(4) .step-n{ animation-delay:2.95s; }
 
   @media (prefers-reduced-motion: reduce){
-    .hero-method li::before{
+    html.js-anim .hero-method li::before,
+    html.anim-ready .hero-method li::before{
       background:var(--accent) !important;
       box-shadow:0 0 0 3px rgba(0,183,255,.18), 0 0 12px rgba(0,183,255,.55) !important;
       transform:scale(1) !important; opacity:1 !important; animation:none !important;
     }
-    .hero-method li::after{ transform:scaleX(1) !important; animation:none !important; }
-    .hero-method .step-n{
+    html.js-anim .hero-method li::after,
+    html.anim-ready .hero-method li::after{
+      transform:scaleX(1) !important; animation:none !important;
+    }
+    html.js-anim .hero-method .step-n,
+    html.anim-ready .hero-method .step-n{
       color:var(--accent) !important; text-shadow:0 0 14px rgba(0,183,255,.35) !important; animation:none !important;
     }
   }
@@ -233,33 +250,41 @@
     color:var(--muted-on-ink);
   }
   .ph-empty[hidden]{ display:none; }
+  /* legenda fora da foto/máscara — não herda o degradê nem a opacidade da foto */
   .hero-photo-cap{
     position:absolute;
     left:clamp(.85rem, 2.5vw, 1.5rem);
     bottom:clamp(0.35rem, 1vh, 0.75rem);
-    z-index:5;
+    z-index:4;
     isolation:isolate;
+    mix-blend-mode:normal;
     display:flex; align-items:center; gap:.55rem;
     padding:.5rem .7rem;
     border-radius:8px;
-    background:rgba(7,9,13,.78);
-    backdrop-filter:blur(12px) saturate(1.1);
-    border:1px solid rgba(245,247,250,.18);
-    box-shadow:0 8px 24px rgba(0,0,0,.35);
+    background:#0B1016;
+    border:1px solid rgba(245,247,250,.22);
+    box-shadow:0 8px 24px rgba(0,0,0,.45);
+    pointer-events:none;
   }
   @media (min-width:900px){
+    /* mesma posição de antes (borda esquerda da coluna da foto), sem herdar a máscara */
     .hero-photo-cap{
-      left:clamp(1rem, 5%, 2rem);
+      left:calc(100% - min(46%, 620px) + clamp(1rem, 5%, 2rem));
       bottom:clamp(0.5rem, 1.5vh, 1rem);
     }
   }
   .hero-photo-cap img{
     width:30px; height:30px; object-fit:contain; flex-shrink:0;
-    filter:none; opacity:1;
+    display:block;
+    opacity:1;
+    filter:none;
+    mix-blend-mode:normal;
+    -webkit-mask-image:none;
+    mask-image:none;
   }
   .hero-photo-cap span{
     font-family:var(--font-mono); font-size:.62rem; letter-spacing:.12em;
-    text-transform:uppercase; color:rgba(245,247,250,.96); line-height:1.45;
+    text-transform:uppercase; color:#F5F7FA; line-height:1.45;
   }
 
   /* selo acima do título */
