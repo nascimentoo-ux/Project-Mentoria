@@ -431,94 +431,117 @@
     flex-shrink: 0;
   }
 
-  /* trilha 01–04 em coluna vertical no mobile (fluxo natural) */
+  /* trilha 01–04: grid de cards 2×2 (sem linhas — mais harmônico no hero centralizado) */
   .hero-method {
     display: grid;
-    grid-template-columns: 1fr !important;
-    gap: 0;
-    margin-top: 0.65rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.55rem;
+    margin-top: 0.75rem;
     margin-inline: auto;
-    padding-top: 1.35rem;
+    padding-top: 1.15rem;
     width: 100%;
-    max-width: 18.5rem;
-    text-align: left;
-    border-top: 1px solid rgba(0, 183, 255, 0.22);
+    max-width: 100%;
+    text-align: center;
+    border-top: 1px solid rgba(0, 183, 255, 0.18);
     box-shadow: none;
   }
 
   .hero-method li {
     position: relative;
-    padding: 0 0 1.35rem 1.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.12rem;
+    min-height: 6.25rem;
+    padding: 0.85rem 0.55rem 0.9rem;
+    border: 1px solid rgba(0, 183, 255, 0.24);
+    border-radius: 14px;
+    background:
+      linear-gradient(
+        165deg,
+        rgba(0, 183, 255, 0.1) 0%,
+        rgba(0, 183, 255, 0.03) 55%,
+        rgba(7, 9, 13, 0.35) 100%
+      );
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.05),
+      0 8px 20px rgba(0, 0, 0, 0.18);
   }
 
-  .hero-method li:last-child {
-    padding-bottom: 0;
-  }
-
-  .hero-method li::before {
-    top: 0.35rem;
-    left: 0;
-    width: 9px;
-    height: 9px;
-  }
-
-  /* linha vertical entre steps — sobrescreve a horizontal do desktop */
+  /* remove timeline desktop no mobile */
+  .hero-method li::before,
   .hero-method li::after,
   .hero-method li:nth-child(2n)::after {
-    display: block !important;
-    content: "";
-    position: absolute;
-    top: 1rem;
-    left: 4px;
-    right: auto;
-    width: 1px;
-    height: calc(100% - 0.65rem);
-    background: linear-gradient(
-      180deg,
-      rgba(0, 183, 255, 0.9),
-      rgba(0, 183, 255, 0.25)
-    );
-    transform: scaleY(1);
-    transform-origin: top center;
-  }
-
-  .hero-method li:last-child::after {
     display: none !important;
-  }
-
-  html.js-anim .hero-method li::after {
-    transform: scaleY(0);
-    transform-origin: top center;
-  }
-
-  html.anim-ready .hero-method li::after {
-    animation: methodLineOnMobile 0.55s var(--ease-out) forwards;
-  }
-
-  @keyframes methodLineOnMobile {
-    from { transform: scaleY(0); }
-    to { transform: scaleY(1); }
+    content: none !important;
+    animation: none !important;
   }
 
   .hero-method .step-n {
-    margin-bottom: 0.18rem;
-    font-size: 0.7rem;
-    letter-spacing: 0.14em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    margin: 0 0 0.35rem;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #041018;
+    background: var(--accent);
+    box-shadow: 0 0 16px rgba(0, 183, 255, 0.42);
+    text-shadow: none;
   }
 
   .hero-method .step-t {
-    font-size: 1rem;
+    font-size: 0.86rem;
     font-weight: 650;
     color: #ffffff;
     letter-spacing: 0;
+    line-height: 1.25;
   }
 
   .hero-method .step-d {
-    font-size: 0.82rem;
-    color: rgba(245, 247, 250, 0.72);
-    margin-top: 0.2rem;
-    line-height: 1.45;
-    max-width: 16ch;
+    font-size: 0.72rem;
+    color: rgba(245, 247, 250, 0.68);
+    margin-top: 0.12rem;
+    line-height: 1.35;
+    max-width: 11.5rem;
+  }
+
+  /* entrada suave dos cards (substitui animação de linha/ponto) */
+  html.js-anim .hero-method li {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  html.js-anim .hero-method .step-n {
+    color: #041018;
+    text-shadow: none;
+    animation: none !important;
+  }
+
+  html.anim-ready .hero-method li {
+    animation: methodCardIn 0.48s var(--ease-out) forwards;
+  }
+
+  html.anim-ready .hero-method li:nth-child(1) { animation-delay: 0.25s; }
+  html.anim-ready .hero-method li:nth-child(2) { animation-delay: 0.38s; }
+  html.anim-ready .hero-method li:nth-child(3) { animation-delay: 0.51s; }
+  html.anim-ready .hero-method li:nth-child(4) { animation-delay: 0.64s; }
+
+  @keyframes methodCardIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .hero-status {
@@ -556,49 +579,15 @@
   @media (prefers-reduced-motion: reduce) {
     #cta-float,
     #cta-float::before,
-    #cta-float .cta-float-ico {
+    #cta-float .cta-float-ico,
+    html.js-anim .hero-method li,
+    html.anim-ready .hero-method li {
       animation: none;
+      opacity: 1;
+      transform: none;
     }
   }
-
-  /* trilha mais rápida no mobile (desktop permanece lento) */
-  html.anim-ready .hero-method li::before {
-    animation-duration: 0.4s;
-  }
-  html.anim-ready .hero-method li::after {
-    animation-duration: 0.55s;
-  }
-  html.anim-ready .hero-method li .step-n {
-    animation-duration: 0.4s;
-  }
-  html.anim-ready .hero-method li:nth-child(1)::before,
-  html.anim-ready .hero-method li:nth-child(1) .step-n {
-    animation-delay: 0.45s;
-  }
-  html.anim-ready .hero-method li:nth-child(1)::after {
-    animation-delay: 0.7s;
-  }
-  html.anim-ready .hero-method li:nth-child(2)::before,
-  html.anim-ready .hero-method li:nth-child(2) .step-n {
-    animation-delay: 1s;
-  }
-  html.anim-ready .hero-method li:nth-child(2)::after {
-    animation-delay: 1.25s;
-  }
-  html.anim-ready .hero-method li:nth-child(3)::before,
-  html.anim-ready .hero-method li:nth-child(3) .step-n {
-    animation-delay: 1.55s;
-  }
-  html.anim-ready .hero-method li:nth-child(3)::after {
-    animation-delay: 1.8s;
-  }
-  html.anim-ready .hero-method li:nth-child(4)::before,
-  html.anim-ready .hero-method li:nth-child(4) .step-n {
-    animation-delay: 2.1s;
-  }
 }
-
-/* trilha permanece 1 coluna no mobile — não forçar grid 2x2 */
 
 @media (max-width: 479px) {
   .hero-photo {
@@ -661,6 +650,23 @@
   .hero-cta-row .btn-line-ink {
     font-size: 0.74rem;
     min-width: 12.5rem;
+  }
+
+  .hero-method {
+    gap: 0.45rem;
+  }
+
+  .hero-method li {
+    min-height: 5.85rem;
+    padding: 0.75rem 0.45rem 0.8rem;
+  }
+
+  .hero-method .step-t {
+    font-size: 0.82rem;
+  }
+
+  .hero-method .step-d {
+    font-size: 0.68rem;
   }
 
   .hero-status {
