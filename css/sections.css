@@ -153,6 +153,8 @@
   }
   .founder-note{
     margin:0; padding:1.25rem 1.3rem 1.3rem;
+    width:100%;
+    box-sizing:border-box;
     border:1px solid rgba(0,183,255,.28);
     background:
       radial-gradient(ellipse 80% 90% at 0% 0%, rgba(0,183,255,.14) 0%, transparent 55%),
@@ -167,8 +169,27 @@
   .founder-note p{
     margin:0; font-size:.95rem; color:rgba(245,247,250,.92); line-height:1.65; max-width:48ch;
   }
-  .founder-tags{ display:flex; flex-wrap:wrap; gap:.55rem; margin-top:.25rem; }
+  .founder-tags{
+    display:flex; flex-wrap:wrap;
+    gap:.85rem 1rem;
+    margin-top:.25rem;
+    width:100%;
+    box-sizing:border-box;
+    justify-content:space-between;
+  }
+  @media (min-width:700px){
+    .founder-tags{
+      flex-wrap:nowrap;
+      gap:1rem;
+    }
+    .founder-tags span{
+      flex:1 1 0;
+      text-align:center;
+      justify-content:center;
+    }
+  }
   .founder-tags span{
+    display:inline-flex; align-items:center;
     font-family:var(--font-mono); font-size:.64rem; letter-spacing:.07em; text-transform:uppercase;
     border:1px solid var(--line-on-ink); padding:.48rem .8rem; color:var(--muted-on-ink);
     background:rgba(7,9,13,.35);
