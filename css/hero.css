@@ -182,7 +182,7 @@
     position:relative;
     display:inline-flex; align-items:center; gap:.7rem;
     margin:.95rem 0 0; max-width:100%;
-    font-family:var(--font-mono); font-size:.64rem; letter-spacing:.1em;
+    font-family:var(--font-mono); font-size:.6rem; letter-spacing:.07em;
     text-transform:uppercase; color:rgba(220,255,235,.92);
     padding:.55rem 1rem .55rem .85rem;
     border:1px solid rgba(61,220,132,.45);
@@ -249,9 +249,10 @@
       align-items:flex-start;
       border-radius:14px;
       padding:.65rem .85rem .65rem .75rem;
-      letter-spacing:.08em;
-      font-size:.6rem;
+      letter-spacing:.06em;
+      font-size:.58rem;
     }
+    .hero-status-txt{ white-space:normal; }
     .hero-status .dot{ margin-top:.28rem; }
   }
   @media (prefers-reduced-motion: reduce){
