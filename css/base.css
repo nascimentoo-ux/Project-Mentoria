@@ -10,7 +10,7 @@
     }
     .hero-grid{ opacity:.22 !important; }
     .hero-stack .h-hero .accent::after{ transform:scaleX(1) !important; }
-    .marquee-track{ animation:none !important; }
+    .marquee-track, .marquee-track--reverse{ animation:none !important; }
   }
   body{margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
   img{max-width:100%; display:block;}
