@@ -118,7 +118,8 @@
 
   /* ===== PARA QUEM ===== */
   #para-quem.section{
-    padding-top: clamp(1rem, 2.5vw, 2rem);
+    padding-top: 0;
+    margin-top: clamp(-2.5rem, -5vw, -4rem);
   }
   .fit-grid{
     display:grid; grid-template-columns:1fr; gap:1rem; margin-top:2.8rem;
