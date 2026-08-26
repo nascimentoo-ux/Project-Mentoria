@@ -145,7 +145,7 @@
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
-    max-height: min(54vh, 440px);
+    max-height: min(50vh, 400px);
     z-index: 1;
     flex-shrink: 0;
     order: 0;
@@ -312,11 +312,11 @@
 @media (max-width: 479px) {
   .hero-photo {
     aspect-ratio: 4 / 5;
-    max-height: min(52vh, 420px);
+    max-height: min(48vh, 380px);
   }
 
   .hero-photo-frame img {
-    object-position: 50% 30%;
+    object-position: 50% 44%;
   }
 
   .hero-content {
