@@ -160,9 +160,9 @@
   .hero-photo-frame::after {
     background: linear-gradient(
       180deg,
-      rgba(7, 9, 13, 0.15) 0%,
-      rgba(7, 9, 13, 0.05) 45%,
-      rgba(7, 9, 13, 0.55) 78%,
+      transparent 0%,
+      transparent 62%,
+      rgba(7, 9, 13, 0.35) 82%,
       #07090D 100%
     );
   }
