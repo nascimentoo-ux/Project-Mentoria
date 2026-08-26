@@ -211,6 +211,7 @@
     max-width: 100%;
     justify-items: center;
     text-align: center;
+    overflow: visible;
   }
 
   .hero-badge {
