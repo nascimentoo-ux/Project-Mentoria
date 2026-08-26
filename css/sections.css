@@ -66,6 +66,7 @@
   #fundador{
     position:relative;
     overflow:hidden;
+    padding-top: clamp(2.5rem, 6vw, 5rem);
   }
   #fundador::before{
     content:""; position:absolute; inset:0; pointer-events:none;
