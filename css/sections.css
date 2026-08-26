@@ -1,5 +1,14 @@
   .section-intro{ max-width:640px; }
   .section-intro .lede{ margin-top:1.1rem; }
+  .transform-intro{ max-width:36rem; }
+  .transform-intro .h-section{
+    max-width:none;
+    line-height:1.12;
+  }
+  .transform-intro .lede{
+    max-width:40ch;
+    margin-top:1rem;
+  }
   #final .reveal-stagger{ text-align:center; }
   #final .reveal-stagger .kicker{ justify-content:center; }
   #final .reveal-stagger .lede{ margin:1.2rem auto 0; }
