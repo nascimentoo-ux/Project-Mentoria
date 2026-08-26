@@ -1,7 +1,10 @@
   .skip-link{ position:absolute; left:-999px; background:var(--accent); color:#04070C; padding:.8rem 1.2rem; z-index:200; }
   .skip-link:focus{ left:0; top:0; }
 
-  /* botão flutuante WhatsApp */
+  /* CTA flutuante: só no mobile (ativado em mobile.css) */
+  #cta-float{ display:none; }
+
+  /* botão flutuante WhatsApp (desktop; oculto no mobile) */
   #wa-float{
     position:fixed; z-index:90; bottom:20px; right:20px; width:54px; height:54px;
     background:var(--accent); color:#041018;
