@@ -152,13 +152,13 @@
   }
 
   .hero-photo-frame img {
-    /* corta o vazio acima da cabeça e desce o quadro para os braços */
+    /* equilíbrio: menos vazio acima da cabeça + braços visíveis */
     object-fit: cover;
-    object-position: 50% 56%;
+    object-position: 50% 45%;
     -webkit-mask-image: none;
     mask-image: none;
-    animation: none;
-    transform: none;
+    animation: none !important;
+    transform: none !important;
   }
 
   .hero-photo-frame::after {
@@ -319,9 +319,9 @@
   }
 
   .hero-photo-frame img {
-    object-position: 50% 58%;
-    animation: none;
-    transform: none;
+    object-position: 50% 38%;
+    animation: none !important;
+    transform: none !important;
   }
 
   .hero-content {
