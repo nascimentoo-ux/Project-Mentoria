@@ -143,14 +143,16 @@
     right: auto;
     bottom: auto;
     width: 100%;
-    height: min(46vh, 360px);
+    height: auto;
+    aspect-ratio: 3 / 4;
+    max-height: min(68vh, 560px);
     z-index: 1;
     flex-shrink: 0;
     order: 0;
   }
 
   .hero-photo-frame img {
-    object-position: 50% 12%;
+    object-position: 50% 10%;
     -webkit-mask-image: none;
     mask-image: none;
   }
@@ -308,7 +310,12 @@
 
 @media (max-width: 479px) {
   .hero-photo {
-    height: min(42vh, 320px);
+    aspect-ratio: 3 / 4;
+    max-height: min(64vh, 520px);
+  }
+
+  .hero-photo-frame img {
+    object-position: 50% 8%;
   }
 
   .hero-content {
