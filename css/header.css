@@ -47,13 +47,14 @@
   }
   .btn-hd:hover::before{ transform:translateX(120%); }
   .btn-hd:active{ transform:translateY(0) scale(0.98); }
-  .burger{ width:40px; height:40px; border:1px solid var(--line-on-ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; background:transparent; }
-  .burger span{ width:16px; height:1.5px; background:var(--paper); transition:transform .3s, opacity .3s; }
+  .burger{ width:40px; height:40px; border:1px solid var(--line-on-ink); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; background:transparent; position:relative; z-index:121; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+  .burger span{ width:16px; height:1.5px; background:var(--paper); transition:transform .3s, opacity .3s; pointer-events:none; }
   .burger.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
   .burger.open span:nth-child(2){ opacity:0; }
   .burger.open span:nth-child(3){ transform:translateY(-6.5px) rotate(-45deg); }
-  #mmenu{ position:fixed; inset:0; z-index:99; background:var(--ink); padding:calc(var(--hd-h) + 2rem) 1.5rem 2rem; display:flex; flex-direction:column; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease); }
-  #mmenu.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  #mmenu{ position:fixed; inset:0; z-index:110; background:var(--ink); padding:calc(var(--hd-h) + 2rem) 1.5rem 2rem; display:flex; flex-direction:column; opacity:0; transform:translateY(-10px); pointer-events:none; transition:opacity .35s var(--ease), transform .35s var(--ease); }
+  #mmenu.open{ opacity:1; transform:translateY(0); pointer-events:auto; visibility:visible; }
+  #mmenu:not(.open){ visibility:hidden; }
   #mmenu a{ font-family:var(--font-display); font-size:1.7rem; text-transform:uppercase; color:var(--paper); padding:.7rem 0; border-bottom:1px solid var(--line-on-ink); }
   #mmenu .btn{ margin-top:2rem; }
   .mm-logo{ display:block; margin-bottom:1.6rem; }
