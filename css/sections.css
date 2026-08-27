@@ -352,6 +352,7 @@
   /* ===== PARA QUEM — split interativo ===== */
   .fit-section{
     position:relative;
+    padding-top:clamp(2.25rem, 4.5vw, 4.5rem);
   }
 
   .fit-intro{ position:relative; z-index:1; max-width:720px; }
