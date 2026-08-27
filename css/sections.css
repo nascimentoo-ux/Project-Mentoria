@@ -577,8 +577,6 @@
   .fit-col.no .fit-txt{ color:rgba(245,247,250,.68); }
 
   @media (prefers-reduced-motion: reduce){
-    .fit-section::before,
-    .fit-section::after,
     .fit-kicker,
     .fit-divider-core,
     .fit-col.yes::before,
@@ -750,8 +748,6 @@
   .reveal-stagger.in .bento-steps > span:nth-child(5){ animation-delay:.44s; }
 
   @media (prefers-reduced-motion: reduce){
-    .beneficios-section::before,
-    .beneficios-section::after,
     .bento-card.bento-featured::before,
     .bento-featured .bento-ico,
     .reveal-stagger.in .bento-steps > span{
