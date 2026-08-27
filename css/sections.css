@@ -653,6 +653,10 @@
     white-space:nowrap;
     font-size:clamp(1.45rem, 2.5vw, 2.85rem);
   }
+  #beneficios .lede{
+    max-width:none;
+    white-space:nowrap;
+  }
 
   .bento-card.bento-featured{
     --fit-border-angle:0deg;
