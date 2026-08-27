@@ -585,11 +585,6 @@
     line-height: 1.45;
   }
 
-  /* remove WhatsApp flutuante no mobile */
-  #wa-float {
-    display: none !important;
-  }
-
   /* CTA float só no mobile; no desktop fica oculto pelo default abaixo */
 
   @media (prefers-reduced-motion: reduce) {

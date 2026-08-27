@@ -4,7 +4,7 @@
     html{scroll-behavior:auto;}
     *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
     .hero-photo-frame img{ animation:none !important; }
-    .reveal, .reveal-stagger > *, .hero-enter, #wa-float, header#hd, .hero-photo, .hero-line-inner{
+    .reveal, .reveal-stagger > *, .hero-enter, header#hd, .hero-photo, .hero-line-inner{
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important; animation:none !important;
     }
