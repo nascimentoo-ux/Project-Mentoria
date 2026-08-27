@@ -49,8 +49,8 @@
 }
 
 @keyframes kickerAccentGlow {
-  0%, 100% { filter: brightness(0.72); }
-  50% { filter: brightness(1.35); }
+  0%, 100% { opacity: 0.62; box-shadow: 0 0 8px rgba(0, 183, 255, 0.25), 0 0 16px rgba(0, 183, 255, 0.08); }
+  50% { opacity: 1; box-shadow: 0 0 12px rgba(0, 183, 255, 0.45), 0 0 24px rgba(0, 183, 255, 0.15); }
 }
 
 /* ---- estado inicial (só quando JS + motion permitido) ---- */
