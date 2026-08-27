@@ -24,7 +24,7 @@ css/
   header.css       # barra de navegação e menu mobile
   hero.css         # seção principal e foto do personal
   animations.css   # entrada sincronizada e scroll reveal
-  sections.css     # demais seções (planos, FAQ, etc.)
+  sections.css     # demais seções (planos, benefícios, etc.)
   utilities.css    # utilitários (skip link)
 js/
   main.js          # inicialização

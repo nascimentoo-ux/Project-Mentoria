@@ -679,34 +679,6 @@
     background:var(--accent); flex-shrink:0; margin-top:.45rem;
   }
 
-  /* ===== FAQ ===== */
-  .faq-list{ margin-top:2.6rem; }
-  .faq-item{
-    border:1px solid var(--line-on-ink); margin-bottom:.75rem;
-    background:var(--ink); transition:border-color .3s;
-  }
-  .faq-item[open]{ border-color:rgba(0,183,255,.35); }
-  .faq-item summary{
-    list-style:none; display:flex; justify-content:space-between; gap:1.5rem;
-    padding:1.35rem 1.4rem; font-weight:600; font-size:.98rem; cursor:pointer;
-  }
-  .faq-item summary::-webkit-details-marker{ display:none; }
-  .faq-plus{
-    width:22px; height:22px; border:1px solid var(--line-on-ink); position:relative; flex-shrink:0;
-    transition:transform .3s, border-color .3s;
-  }
-  .faq-plus::before, .faq-plus::after{
-    content:""; position:absolute; background:var(--paper);
-    top:50%; left:50%; transform:translate(-50%,-50%);
-  }
-  .faq-plus::before{ width:9px; height:1.2px; }
-  .faq-plus::after{ width:1.2px; height:9px; }
-  .faq-item[open] .faq-plus{ transform:rotate(45deg); border-color:var(--accent); }
-  .faq-answer{
-    padding:0 1.4rem 1.4rem; color:var(--muted-on-ink);
-    font-size:.92rem; max-width:62ch; line-height:1.7;
-  }
-
   /* ===== CTA FINAL ===== */
   #final{ text-align:center; }
   #final h2{ max-width:20ch; margin:0 auto; }
