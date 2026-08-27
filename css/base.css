@@ -9,6 +9,7 @@
       clip-path:none !important; transition:none !important; animation:none !important;
     }
     .kicker::before, .kicker::after{ animation:none !important; transform:none !important; opacity:1 !important; }
+    .hero-stack .h-hero .accent::after{ transform:scaleX(1) !important; }
     .marquee-track, .marquee-track--reverse{ animation:none !important; }
   }
   body{margin:0; font-family:var(--font-body); background:var(--paper); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
