@@ -39,6 +39,13 @@
     line-height: 1.15;
   }
 
+  #beneficios .h-section {
+    white-space: nowrap;
+    max-width: none;
+    font-size: clamp(1.05rem, 4.2vw, 1.55rem);
+    line-height: 1.2;
+  }
+
   .section-intro,
   .transform-intro {
     max-width: 100%;
