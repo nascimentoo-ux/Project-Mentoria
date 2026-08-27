@@ -40,26 +40,26 @@
     font-family:var(--font-mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
     color:var(--accent); display:flex; align-items:center; gap:.65em; margin-bottom:1.1rem;
   }
-  /* losango + feixe luminoso no lugar do traço fino */
+  /* feixe luminoso no lugar do traço fino */
   .kicker::after{
-    content:""; flex:0 0 clamp(46px, 5.5vw, 68px); height:14px; flex-shrink:0;
+    content:""; flex:0 0 clamp(52px, 6vw, 76px); height:10px; flex-shrink:0;
     background:
-      linear-gradient(90deg, rgba(0,183,255,.95) 0%, rgba(93,208,255,.85) 42%, rgba(0,183,255,.12) 82%, transparent 100%)
-        13px 50% / calc(100% - 13px) 2px no-repeat,
-      linear-gradient(135deg, transparent 40%, var(--accent-soft) 40%, var(--accent-soft) 60%, transparent 60%)
-        0 50% / 8px 8px no-repeat;
-    filter:drop-shadow(0 0 6px rgba(0,183,255,.55)) drop-shadow(0 0 16px rgba(0,183,255,.22));
+      linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%)
+        3px 50% / calc(100% - 3px) 2px no-repeat,
+      var(--accent) 0 50% / 2px 10px no-repeat;
+    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
+    border-radius:1px;
     transform-origin:left center;
   }
   #final .reveal-stagger .kicker::before,
   .fit-intro .kicker::before{
-    content:""; flex:0 0 clamp(46px, 5.5vw, 68px); height:14px; flex-shrink:0;
+    content:""; flex:0 0 clamp(52px, 6vw, 76px); height:10px; flex-shrink:0;
     background:
-      linear-gradient(270deg, rgba(0,183,255,.95) 0%, rgba(93,208,255,.85) 42%, rgba(0,183,255,.12) 82%, transparent 100%)
-        0 50% / calc(100% - 13px) 2px no-repeat,
-      linear-gradient(135deg, transparent 40%, var(--accent-soft) 40%, var(--accent-soft) 60%, transparent 60%)
-        calc(100% - 8px) 50% / 8px 8px no-repeat;
-    filter:drop-shadow(0 0 6px rgba(0,183,255,.55)) drop-shadow(0 0 16px rgba(0,183,255,.22));
+      linear-gradient(270deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%)
+        0 50% / calc(100% - 3px) 2px no-repeat,
+      var(--accent) 100% 50% / 2px 10px no-repeat;
+    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
+    border-radius:1px;
     transform-origin:right center;
   }
   .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
