@@ -43,22 +43,6 @@
   to { transform: scaleX(1); }
 }
 
-@keyframes kickerAccentIn {
-  from { transform: scaleX(0); opacity: 0; }
-  to { transform: scaleX(1); opacity: 1; }
-}
-
-@keyframes kickerAccentGlow {
-  0%, 100% {
-    box-shadow: 0 0 7px rgba(0, 183, 255, 0.3), 0 0 16px rgba(0, 183, 255, 0.1);
-    opacity: 0.9;
-  }
-  50% {
-    box-shadow: 0 0 14px rgba(0, 183, 255, 0.55), 0 0 28px rgba(0, 183, 255, 0.2);
-    opacity: 1;
-  }
-}
-
 /* ---- estado inicial (só quando JS + motion permitido) ---- */
 html.js-anim:not(.anim-ready) header#hd {
   transform: translateY(-100%);
@@ -124,12 +108,6 @@ html.anim-ready .hero-photo {
   }
   html:not(.js-anim) header#hd {
     animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  html.anim-ready .kicker::after,
-  html.anim-ready .kicker::before {
-    animation:
-      kickerAccentIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both,
-      kickerAccentGlow 2.8s ease-in-out 0.75s infinite;
   }
 }
 

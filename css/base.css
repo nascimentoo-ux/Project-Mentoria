@@ -8,7 +8,6 @@
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important; animation:none !important;
     }
-    .kicker::before, .kicker::after{ animation:none !important; transform:none !important; opacity:1 !important; }
     .hero-stack .h-hero .accent::after{ transform:scaleX(1) !important; }
     .marquee-track, .marquee-track--reverse{ animation:none !important; }
   }
@@ -38,30 +37,9 @@
 
   .kicker{
     font-family:var(--font-mono); font-size:.7rem; letter-spacing:.18em; text-transform:uppercase;
-    color:var(--accent); display:flex; align-items:center; gap:.65em; margin-bottom:1.1rem;
+    color:var(--accent); display:flex; align-items:center; gap:.7em; margin-bottom:1.1rem;
   }
-  /* feixe luminoso no lugar do traço fino */
-  .kicker::after{
-    content:""; flex:0 0 clamp(52px, 6vw, 76px); height:10px; flex-shrink:0;
-    background:
-      linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%)
-        3px 50% / calc(100% - 3px) 2px no-repeat,
-      var(--accent) 0 50% / 2px 10px no-repeat;
-    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
-    border-radius:1px;
-    transform-origin:left center;
-  }
-  #final .reveal-stagger .kicker::before,
-  .fit-intro .kicker::before{
-    content:""; flex:0 0 clamp(52px, 6vw, 76px); height:10px; flex-shrink:0;
-    background:
-      linear-gradient(270deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%)
-        0 50% / calc(100% - 3px) 2px no-repeat,
-      var(--accent) 100% 50% / 2px 10px no-repeat;
-    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
-    border-radius:1px;
-    transform-origin:right center;
-  }
+  .kicker::after{ content:""; flex:1; max-width:72px; height:1px; background:currentColor; opacity:.45; }
   .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
 
   h1,h2,h3,h4{ font-family:var(--font-display); font-weight:600; line-height:1.05; margin:0; letter-spacing:-0.025em; text-transform:none; }
