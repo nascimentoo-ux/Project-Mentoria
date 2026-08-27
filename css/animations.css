@@ -125,6 +125,12 @@ html.anim-ready .hero-photo {
   html:not(.js-anim) header#hd {
     animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
+  html.anim-ready .kicker::after,
+  html.anim-ready .kicker::before {
+    animation:
+      kickerAccentIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both,
+      kickerAccentGlow 2.8s ease-in-out 0.75s infinite;
+  }
 }
 
 /* fade-in + slide-up ao entrar na viewport (scroll) */
