@@ -598,6 +598,7 @@
   /* ===== BENEFÍCIOS (bento grid) ===== */
   .beneficios-section{
     position:relative;
+    padding-top:clamp(2.25rem, 4.5vw, 4.5rem);
   }
   .beneficios-section > .container{ position:relative; z-index:1; }
 
