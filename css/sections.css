@@ -351,28 +351,7 @@
 
   /* ===== PARA QUEM — split interativo ===== */
   .fit-section{
-    position:relative; overflow:hidden;
-  }
-  .fit-section::before,
-  .fit-section::after{
-    content:""; position:absolute; border-radius:50%; pointer-events:none;
-    filter:blur(80px); opacity:.45;
-  }
-  .fit-section::before{
-    width:min(420px, 60vw); height:min(420px, 60vw);
-    top:-8%; left:-6%;
-    background:radial-gradient(circle, rgba(0,183,255,.22) 0%, transparent 70%);
-    animation:fitOrbDrift 14s ease-in-out infinite alternate;
-  }
-  .fit-section::after{
-    width:min(360px, 50vw); height:min(360px, 50vw);
-    bottom:-12%; right:-4%;
-    background:radial-gradient(circle, rgba(139,149,165,.14) 0%, transparent 70%);
-    animation:fitOrbDrift 18s ease-in-out infinite alternate-reverse;
-  }
-  @keyframes fitOrbDrift{
-    from{ transform:translate3d(0,0,0); }
-    to{ transform:translate3d(24px, 18px, 0); }
+    position:relative;
   }
 
   .fit-intro{ position:relative; z-index:1; max-width:720px; }
@@ -619,24 +598,7 @@
 
   /* ===== BENEFÍCIOS (bento grid) ===== */
   .beneficios-section{
-    position:relative; overflow:hidden;
-  }
-  .beneficios-section::before,
-  .beneficios-section::after{
-    content:""; position:absolute; border-radius:50%; pointer-events:none;
-    filter:blur(90px); opacity:.4; z-index:0;
-  }
-  .beneficios-section::before{
-    width:min(480px, 55vw); height:min(480px, 55vw);
-    top:-12%; right:-8%;
-    background:radial-gradient(circle, rgba(0,183,255,.2) 0%, transparent 70%);
-    animation:fitOrbDrift 16s ease-in-out infinite alternate;
-  }
-  .beneficios-section::after{
-    width:min(340px, 45vw); height:min(340px, 45vw);
-    bottom:-16%; left:-6%;
-    background:radial-gradient(circle, rgba(0,183,255,.1) 0%, transparent 70%);
-    animation:fitOrbDrift 20s ease-in-out infinite alternate-reverse;
+    position:relative;
   }
   .beneficios-section > .container{ position:relative; z-index:1; }
 
