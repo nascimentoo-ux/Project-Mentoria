@@ -8,7 +8,12 @@
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important; animation:none !important;
     }
-    .kicker::before, .kicker::after{ animation:none !important; transform:none !important; opacity:1 !important; }
+    .kicker::before, .kicker::after{
+      animation:none !important;
+      transform:scaleX(1) translateZ(0) !important;
+      filter:none !important;
+      opacity:1 !important;
+    }
     .hero-stack .h-hero .accent::after{ transform:scaleX(1) !important; }
     .marquee-track, .marquee-track--reverse{ animation:none !important; }
   }
@@ -43,15 +48,19 @@
   .kicker::after{
     content:""; flex:1; max-width:72px; height:2px; border-radius:2px;
     background:linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%);
-    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
+    box-shadow:0 0 10px rgba(0,183,255,.35), 0 0 20px rgba(0,183,255,.1);
+    transform:scaleX(0) translateZ(0);
     transform-origin:left center;
+    opacity:1;
   }
   #final .reveal-stagger .kicker::before,
   .fit-intro .kicker::before{
     content:""; flex:1; max-width:72px; height:2px; border-radius:2px;
     background:linear-gradient(270deg, var(--accent) 0%, var(--accent-soft) 48%, rgba(0,183,255,.12) 82%, transparent 100%);
-    box-shadow:0 0 10px rgba(0,183,255,.4), 0 0 22px rgba(0,183,255,.12);
+    box-shadow:0 0 10px rgba(0,183,255,.35), 0 0 20px rgba(0,183,255,.1);
+    transform:scaleX(0) translateZ(0);
     transform-origin:right center;
+    opacity:1;
   }
   .num-tag{ font-family:var(--font-mono); font-size:.72rem; color:var(--muted-on-paper); }
 

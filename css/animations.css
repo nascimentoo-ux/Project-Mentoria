@@ -44,19 +44,13 @@
 }
 
 @keyframes kickerAccentIn {
-  from { transform: scaleX(0); opacity: 0; }
-  to { transform: scaleX(1); opacity: 1; }
+  from { transform: scaleX(0) translateZ(0); }
+  to { transform: scaleX(1) translateZ(0); }
 }
 
 @keyframes kickerAccentGlow {
-  0%, 100% {
-    box-shadow: 0 0 7px rgba(0, 183, 255, 0.3), 0 0 16px rgba(0, 183, 255, 0.1);
-    opacity: 0.88;
-  }
-  50% {
-    box-shadow: 0 0 14px rgba(0, 183, 255, 0.55), 0 0 28px rgba(0, 183, 255, 0.2);
-    opacity: 1;
-  }
+  0%, 100% { filter: brightness(0.72); }
+  50% { filter: brightness(1.35); }
 }
 
 /* ---- estado inicial (só quando JS + motion permitido) ---- */
@@ -125,11 +119,15 @@ html.anim-ready .hero-photo {
   html:not(.js-anim) header#hd {
     animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-  html.anim-ready .kicker::after,
-  html.anim-ready .kicker::before {
+
+  /* traço: desenha ao entrar na tela; pulso só depois (evita conflito com fade do reveal) */
+  .reveal-stagger.in .kicker::after,
+  .reveal.in .kicker::after,
+  .reveal-stagger.in .kicker::before,
+  .reveal.in .kicker::before {
     animation:
-      kickerAccentIn 0.75s cubic-bezier(0.16, 1, 0.3, 1) both,
-      kickerAccentGlow 2.8s ease-in-out 0.75s infinite;
+      kickerAccentIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+      kickerAccentGlow 2.4s ease-in-out 1.15s infinite;
   }
 }
 
