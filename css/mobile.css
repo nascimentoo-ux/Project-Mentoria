@@ -964,8 +964,20 @@
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
 
-  #final .reveal-stagger > *:last-child {
-    margin-bottom: 1.5rem;
+  .final-panel {
+    width: 100%;
+    padding: 1.7rem 1.15rem 1.55rem;
+  }
+
+  .final-panel::after {
+    left: 8%;
+    right: 8%;
+  }
+
+  #final .final-actions {
+    margin-top: 1.45rem;
+    margin-bottom: 0.35rem;
+    width: 100%;
   }
 
   #final .btn {
@@ -982,7 +994,18 @@
   }
 
   #final .lede {
-    max-width: 32ch;
+    max-width: 34ch;
+  }
+
+  #final .kicker::before,
+  #final .kicker::after {
+    flex-basis: 42px;
+    width: 42px;
+    max-width: 42px;
+  }
+
+  .final-meta {
+    gap: 0.4rem;
   }
 
   .ft-top,

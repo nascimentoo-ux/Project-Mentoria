@@ -52,7 +52,7 @@
     opacity:.72;
   }
   /* CTA final centralizado: traço dos dois lados */
-  #final .reveal-stagger .kicker::before{
+  #final .final-panel .kicker::before{
     content:""; flex:0 0 72px; width:72px; max-width:72px; height:2px; border-radius:2px;
     background:linear-gradient(270deg, var(--accent) 0%, rgba(0,183,255,.5) 55%, transparent 100%);
     box-shadow:0 0 10px rgba(0,183,255,.3);
