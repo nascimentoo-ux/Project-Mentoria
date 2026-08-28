@@ -964,19 +964,33 @@
     padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
   }
 
-  #final .reveal-stagger > *:last-child {
-    margin-bottom: 1.5rem;
+  #final .close-copy .h-section {
+    max-width: 100%;
+    font-size: clamp(1.5rem, 6.6vw, 2.1rem);
   }
 
-  #final .btn {
+  #final .close-actions .btn {
     width: 100%;
-    max-width: 20rem;
+    max-width: 22rem;
     min-height: 48px;
   }
 
-  #final h2 {
-    max-width: 100%;
-    font-size: clamp(1.55rem, 7vw, 2.2rem);
+  .close-mark {
+    min-height: 14.5rem;
+    padding: 1.6rem 1rem 1.2rem;
+  }
+
+  .close-mark-video,
+  .close-mark-still {
+    width: min(200px, 58%);
+  }
+
+  .close-copy {
+    padding: 1.35rem 1.15rem 1.6rem;
+  }
+
+  .close-steps {
+    gap: 0.85rem;
   }
 
   .ft-top,
