@@ -16,10 +16,15 @@
   #transformacoes.section{
     padding-top: clamp(2rem, 5.5vw, 4.25rem);
   }
-  #final .reveal-stagger{ text-align:center; }
-  #final .reveal-stagger .kicker{ justify-content:center; }
-  #final .reveal-stagger .lede{ margin:1.2rem auto 0; }
-  #final .reveal-stagger > *:last-child{ margin-top:2rem; }
+  #final .reveal-stagger{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+  #final .reveal-stagger .kicker{ justify-content:center; margin-bottom:1rem; }
+  #final .reveal-stagger .lede{ margin:1.05rem auto 0; }
+  #final .reveal-stagger > *:last-child{ margin-top:1.85rem; }
 
   /* ===== TRANSFORMAÇÕES — marquee infinito ===== */
   .marquee-stack{
@@ -1085,14 +1090,55 @@
   /* ===== CTA FINAL ===== */
   #final{
     text-align:center;
-    padding-top:clamp(2rem, 3.6vw, 3.25rem);
+    padding-top:clamp(2.1rem, 3.8vw, 3.5rem);
+    padding-bottom:clamp(2.5rem, 4.4vw, 3.8rem);
     background:
-      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,183,255,.05) 0%, transparent 55%),
+      radial-gradient(ellipse 48% 38% at 50% 14%, rgba(0,183,255,.07) 0%, transparent 62%),
       var(--ink-soft);
     border-top:1px solid rgba(0,183,255,.08);
   }
-  #final h2{ max-width:20ch; margin:0 auto; }
-  .final-logo{ width:clamp(72px,9vw,104px); height:auto; margin:0 auto 1.6rem; object-fit:contain; }
+  #final h2{
+    max-width:none;
+    margin:0 auto;
+    white-space:nowrap;
+    font-size:clamp(1.42rem, 0.72rem + 1.55vw, 2.28rem);
+    letter-spacing:-0.028em;
+  }
+  .final-logo-wrap{
+    position:relative;
+    display:grid;
+    place-items:center;
+    width:clamp(84px, 9.5vw, 112px);
+    margin:0 auto 1.35rem;
+  }
+  .final-logo-wrap::before{
+    content:"";
+    position:absolute;
+    inset:10% 6%;
+    border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(0,183,255,.38) 0%, rgba(0,183,255,.1) 45%, transparent 72%);
+    filter:blur(11px);
+    pointer-events:none;
+    animation:finalLogoPulse 3.4s ease-in-out infinite;
+  }
+  .final-logo{
+    position:relative;
+    z-index:1;
+    width:100%;
+    height:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 0 10px rgba(0,183,255,.16));
+  }
+  @keyframes finalLogoPulse{
+    0%, 100%{ opacity:.16; }
+    50%{ opacity:.48; }
+  }
+  #final .lede{
+    max-width:34ch;
+    color:rgba(245,247,250,.7);
+    font-size:clamp(.94rem, 1.25vw, 1.04rem);
+    line-height:1.7;
+  }
 
   /* ===== FOOTER ===== */
   footer{ background:var(--ink); color:var(--muted-on-ink); padding:3rem 0 2rem; border-top:1px solid var(--line-on-ink); }
