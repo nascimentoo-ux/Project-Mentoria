@@ -466,7 +466,7 @@
     width: 100%;
     max-width: 100%;
     text-align: center;
-    border-top: 1px solid rgba(0, 183, 255, 0.18);
+    border-top: none;
     box-shadow: none;
   }
 
