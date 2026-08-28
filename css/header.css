@@ -12,8 +12,13 @@
   @media (max-width:560px){ .brand img{ width:48px; height:48px; } }
   .brand small{ display:block; font-family:var(--font-mono); font-size:.58rem; font-weight:400; letter-spacing:.14em; color:var(--muted-on-ink); margin-top:.15rem; }
   nav.dnav{ display:none; gap:2rem; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); }
-  nav.dnav a{ font-size:.78rem; color:var(--muted-on-ink); text-transform:uppercase; letter-spacing:.08em; transition:color .25s; }
-  nav.dnav a:hover{ color:var(--paper); }
+  nav.dnav a{
+    font-size:.78rem; font-weight:500;
+    color:rgba(245,247,250,.92);
+    text-transform:uppercase; letter-spacing:.08em;
+    transition:color .25s;
+  }
+  nav.dnav a:hover{ color:#fff; }
   .hd-actions{ display:flex; align-items:center; gap:1rem; }
   .btn-hd{
     display:none;
