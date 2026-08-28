@@ -869,8 +869,9 @@
     content:"";
     position:absolute; inset:0; pointer-events:none;
     background:
-      radial-gradient(ellipse 72% 48% at 50% -8%, rgba(0,183,255,.16) 0%, transparent 58%),
-      radial-gradient(ellipse 40% 30% at 92% 88%, rgba(0,183,255,.06) 0%, transparent 70%);
+      radial-gradient(ellipse 80% 55% at 50% -12%, rgba(0,183,255,.28) 0%, transparent 62%),
+      radial-gradient(ellipse 45% 40% at 8% 70%, rgba(0,183,255,.1) 0%, transparent 68%),
+      radial-gradient(ellipse 40% 30% at 92% 88%, rgba(0,183,255,.1) 0%, transparent 70%);
   }
   .plans-section > .container{ position:relative; z-index:1; }
 
@@ -888,6 +889,7 @@
   .plans-intro .h-section em{
     font-style:normal;
     color:var(--accent);
+    text-shadow:0 0 28px rgba(0,183,255,.45);
   }
   .plans-intro .lede{
     margin:1rem auto 0;
@@ -923,43 +925,79 @@
     flex-direction:column;
     min-height:100%;
     padding:1.55rem 1.2rem 1.35rem;
-    border:1px solid rgba(0,183,255,.16);
+    border:1px solid rgba(0,183,255,.32);
     background:
-      linear-gradient(180deg, rgba(0,183,255,.05) 0%, transparent 38%),
-      rgba(14,19,26,.72);
+      linear-gradient(180deg, rgba(0,183,255,.1) 0%, transparent 42%),
+      rgba(14,19,26,.78);
     overflow:hidden;
+    box-shadow:0 0 0 1px rgba(0,183,255,.06), 0 12px 28px rgba(0,0,0,.22);
     transition:border-color .35s var(--ease), transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
   }
   .plan-cell::after{
     content:"";
     position:absolute; left:0; right:0; top:0; height:2px;
-    background:linear-gradient(90deg, transparent, rgba(0,183,255,.55), transparent);
-    opacity:.55;
-    transition:opacity .35s;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity:.9;
+    box-shadow:0 0 12px rgba(0,183,255,.4);
+    transition:opacity .35s, box-shadow .35s;
   }
   .plan-cell:hover{
-    border-color:rgba(0,183,255,.45);
-    transform:translateY(-5px);
-    box-shadow:0 18px 40px rgba(0,0,0,.28), 0 0 28px rgba(0,183,255,.1);
+    border-color:rgba(0,183,255,.7);
+    transform:translateY(-7px);
+    box-shadow:0 22px 48px rgba(0,0,0,.32), 0 0 36px rgba(0,183,255,.22);
   }
-  .plan-cell:hover::after{ opacity:1; }
+  .plan-cell:hover::after{
+    opacity:1;
+    box-shadow:0 0 18px rgba(0,183,255,.7);
+  }
 
   .plan-cell.is-featured{
-    border-color:rgba(0,183,255,.55);
+    --fit-border-angle:0deg;
+    overflow:visible;
+    border-color:transparent;
     background:
-      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,183,255,.18) 0%, transparent 62%),
-      linear-gradient(180deg, rgba(0,183,255,.08) 0%, transparent 42%),
-      rgba(10,16,24,.88);
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,183,255,.26) 0%, transparent 62%),
+      linear-gradient(180deg, rgba(0,183,255,.12) 0%, transparent 42%),
+      rgba(8,14,22,.92);
     box-shadow:
-      0 0 0 1px rgba(0,183,255,.18),
-      0 22px 48px rgba(0,0,0,.32),
-      0 0 36px rgba(0,183,255,.14);
+      0 26px 56px rgba(0,0,0,.38),
+      0 0 48px rgba(0,183,255,.28);
+    animation:planFeaturedGlow 3.2s ease-in-out infinite;
+  }
+  .plan-cell.is-featured::before{
+    content:"";
+    position:absolute; inset:-1px; pointer-events:none;
+    background:conic-gradient(
+      from var(--fit-border-angle),
+      rgba(0,183,255,.1) 0%,
+      var(--accent) 18%,
+      rgba(0,183,255,.1) 36%,
+      transparent 50%,
+      rgba(0,183,255,.1) 64%,
+      var(--accent) 82%,
+      rgba(0,183,255,.1) 100%
+    );
+    animation:fitBorderAngle 4.5s linear infinite;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite:exclude;
+    padding:1px;
   }
   .plan-cell.is-featured::after{
     height:3px;
     background:linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity:1;
-    box-shadow:0 0 16px rgba(0,183,255,.55);
+    box-shadow:0 0 22px rgba(0,183,255,.85);
+    z-index:1;
+  }
+  @keyframes planFeaturedGlow{
+    0%,100%{ box-shadow:0 26px 56px rgba(0,0,0,.38), 0 0 42px rgba(0,183,255,.22); }
+    50%{ box-shadow:0 28px 60px rgba(0,0,0,.4), 0 0 64px rgba(0,183,255,.4); }
   }
   @media (min-width:1100px){
     .plan-cell.is-featured{
@@ -977,15 +1015,10 @@
   .plan-cell-idx{
     display:block;
     font-family:var(--font-display); font-size:2.1rem; font-weight:700; line-height:1;
-    color:rgba(0,183,255,.38);
-    -webkit-text-stroke:1px rgba(0,183,255,.5);
-    margin-bottom:.85rem;
-    transition:color .35s, -webkit-text-stroke .35s;
-  }
-  .plan-cell:hover .plan-cell-idx,
-  .plan-cell.is-featured .plan-cell-idx{
     color:var(--accent);
     -webkit-text-stroke:1px var(--accent);
+    text-shadow:0 0 18px rgba(0,183,255,.55);
+    margin-bottom:.85rem;
   }
   .plan-cell-term{
     margin:0 0 .35rem;
@@ -1029,7 +1062,9 @@
     .plan-cell,
     .plan-cell.is-featured{
       transition:none;
+      animation:none;
     }
+    .plan-cell.is-featured::before{ animation:none; }
     .plan-cell:hover,
     .plan-cell.is-featured:hover{ transform:none; }
   }
