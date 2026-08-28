@@ -302,6 +302,11 @@
     padding-top: clamp(1.5rem, 4vw, 2.75rem);
     margin-top: 0;
   }
+  @media (min-width: 1700px) and (max-width: 1920px) {
+    #processo.section{
+      padding-top: 4.25rem;
+    }
+  }
   #processo .h-section{
     white-space: nowrap;
     font-size: clamp(1.35rem, 2.85vw, 2.6rem);
