@@ -863,7 +863,7 @@
     position:relative;
     overflow:hidden;
     padding-top:clamp(1.75rem, 3.2vw, 3rem);
-    padding-bottom:clamp(3.5rem, 6vw, 6.5rem);
+    padding-bottom:clamp(2.4rem, 4.5vw, 4.25rem);
   }
   .plans-section::before{
     content:"";
@@ -962,8 +962,8 @@
     overflow:visible;
     border-color:transparent;
     background:
-      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,183,255,.26) 0%, transparent 62%),
-      linear-gradient(180deg, rgba(0,183,255,.12) 0%, transparent 42%),
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(0,183,255,.12) 0%, transparent 62%),
+      linear-gradient(180deg, rgba(0,183,255,.06) 0%, transparent 42%),
       rgba(8,14,22,.92);
     box-shadow:
       0 26px 56px rgba(0,0,0,.38),
@@ -995,10 +995,10 @@
     padding:1px;
   }
   .plan-cell.is-featured::after{
-    height:3px;
+    height:2px;
     background:linear-gradient(90deg, transparent, var(--accent), transparent);
-    opacity:1;
-    box-shadow:0 0 22px rgba(0,183,255,.85);
+    opacity:.7;
+    box-shadow:0 0 8px rgba(0,183,255,.35);
     z-index:1;
   }
   @keyframes planFeaturedGlow{
@@ -1083,7 +1083,14 @@
   }
 
   /* ===== CTA FINAL ===== */
-  #final{ text-align:center; }
+  #final{
+    text-align:center;
+    padding-top:clamp(2rem, 3.6vw, 3.25rem);
+    background:
+      radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,183,255,.05) 0%, transparent 55%),
+      var(--ink-soft);
+    border-top:1px solid rgba(0,183,255,.08);
+  }
   #final h2{ max-width:20ch; margin:0 auto; }
   .final-logo{ width:clamp(72px,9vw,104px); height:auto; margin:0 auto 1.6rem; object-fit:contain; }
 
