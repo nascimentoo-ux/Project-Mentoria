@@ -880,6 +880,12 @@
     text-align:center;
   }
   .plans-intro .kicker{ justify-content:center; margin-bottom:.9rem; }
+  .plans-intro .kicker::before{
+    content:""; flex:0 0 72px; width:72px; max-width:72px; height:2px; border-radius:2px;
+    background:linear-gradient(270deg, var(--accent) 0%, rgba(0,183,255,.5) 55%, transparent 100%);
+    box-shadow:0 0 10px rgba(0,183,255,.3);
+    opacity:.72;
+  }
   .plans-intro .h-section{
     max-width:none;
     white-space:nowrap;
