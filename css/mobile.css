@@ -17,6 +17,7 @@
   .hero-stack,
   .marquee-stack,
   .plan-cards,
+  .plans-deck,
   .bento-grid,
   .process-cards,
   .fit-grid {
@@ -77,6 +78,8 @@
   /* hovers sticky em touch: neutraliza deslocamento */
   .process-card:hover,
   .plan-card:hover,
+  .plan-cell:hover,
+  .plan-cell.is-featured:hover,
   .method-cycle li:hover,
   .bento-card:hover {
     transform: none;
@@ -886,8 +889,36 @@
     right: 1rem;
   }
 
-  .plan-card {
+  .plan-card,
+  .plan-cell {
     padding: 1.5rem 1.2rem;
+  }
+
+  .plans-intro .h-section,
+  .plans-intro .lede {
+    white-space: normal;
+    max-width: 100%;
+  }
+
+  .plans-intro .h-section {
+    font-size: clamp(1.45rem, 6.2vw, 2rem);
+    line-height: 1.18;
+  }
+
+  .plans-intro .lede {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .plan-cell.is-featured {
+    transform: none;
+  }
+
+  .plan-cell-flag {
+    position: static;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    width: fit-content;
   }
 
   .method-panel {
@@ -911,7 +942,8 @@
     white-space: normal;
   }
 
-  .plan-card .plan-name {
+  .plan-card .plan-name,
+  .plan-cell-name {
     font-size: 1.25rem;
   }
 
