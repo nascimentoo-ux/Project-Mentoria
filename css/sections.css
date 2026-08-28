@@ -1133,6 +1133,9 @@
     0%, 100%{ opacity:.16; }
     50%{ opacity:.48; }
   }
+  @media (prefers-reduced-motion: reduce){
+    .final-logo-wrap::before{ animation:none; opacity:.32; }
+  }
   #final .lede{
     max-width:34ch;
     color:rgba(245,247,250,.7);
