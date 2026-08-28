@@ -993,9 +993,23 @@
     line-height: 1.18;
   }
 
-  #final .lede {
-    max-width: 100%;
-    white-space: normal;
+  .final-flow {
+    width: 100%;
+  }
+
+  .final-flow-head {
+    letter-spacing: 0.1em;
+    font-size: 0.62rem;
+  }
+
+  .final-flow-list li {
+    grid-template-columns: 1.9rem 1fr;
+    gap: 0.65rem;
+    padding: 0.8rem 0;
+  }
+
+  .final-flow-list p {
+    font-size: 0.84rem;
   }
 
   #final .kicker::before,
