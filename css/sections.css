@@ -222,6 +222,52 @@
     box-shadow:0 0 16px rgba(0,183,255,.18);
   }
 
+  /* Full HD 1920×1080: a foto 4:5 crescia demais e o texto ficava estreito */
+  @media (min-width: 1700px) and (max-width: 1920px) {
+    #fundador.section{
+      padding-top: clamp(2.35rem, 4vh, 3.25rem);
+      padding-bottom: clamp(2.35rem, 4vh, 3.25rem);
+    }
+    #fundador .founder-shell{
+      grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
+      gap: 2.75rem;
+      align-items: stretch;
+    }
+    #fundador .founder-photo{
+      aspect-ratio: unset;
+      height: 100%;
+      min-height: 0;
+      align-self: stretch;
+    }
+    #fundador .founder-photo img{
+      object-position: center 18%;
+    }
+    #fundador .founder-content{
+      justify-content: space-between;
+      gap: 1.15rem;
+      padding: 1.85rem 2.25rem 1.7rem;
+    }
+    #fundador .founder-name{
+      font-size: clamp(2.35rem, 2.5vw, 2.85rem);
+    }
+    #fundador .founder-name::after{
+      width: 11.5rem;
+    }
+    #fundador .founder-quote,
+    #fundador .founder-body,
+    #fundador .founder-note p{
+      max-width: none;
+    }
+    #fundador .founder-quote{
+      font-size: 1.38rem;
+      line-height: 1.42;
+    }
+    #fundador .founder-body{
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+  }
+
   /* ===== STATS BAND ===== */
   .stats-band{
     padding:clamp(2.2rem,4vw,3.5rem) 0;
