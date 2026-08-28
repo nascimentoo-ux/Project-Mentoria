@@ -980,10 +980,10 @@
     width: 100%;
   }
 
-  #final .btn {
+  #final .final-cta {
     width: 100%;
     max-width: 20rem;
-    min-height: 48px;
+    min-height: 52px;
   }
 
   #final h2 {
@@ -994,7 +994,8 @@
   }
 
   #final .lede {
-    max-width: 34ch;
+    max-width: 100%;
+    white-space: normal;
   }
 
   #final .kicker::before,
@@ -1002,10 +1003,6 @@
     flex-basis: 42px;
     width: 42px;
     max-width: 42px;
-  }
-
-  .final-meta {
-    gap: 0.4rem;
   }
 
   .ft-top,
