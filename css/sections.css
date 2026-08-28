@@ -225,8 +225,8 @@
   /* Full HD 1920×1080: a foto 4:5 crescia demais e o texto ficava estreito */
   @media (min-width: 1700px) and (max-width: 1920px) {
     #fundador.section{
-      padding-top: clamp(2.35rem, 4vh, 3.25rem);
-      padding-bottom: clamp(2.35rem, 4vh, 3.25rem);
+      padding-top: 8rem;
+      padding-bottom: 8rem;
     }
     #fundador .founder-shell{
       grid-template-columns: minmax(480px, 520px) minmax(0, 1fr);
