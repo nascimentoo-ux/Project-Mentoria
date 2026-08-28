@@ -229,23 +229,31 @@
       padding-bottom: clamp(2.35rem, 4vh, 3.25rem);
     }
     #fundador .founder-shell{
-      grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
-      gap: 2.75rem;
+      grid-template-columns: minmax(480px, 520px) minmax(0, 1fr);
+      gap: 2.6rem;
       align-items: stretch;
     }
     #fundador .founder-photo{
-      aspect-ratio: unset;
-      height: 100%;
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      height: auto;
       min-height: 0;
       align-self: stretch;
     }
     #fundador .founder-photo img{
-      object-position: center 18%;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
     }
     #fundador .founder-content{
+      height: auto;
+      min-height: 100%;
       justify-content: space-between;
-      gap: 1.15rem;
-      padding: 1.85rem 2.25rem 1.7rem;
+      gap: 1.2rem;
+      padding: 1.9rem 2.35rem 1.75rem;
     }
     #fundador .founder-name{
       font-size: clamp(2.35rem, 2.5vw, 2.85rem);
@@ -253,14 +261,14 @@
     #fundador .founder-name::after{
       width: 11.5rem;
     }
-    #fundador .founder-quote,
+    #fundador .founder-quote{
+      font-size: 1.4rem;
+      line-height: 1.42;
+      max-width: 42ch;
+    }
     #fundador .founder-body,
     #fundador .founder-note p{
       max-width: none;
-    }
-    #fundador .founder-quote{
-      font-size: 1.38rem;
-      line-height: 1.42;
     }
     #fundador .founder-body{
       font-size: 1rem;
