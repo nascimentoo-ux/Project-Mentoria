@@ -49,8 +49,70 @@
     display:flex; flex-wrap:wrap; gap:.8rem; margin-top:.35rem;
   }
   .hero-cta-row .btn{ border-radius:999px; padding:.9rem 1.5rem; font-size:.76rem; }
-  .hero-cta-row .btn svg{ transition:transform .3s var(--ease); }
-  .hero-cta-row .btn:hover svg{ transform:translateX(3px); }
+  .hero-cta-row .btn-accent{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.55rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    color:#041018;
+    background:var(--accent);
+    border-color:transparent;
+    filter:none;
+    animation:heroCtaGlow 2.2s ease-in-out infinite;
+  }
+  .hero-cta-row .btn-accent::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:var(--accent-soft);
+    opacity:0;
+    z-index:0;
+    pointer-events:none;
+    animation:heroCtaBg 2.2s ease-in-out infinite;
+  }
+  .hero-cta-row .btn-accent > *{
+    position:relative;
+    z-index:1;
+  }
+  .hero-cta-row .btn-accent .cta-float-txt{
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+  }
+  .hero-cta-row .btn-accent .cta-float-ico{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:1.15rem;
+    height:1.15rem;
+    flex-shrink:0;
+    color:#041018;
+    line-height:0;
+    animation:ctaIconPulse 1.6s ease-in-out infinite;
+  }
+  .hero-cta-row .btn-accent .cta-float-ico:last-child{ animation-delay:.2s; }
+  .hero-cta-row .btn-accent .cta-float-ico svg{
+    width:100%;
+    height:100%;
+    display:block;
+  }
+  .hero-cta-row .btn-accent:hover,
+  .hero-cta-row .btn-accent:active{
+    letter-spacing:.06em;
+    transform:none;
+    background:var(--accent);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-cta-row .btn-accent,
+    .hero-cta-row .btn-accent::before,
+    .hero-cta-row .btn-accent .cta-float-ico{ animation:none; }
+  }
   .hero-chips{
     display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1.1rem; padding:0; list-style:none;
   }
