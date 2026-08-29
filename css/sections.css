@@ -1334,7 +1334,7 @@
     background:linear-gradient(90deg, transparent 4%, var(--accent) 50%, transparent 96%);
     pointer-events:none;
   }
-  .ft-brand{ color:var(--paper); }
+  .ft-brand{ color:var(--paper); font-size:1.05rem; }
   .ft-brand img{ width:56px; height:56px; }
   .ft-top{
     display:flex;
