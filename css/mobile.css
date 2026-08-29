@@ -40,6 +40,12 @@
     line-height: 1.15;
   }
 
+  .transform-intro .lede,
+  #processo .lede {
+    white-space: normal;
+    max-width: 100%;
+  }
+
   #beneficios .h-section {
     white-space: nowrap;
     max-width: none;
