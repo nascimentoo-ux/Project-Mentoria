@@ -1222,73 +1222,6 @@
     line-height:1.55;
     color:rgba(245,247,250,.68);
   }
-  .final-actions{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    margin-top:1.75rem;
-  }
-  #final .final-cta{
-    position:relative;
-    display:inline-flex;
-    justify-content:center;
-    align-items:center;
-    gap:.55rem;
-    min-height:52px;
-    min-width:34rem;
-    padding:.95rem 5.2rem;
-    font-size:.82rem;
-    font-weight:700;
-    letter-spacing:.07em;
-    color:#071018;
-    border-radius:999px;
-    overflow:hidden;
-    isolation:isolate;
-    filter:none;
-    animation:heroCtaGlow 2.2s ease-in-out infinite;
-  }
-  #final .final-cta:hover,
-  #final .final-cta:active{
-    letter-spacing:.06em;
-    transform:none;
-  }
-  #final .final-cta::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    background:var(--accent-soft);
-    opacity:0;
-    z-index:0;
-    pointer-events:none;
-    animation:heroCtaBg 2.2s ease-in-out infinite;
-  }
-  #final .final-cta > *{
-    position:relative;
-    z-index:1;
-  }
-  #final .final-cta .cta-float-txt{
-    line-height:1;
-    display:inline-flex;
-    align-items:center;
-  }
-  #final .final-cta .cta-float-ico{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:1.2rem;
-    height:1.2rem;
-    flex-shrink:0;
-    color:#071018;
-    line-height:0;
-    animation:ctaIconPulse 1.6s ease-in-out infinite;
-  }
-  #final .final-cta .cta-float-ico:last-child{ animation-delay:.2s; }
-  #final .final-cta .cta-float-ico svg{
-    width:100%;
-    height:100%;
-    display:block;
-  }
   @keyframes heroCtaGlow{
     0%, 100%{
       box-shadow:
@@ -1308,13 +1241,6 @@
   @keyframes ctaIconPulse{
     0%, 100%{ transform:scale(1); }
     50%{ transform:scale(1.1); }
-  }
-  @media (prefers-reduced-motion: reduce){
-    #final .final-cta,
-    #final .final-cta::before,
-    #final .final-cta .cta-float-ico{
-      animation:none;
-    }
   }
 
   /* ===== FOOTER ===== */
