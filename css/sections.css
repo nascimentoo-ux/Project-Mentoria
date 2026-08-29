@@ -1367,10 +1367,66 @@
   }
 
   /* ===== FOOTER ===== */
-  footer{ background:var(--ink); color:var(--muted-on-ink); padding:3rem 0 2rem; border-top:1px solid var(--line-on-ink); }
-  .ft-top{ display:flex; flex-direction:column; gap:1.8rem; margin-bottom:2rem; }
-  @media (min-width:700px){ .ft-top{ flex-direction:row; justify-content:space-between; align-items:center; } }
-  .ft-links{ display:flex; flex-wrap:wrap; gap:1.5rem; font-size:.85rem; }
-  .ft-links a:hover{ color:var(--paper); }
-  .ft-bottom{ border-top:1px solid var(--line-on-ink); padding-top:1.5rem; font-size:.75rem; display:flex; flex-direction:column; gap:.6rem; }
-  @media (min-width:700px){ .ft-bottom{ flex-direction:row; justify-content:space-between; } }
+  footer{
+    position:relative;
+    background:var(--ink);
+    color:var(--muted-on-ink);
+    padding:1.65rem 0 1.25rem;
+    border-top:1px solid rgba(0,183,255,.12);
+  }
+  footer::before{
+    content:"";
+    position:absolute;
+    left:12%; right:12%;
+    top:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity:.55;
+    pointer-events:none;
+  }
+  .ft-brand{ color:var(--paper); }
+  .ft-brand img{ width:48px; height:48px; }
+  .ft-top{
+    display:flex;
+    flex-direction:column;
+    gap:1.05rem;
+    margin-bottom:1.05rem;
+  }
+  @media (min-width:700px){
+    .ft-top{ flex-direction:row; justify-content:space-between; align-items:center; }
+  }
+  .ft-links{ display:flex; flex-wrap:wrap; gap:.5rem; }
+  .ft-links a{
+    font-family:var(--font-mono);
+    font-size:.64rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--muted-on-ink);
+    padding:.42rem .8rem;
+    border:1px solid var(--line-on-ink);
+    background:rgba(245,247,250,.02);
+    transition:color .25s, border-color .25s, background .25s, box-shadow .25s;
+  }
+  .ft-links a:hover{
+    color:var(--accent);
+    border-color:rgba(0,183,255,.4);
+    background:rgba(0,183,255,.08);
+    box-shadow:0 0 16px rgba(0,183,255,.12);
+  }
+  .ft-bottom{
+    border-top:1px solid var(--line-on-ink);
+    padding-top:1rem;
+    font-size:.72rem;
+    display:flex;
+    flex-direction:column;
+    gap:.55rem;
+  }
+  @media (min-width:700px){
+    .ft-bottom{ flex-direction:row; justify-content:space-between; align-items:center; }
+  }
+  .ft-cred{
+    font-family:var(--font-mono);
+    font-size:.62rem;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
