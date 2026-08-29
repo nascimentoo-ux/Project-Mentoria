@@ -1235,8 +1235,8 @@
     align-items:center;
     gap:.55rem;
     min-height:52px;
-    min-width:min(100%, 32rem);
-    padding:.95rem 4.4rem;
+    min-width:34rem;
+    padding:.95rem 5.2rem;
     font-size:.82rem;
     font-weight:700;
     letter-spacing:.07em;
