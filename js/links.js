@@ -13,6 +13,12 @@ export function initLinks() {
     el.rel = 'noopener';
   });
 
+  document.querySelectorAll('.js-tt').forEach((el) => {
+    el.href = CONFIG.tiktok;
+    el.target = '_blank';
+    el.rel = 'noopener';
+  });
+
   const yr = document.getElementById('yr');
   if (yr) yr.textContent = String(new Date().getFullYear());
 }
