@@ -1233,11 +1233,11 @@
     display:inline-flex;
     justify-content:center;
     align-items:center;
-    gap:.75rem;
-    min-height:76px;
-    min-width:min(100%, 24.5rem);
-    padding:1.35rem 2.9rem;
-    font-size:1.02rem;
+    gap:.55rem;
+    min-height:52px;
+    min-width:min(100%, 32rem);
+    padding:.95rem 4.4rem;
+    font-size:.82rem;
     font-weight:700;
     letter-spacing:.07em;
     color:#071018;
@@ -1276,8 +1276,8 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    width:1.6rem;
-    height:1.6rem;
+    width:1.2rem;
+    height:1.2rem;
     flex-shrink:0;
     color:#071018;
     line-height:0;
@@ -1365,13 +1365,29 @@
     color:#fff;
     background:transparent;
     border:1px solid rgba(160,176,192,.38);
-    transition:border-color .25s, background .25s, transform .25s;
+    transition:color .25s, border-color .25s, background .25s, transform .25s, box-shadow .25s;
   }
   .ft-social a svg{ width:1.18rem; height:1.18rem; display:block; }
+  .ft-social a.js-ig:hover{
+    color:#E1306C;
+    border-color:rgba(225,48,108,.75);
+    background:rgba(225,48,108,.12);
+    box-shadow:0 0 16px rgba(225,48,108,.22);
+  }
+  .ft-social a.js-wa:hover{
+    color:#25D366;
+    border-color:rgba(37,211,102,.75);
+    background:rgba(37,211,102,.12);
+    box-shadow:0 0 16px rgba(37,211,102,.22);
+  }
+  .ft-social a.js-tt:hover{
+    color:#25F4EE;
+    border-color:rgba(254,44,85,.7);
+    background:rgba(254,44,85,.1);
+    box-shadow:0 0 16px rgba(37,244,238,.18);
+  }
   .ft-social a:hover{
     transform:translateY(-1px);
-    border-color:rgba(220,230,240,.72);
-    background:rgba(255,255,255,.06);
   }
   .ft-social a:focus-visible{
     outline:2px solid var(--accent);
