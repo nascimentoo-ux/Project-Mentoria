@@ -983,12 +983,9 @@
   #final .final-cta {
     width: 100%;
     max-width: none;
-    min-height: 62px;
-    padding: 1.1rem 1.4rem;
-  }
-
-  .final-note {
-    letter-spacing: 0.08em;
+    min-height: 70px;
+    padding: 1.2rem 1.5rem;
+    font-size: 0.98rem;
   }
 
   #final h2 {
@@ -1030,13 +1027,13 @@
   }
 
   .ft-social a {
-    width: 2.55rem;
-    height: 2.55rem;
+    width: 2.85rem;
+    height: 2.85rem;
   }
 
   .ft-brand img {
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
   }
 }
 
