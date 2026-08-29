@@ -982,8 +982,13 @@
 
   #final .final-cta {
     width: 100%;
-    max-width: 20rem;
-    min-height: 52px;
+    max-width: none;
+    min-height: 62px;
+    padding: 1.1rem 1.4rem;
+  }
+
+  .final-note {
+    letter-spacing: 0.08em;
   }
 
   #final h2 {
@@ -1021,25 +1026,12 @@
 
   .ft-top,
   .ft-bottom {
-    gap: 0.9rem;
-  }
-
-  .ft-id {
-    padding-left: 0.75rem;
-  }
-
-  .ft-social {
-    width: 100%;
-    justify-content: stretch;
+    gap: 0.85rem;
   }
 
   .ft-social a {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .ft-tag {
-    max-width: none;
+    width: 2.55rem;
+    height: 2.55rem;
   }
 
   .ft-brand img {
