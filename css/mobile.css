@@ -728,13 +728,13 @@
     padding: 0;
   }
 
-  .founder-head .kicker {
+  #fundador .founder-head .kicker {
     justify-content: center;
     width: 100%;
     margin-bottom: 0.55rem;
   }
 
-  .founder-head .kicker::before {
+  #fundador .founder-head .kicker::before {
     content: "";
     flex: 0 0 56px;
     width: 56px;
@@ -746,19 +746,21 @@
     opacity: 0.72;
   }
 
-  .founder-quote {
+  #fundador .founder-quote {
     text-align: center;
     max-width: 100%;
+    width: 100%;
     font-size: clamp(1.1rem, 4.6vw, 1.35rem);
     line-height: 1.4;
     margin-inline: auto;
   }
 
-  .founder-body {
+  #fundador .founder-body {
     text-align: justify;
     text-justify: inter-word;
     hyphens: auto;
     max-width: 100%;
+    width: 100%;
     font-size: 0.92rem;
     line-height: 1.7;
   }
@@ -838,11 +840,11 @@
 
 /* ---- fundador / metodologia / cards ---- */
 @media (max-width: 699px) {
-  .founder-quote {
+  #fundador .founder-quote {
     text-align: center;
   }
 
-  .founder-body,
+  #fundador .founder-body,
   .method-panel-copy p {
     text-align: justify;
     text-justify: inter-word;
