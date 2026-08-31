@@ -747,11 +747,11 @@
   }
 
   #fundador .founder-head .kicker::before {
-    background: linear-gradient(90deg, transparent 0%, var(--accent) 28%, var(--accent) 100%);
+    background: linear-gradient(270deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
   }
 
   #fundador .founder-head .kicker::after {
-    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 72%, transparent 100%);
+    background: linear-gradient(90deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
   }
 
   #fundador .founder-head {
