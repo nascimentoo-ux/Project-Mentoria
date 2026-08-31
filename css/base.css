@@ -8,7 +8,8 @@
       opacity:1 !important; transform:none !important; filter:none !important;
       clip-path:none !important; transition:none !important; animation:none !important;
     }
-    .kicker::before, .kicker::after{
+    .kicker::before, .kicker::after,
+    .founder-name::after{
       animation:none !important;
       opacity:.72 !important;
       box-shadow:0 0 10px rgba(0,183,255,.3) !important;

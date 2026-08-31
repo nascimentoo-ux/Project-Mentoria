@@ -734,16 +734,29 @@
     margin-bottom: 0.55rem;
   }
 
-  #fundador .founder-head .kicker::before {
+  #fundador .founder-head .kicker::before,
+  #fundador .founder-head .kicker::after {
     content: "";
-    flex: 0 0 56px;
-    width: 56px;
-    max-width: 56px;
+    flex: 0 0 72px;
+    width: 72px;
+    max-width: 72px;
     height: 2px;
     border-radius: 2px;
-    background: linear-gradient(270deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
     box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
     opacity: 0.72;
+  }
+
+  #fundador .founder-head .kicker::before {
+    background: linear-gradient(270deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
+  }
+
+  #fundador .founder-head {
+    text-align: center;
+  }
+
+  #fundador .founder-name {
+    margin-inline: auto;
+    text-align: center;
   }
 
   #fundador .founder-quote {
@@ -758,7 +771,10 @@
   #fundador .founder-body {
     text-align: justify;
     text-justify: inter-word;
-    hyphens: auto;
+    hyphens: none;
+    -webkit-hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
     max-width: 100%;
     width: 100%;
     font-size: 0.92rem;
@@ -849,6 +865,10 @@
     text-align: justify;
     text-justify: inter-word;
     text-wrap: pretty;
+    hyphens: none;
+    -webkit-hyphens: none;
+    overflow-wrap: normal;
+    word-break: normal;
   }
 
   .founder-tags {
