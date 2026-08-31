@@ -747,7 +747,11 @@
   }
 
   #fundador .founder-head .kicker::before {
-    background: linear-gradient(270deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
+    background: linear-gradient(90deg, transparent 0%, var(--accent) 28%, var(--accent) 100%);
+  }
+
+  #fundador .founder-head .kicker::after {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent) 72%, transparent 100%);
   }
 
   #fundador .founder-head {
@@ -816,6 +820,13 @@
 @media (max-width: 479px) {
   .founder-name {
     font-size: clamp(1.9rem, 9vw, 2.2rem);
+  }
+
+  #fundador .founder-head .kicker::before,
+  #fundador .founder-head .kicker::after {
+    flex-basis: 42px;
+    width: 42px;
+    max-width: 42px;
   }
 
   .founder-photo {
