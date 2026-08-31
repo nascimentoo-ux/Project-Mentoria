@@ -590,12 +590,12 @@
     transition:border-color .35s var(--ease), background .35s var(--ease);
   }
   .reveal-stagger.in .fit-item{
-    animation:fitItemIn .65s var(--ease-out) forwards;
+    animation:fitItemIn 1.15s var(--ease-out) forwards;
   }
-  .reveal-stagger.in .fit-item:nth-child(1){ animation-delay:.08s; }
-  .reveal-stagger.in .fit-item:nth-child(2){ animation-delay:.16s; }
-  .reveal-stagger.in .fit-item:nth-child(3){ animation-delay:.24s; }
-  .reveal-stagger.in .fit-item:nth-child(4){ animation-delay:.32s; }
+  .reveal-stagger.in .fit-item:nth-child(1){ animation-delay:.12s; }
+  .reveal-stagger.in .fit-item:nth-child(2){ animation-delay:.28s; }
+  .reveal-stagger.in .fit-item:nth-child(3){ animation-delay:.44s; }
+  .reveal-stagger.in .fit-item:nth-child(4){ animation-delay:.6s; }
 
   @keyframes fitItemIn{
     from{ opacity:0; transform:translateY(18px); }
@@ -629,12 +629,12 @@
     border:1px solid rgba(139,149,165,.35);
   }
   .reveal-stagger.in .fit-ico{
-    animation:fitIcoPop .5s var(--ease-out) forwards;
+    animation:fitIcoPop .9s var(--ease-out) forwards;
   }
-  .reveal-stagger.in .fit-item:nth-child(1) .fit-ico{ animation-delay:.14s; }
-  .reveal-stagger.in .fit-item:nth-child(2) .fit-ico{ animation-delay:.22s; }
-  .reveal-stagger.in .fit-item:nth-child(3) .fit-ico{ animation-delay:.3s; }
-  .reveal-stagger.in .fit-item:nth-child(4) .fit-ico{ animation-delay:.38s; }
+  .reveal-stagger.in .fit-item:nth-child(1) .fit-ico{ animation-delay:.22s; }
+  .reveal-stagger.in .fit-item:nth-child(2) .fit-ico{ animation-delay:.38s; }
+  .reveal-stagger.in .fit-item:nth-child(3) .fit-ico{ animation-delay:.54s; }
+  .reveal-stagger.in .fit-item:nth-child(4) .fit-ico{ animation-delay:.7s; }
   @keyframes fitIcoPop{
     0%{ transform:scale(.6); opacity:0; }
     70%{ transform:scale(1.12); }
@@ -817,11 +817,11 @@
     transform:translateY(-50%) rotate(45deg);
   }
   .reveal-stagger.in .bento-steps > span:not(.bento-steps-arrow){
-    animation:fitItemIn .55s var(--ease-out) both;
+    animation:fitItemIn 1s var(--ease-out) both;
   }
-  .reveal-stagger.in .bento-steps > span:nth-child(1){ animation-delay:.2s; }
-  .reveal-stagger.in .bento-steps > span:nth-child(3){ animation-delay:.32s; }
-  .reveal-stagger.in .bento-steps > span:nth-child(5){ animation-delay:.44s; }
+  .reveal-stagger.in .bento-steps > span:nth-child(1){ animation-delay:.28s; }
+  .reveal-stagger.in .bento-steps > span:nth-child(3){ animation-delay:.48s; }
+  .reveal-stagger.in .bento-steps > span:nth-child(5){ animation-delay:.68s; }
 
   @media (prefers-reduced-motion: reduce){
     .bento-card.bento-featured::before,
