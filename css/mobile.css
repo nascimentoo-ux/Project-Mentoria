@@ -148,6 +148,7 @@
   .fit-intro .h-section {
     text-align: center;
     margin-inline: auto;
+    width: 100%;
   }
 
   #beneficios .section-intro {
@@ -1076,7 +1077,12 @@
   }
 
   .fit-intro {
-    text-align: left;
+    text-align: center;
+  }
+
+  #para-quem .fit-intro .h-section {
+    text-align: center;
+    width: 100%;
   }
 
   .fit-item {
