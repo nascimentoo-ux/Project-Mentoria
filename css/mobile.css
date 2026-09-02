@@ -621,7 +621,6 @@
     #cta-float,
     #cta-float::before,
     #cta-float .cta-float-ico,
-    .hero-status::after,
     html.anim-ready .hero-method li {
       animation: none;
       opacity: 1;
