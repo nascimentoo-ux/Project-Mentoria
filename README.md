@@ -43,7 +43,7 @@ assets/            # imagens
 | --- | --- | --- |
 | `assets/elite40-shield.png` | Escudo "Metodologia Elite40+" | header, legenda da foto, CTA final, rodapé |
 | `assets/trainer-hero.jpg` | Foto do personal na academia (retrato) | home (hero) |
-| `assets/trainer-photo.png` | Foto do personal (retrato) | seção Fundador |
+| `assets/trainer-founder.jpg` | Foto do fundador em estúdio (retrato) | seção Fundador |
 
 - **Logo:** fallback automático para `assets/elite40-shield.svg` se o PNG não existir.
 - **Foto:** marcador discreto no lugar se o arquivo não existir.

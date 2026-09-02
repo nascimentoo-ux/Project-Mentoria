@@ -727,7 +727,7 @@
 
   .founder-photo {
     aspect-ratio: 3 / 4;
-    max-height: min(58vh, 440px);
+    max-height: min(62vh, 520px);
     width: 100%;
   }
 
@@ -838,7 +838,11 @@
   }
 
   .founder-photo {
-    max-height: min(52vh, 380px);
+    max-height: min(56vh, 420px);
+  }
+
+  .founder-photo img {
+    object-position: 50% 6%;
   }
 }
 
