@@ -1239,6 +1239,12 @@
     width: 100%;
   }
 
+  #final .final-panel .kicker::before,
+  #final .final-panel .kicker::after {
+    width: 56px;
+    max-width: 56px;
+  }
+
   .final-logo-wrap {
     margin-left: auto;
     margin-right: auto;
