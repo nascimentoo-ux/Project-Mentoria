@@ -1072,9 +1072,14 @@
     font-size:.92rem; font-weight:600; color:rgba(245,247,250,.62);
   }
   .plan-cell-unit{
-    margin:.55rem 0 1.2rem;
+    margin:.55rem 0 .28rem;
     font-family:var(--font-mono); font-size:.62rem; letter-spacing:.04em;
     color:rgba(245,247,250,.5);
+  }
+  .plan-cell-pay{
+    margin:0 0 1.05rem;
+    font-family:var(--font-mono); font-size:.62rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--accent);
   }
   .plan-cell .btn{
     padding:.85rem 1rem;
