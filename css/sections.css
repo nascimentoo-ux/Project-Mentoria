@@ -1053,6 +1053,10 @@
     font-family:var(--font-display); font-size:1.22rem; font-weight:700;
     letter-spacing:-0.02em; margin:0 0 .3rem;
   }
+  .plan-cell-name .plan-qty{
+    margin-right:.28em;
+    letter-spacing:0;
+  }
   .plan-cell-span{
     margin:0 0 1.15rem;
     font-size:.82rem; color:var(--muted-on-ink); line-height:1.45;
@@ -1075,14 +1079,6 @@
     margin:.55rem 0 1.05rem;
     font-family:var(--font-mono); font-size:.62rem; letter-spacing:.04em;
     color:rgba(245,247,250,.5);
-  }
-  .plan-cell-pay{
-    display:inline;
-    margin:0;
-    font:inherit;
-    letter-spacing:inherit;
-    text-transform:inherit;
-    color:rgba(245,247,250,.58);
   }
   .plan-cell .btn{
     padding:.85rem 1rem;
