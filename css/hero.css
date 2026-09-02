@@ -264,32 +264,85 @@
     }
   }
 
-  /* status de atendimento — pílula clara, sem animação */
+  /* status de atendimento — azul da marca, tom suave + borda em movimento */
+  @keyframes statusCtaGlow {
+    0%, 100% {
+      box-shadow:
+        0 0 0 0 rgba(0, 183, 255, 0.28),
+        0 8px 22px rgba(0, 183, 255, 0.16);
+    }
+    50% {
+      box-shadow:
+        0 0 0 7px rgba(0, 183, 255, 0),
+        0 10px 26px rgba(0, 183, 255, 0.28);
+    }
+  }
+  @keyframes statusCtaBg {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.7; }
+  }
+
   .hero-status{
+    --fit-border-angle:0deg;
     position:relative;
     display:inline-flex; align-items:center; justify-content:center;
     gap:.7rem;
     margin:.95rem 0 0; max-width:100%;
     font-family:var(--font-mono); font-size:.6rem; letter-spacing:.07em;
-    text-transform:uppercase; color:#F2FBFF;
+    text-transform:uppercase; color:rgba(214,243,255,.94);
     padding:.55rem 1.15rem;
-    border:1px solid rgba(186,232,255,.55);
+    border:1px solid rgba(0,183,255,.38);
     border-radius:999px;
-    background:rgba(186,232,255,.14);
-    box-shadow:none;
-    overflow:hidden;
+    background:
+      linear-gradient(135deg, rgba(0,183,255,.14) 0%, rgba(7,9,13,.72) 48%, rgba(0,183,255,.08) 100%);
+    overflow:visible;
+    isolation:isolate;
+    transform:translateZ(0);
+    animation:statusCtaGlow 2.8s ease-in-out infinite;
   }
-  .hero-status::before,
+  .hero-status::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    z-index:0;
+    padding:2px;
+    pointer-events:none;
+    background:conic-gradient(
+      from var(--fit-border-angle),
+      transparent 0%,
+      rgba(0,183,255,.15) 6%,
+      rgba(0,183,255,.85) 12%,
+      rgba(0,183,255,.55) 18%,
+      transparent 28%,
+      transparent 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite:exclude;
+    animation:fitBorderAngle 5s linear infinite;
+  }
   .hero-status::after{
-    content:none;
-    display:none;
-    animation:none;
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    z-index:0;
+    background:rgba(0,183,255,.16);
+    opacity:0.2;
+    animation:statusCtaBg 2.8s ease-in-out infinite;
   }
   .hero-status-txt{
     position:relative; z-index:1;
     line-height:1.45;
     white-space:nowrap;
-    color:#F2FBFF;
+    color:rgba(214,243,255,.94);
   }
   .hero-status .dot{
     display:none !important;
@@ -303,6 +356,12 @@
       font-size:.58rem;
     }
     .hero-status-txt{ white-space:normal; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero-status,
+    .hero-status::before,
+    .hero-status::after{ animation:none !important; }
+    .hero-status::after{ opacity:.35; }
   }
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
