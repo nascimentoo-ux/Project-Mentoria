@@ -230,6 +230,11 @@
   .bento-card:hover {
     transform: none;
   }
+
+  .bento-steps {
+    justify-content: center;
+    width: 100%;
+  }
 }
 
 /* ---- header / menu ---- */
@@ -1117,6 +1122,8 @@
 
   .bento-steps {
     gap: 0.35rem;
+    justify-content: center;
+    width: 100%;
   }
 
   .bento-idx {
