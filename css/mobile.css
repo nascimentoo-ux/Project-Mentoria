@@ -199,6 +199,55 @@
     margin-inline: auto;
   }
 
+  /* spotlight mobile — fácil de reverter */
+  #processo .section-intro,
+  #beneficios .section-intro {
+    position: relative;
+    isolation: isolate;
+    padding: 1.2rem 0.95rem 1.3rem;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 183, 255, 0.38);
+    background:
+      radial-gradient(ellipse 85% 80% at 50% -10%, rgba(0, 183, 255, 0.22), transparent 58%),
+      rgba(10, 18, 28, 0.72);
+    box-shadow:
+      0 0 0 1px rgba(0, 183, 255, 0.08),
+      0 18px 40px rgba(0, 0, 0, 0.32),
+      0 0 36px rgba(0, 183, 255, 0.16);
+  }
+
+  #processo .section-intro .kicker,
+  #beneficios .section-intro .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-shadow: 0 0 18px rgba(0, 183, 255, 0.55);
+  }
+
+  #processo .section-intro .kicker::before,
+  #processo .section-intro .kicker::after,
+  #beneficios .section-intro .kicker::before,
+  #beneficios .section-intro .kicker::after {
+    box-shadow: 0 0 14px rgba(0, 183, 255, 0.55);
+    opacity: 0.95;
+  }
+
+  #processo .h-section,
+  #beneficios .h-section {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 7vw, 2.1rem);
+    line-height: 1.18;
+    background: linear-gradient(92deg, #fff 8%, #9fe0ff 52%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  #processo .lede,
+  #beneficios .lede {
+    color: rgba(232, 244, 255, 0.88);
+    font-weight: 500;
+  }
+
   .section-intro,
   .transform-intro {
     max-width: 100%;
