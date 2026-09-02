@@ -168,6 +168,7 @@
     box-shadow:0 0 10px rgba(0,183,255,.3);
     opacity:.72;
     animation:kickerLinePulse 2.8s ease-in-out infinite;
+    animation-delay:0s;
   }
   .founder-quote{
     position:relative;
@@ -252,7 +253,7 @@
       width: 100%;
       height: auto;
       min-height: 0;
-      align-self: stretch;
+      align-self: start;
     }
     #fundador .founder-photo img{
       position: absolute;

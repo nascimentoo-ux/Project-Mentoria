@@ -115,12 +115,12 @@ html.anim-ready .hero-photo {
     animation: headerEnter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* pulso suave só de opacidade — sem scale/box-shadow (evita travada) */
-  .reveal-stagger.in .kicker::after,
-  .reveal.in .kicker::after,
-  .reveal-stagger.in .kicker::before,
-  .reveal.in .kicker::before {
+  /* pulso dos traços: mesmo relógio desde o load, sem restart no reveal */
+  .kicker::before,
+  .kicker::after,
+  .founder-name::after {
     animation: kickerLinePulse 2.8s ease-in-out infinite;
+    animation-delay: 0s;
   }
 }
 
