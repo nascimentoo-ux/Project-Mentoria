@@ -774,7 +774,11 @@
   }
   #beneficios .lede{
     max-width:none;
-    white-space:nowrap;
+    white-space:normal;
+  }
+  #beneficios .lede .beneficios-lede-a,
+  #beneficios .lede .beneficios-lede-b{
+    display:block;
   }
 
   .bento-card.bento-featured{
