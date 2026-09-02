@@ -38,6 +38,9 @@
     overflow-wrap: break-word;
     font-size: clamp(1.4rem, 6.4vw, 2rem);
     line-height: 1.15;
+  }
+
+  #processo .h-section {
     text-align: center;
     margin-inline: auto;
   }
@@ -79,6 +82,37 @@
   }
 
   #processo .lede {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .method-panel-copy .kicker {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 0.55rem;
+  }
+
+  .method-panel-copy .kicker::before,
+  .method-panel-copy .kicker::after {
+    content: "";
+    flex: 0 0 72px;
+    width: 72px;
+    max-width: 72px;
+    height: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
+    opacity: 0.72;
+  }
+
+  .method-panel-copy .kicker::before {
+    background: linear-gradient(270deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
+  }
+
+  .method-panel-copy .kicker::after {
+    background: linear-gradient(90deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
+  }
+
+  .method-panel-copy .h-card {
     text-align: center;
     margin-inline: auto;
   }
@@ -870,7 +904,9 @@
   #fundador .founder-head .kicker::before,
   #fundador .founder-head .kicker::after,
   #processo .section-intro .kicker::before,
-  #processo .section-intro .kicker::after {
+  #processo .section-intro .kicker::after,
+  .method-panel-copy .kicker::before,
+  .method-panel-copy .kicker::after {
     flex-basis: 42px;
     width: 42px;
     max-width: 42px;
