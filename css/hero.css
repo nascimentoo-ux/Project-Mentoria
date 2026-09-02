@@ -264,48 +264,32 @@
     }
   }
 
-  /* status de atendimento — azul da marca, brilho suave (sem pulso) */
-  @keyframes statusSheen {
-    0%, 28% { transform: translateX(-130%); }
-    58%, 100% { transform: translateX(130%); }
-  }
-
+  /* status de atendimento — pílula clara, sem animação */
   .hero-status{
     position:relative;
     display:inline-flex; align-items:center; justify-content:center;
     gap:.7rem;
     margin:.95rem 0 0; max-width:100%;
     font-family:var(--font-mono); font-size:.6rem; letter-spacing:.07em;
-    text-transform:uppercase; color:#B8ECFF;
+    text-transform:uppercase; color:#F2FBFF;
     padding:.55rem 1.15rem;
-    border:1px solid rgba(0,183,255,.42);
+    border:1px solid rgba(186,232,255,.55);
     border-radius:999px;
-    background:
-      linear-gradient(180deg, rgba(0,183,255,.16) 0%, rgba(7,9,13,.78) 55%, rgba(0,183,255,.1) 100%);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.12),
-      0 0 0 1px rgba(0,183,255,.08),
-      0 10px 28px rgba(0,183,255,.16);
+    background:rgba(186,232,255,.14);
+    box-shadow:none;
     overflow:hidden;
-    isolation:isolate;
-    transform:translateZ(0);
   }
-  .hero-status::before{
-    content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-    background:radial-gradient(120% 80% at 50% -20%, rgba(93,208,255,.28), transparent 62%);
-    z-index:0;
-  }
+  .hero-status::before,
   .hero-status::after{
-    content:""; position:absolute; top:0; bottom:0; left:0; width:42%;
-    border-radius:inherit; pointer-events:none;
-    background:linear-gradient(105deg, transparent 0%, rgba(255,255,255,.22) 48%, transparent 100%);
-    z-index:2;
-    animation:statusSheen 5.4s ease-in-out infinite;
+    content:none;
+    display:none;
+    animation:none;
   }
   .hero-status-txt{
     position:relative; z-index:1;
     line-height:1.45;
     white-space:nowrap;
+    color:#F2FBFF;
   }
   .hero-status .dot{
     display:none !important;
@@ -319,9 +303,6 @@
       font-size:.58rem;
     }
     .hero-status-txt{ white-space:normal; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .hero-status::after{ animation:none !important; opacity:0; }
   }
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
