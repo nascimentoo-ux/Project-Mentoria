@@ -145,6 +145,11 @@
     background: linear-gradient(90deg, var(--accent) 0%, rgba(0, 183, 255, 0.5) 55%, transparent 100%);
   }
 
+  .fit-intro .h-section {
+    text-align: center;
+    margin-inline: auto;
+  }
+
   #beneficios .h-section {
     white-space: nowrap;
     max-width: none;
