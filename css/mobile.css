@@ -193,11 +193,17 @@
 
   #beneficios .lede {
     white-space: normal;
-    max-width: 32ch;
-    font-size: clamp(0.88rem, 3.4vw, 1rem);
+    max-width: 100%;
+    font-size: clamp(0.9rem, 3.5vw, 1.02rem);
     text-align: center;
     margin-inline: auto;
-    text-wrap: balance;
+    text-wrap: pretty;
+    line-height: 1.55;
+  }
+
+  #beneficios .lede .lede-split {
+    display: block;
+    height: 0.35rem;
   }
 
   .section-intro,
@@ -1237,7 +1243,6 @@
 
   #final .final-panel .kicker {
     width: 100%;
-    justify-content: center;
   }
 
   .final-logo-wrap {
@@ -1262,13 +1267,6 @@
 
   .final-flow-list p {
     font-size: 0.84rem;
-  }
-
-  #final .kicker::before,
-  #final .kicker::after {
-    flex-basis: 42px;
-    width: 42px;
-    max-width: 42px;
   }
 
   .ft-top,

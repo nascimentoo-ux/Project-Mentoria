@@ -17,13 +17,39 @@
   #transformacoes.section{
     padding-top: clamp(2rem, 5.5vw, 4.25rem);
   }
+  .lede-split{ display:none; }
   #final .final-panel{
     display:flex;
     flex-direction:column;
     align-items:center;
     text-align:center;
   }
-  #final .final-panel .kicker{ justify-content:center; margin-bottom:1rem; }
+  #final .final-panel .kicker{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    align-items:center;
+    justify-content:stretch;
+    width:100%;
+    gap:.55rem;
+    margin-bottom:1rem;
+  }
+  #final .final-panel .kicker::before,
+  #final .final-panel .kicker::after{
+    content:"";
+    width:100%;
+    max-width:none;
+    flex:none;
+    height:2px;
+    border-radius:2px;
+    box-shadow:0 0 10px rgba(0,183,255,.3);
+    opacity:.72;
+  }
+  #final .final-panel .kicker::before{
+    background:linear-gradient(270deg, var(--accent) 0%, rgba(0,183,255,.5) 55%, transparent 100%);
+  }
+  #final .final-panel .kicker::after{
+    background:linear-gradient(90deg, var(--accent) 0%, rgba(0,183,255,.5) 55%, transparent 100%);
+  }
 
   /* ===== TRANSFORMAÇÕES — marquee infinito ===== */
   .marquee-stack{
