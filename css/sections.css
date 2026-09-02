@@ -1064,6 +1064,7 @@
   .plan-cell-price{
     display:flex; align-items:baseline; gap:.2rem;
     margin-top:auto;
+    margin-bottom:1.05rem;
     font-family:var(--font-display); font-weight:700; letter-spacing:-0.03em;
     line-height:1;
     color:var(--paper);
@@ -1074,11 +1075,6 @@
   .plan-value{ font-size:clamp(1.7rem, 1.4rem + 1vw, 2.15rem); }
   .plan-cents{
     font-size:.92rem; font-weight:600; color:rgba(245,247,250,.62);
-  }
-  .plan-cell-unit{
-    margin:.55rem 0 1.05rem;
-    font-family:var(--font-mono); font-size:.62rem; letter-spacing:.04em;
-    color:rgba(245,247,250,.5);
   }
   .plan-cell .btn{
     padding:.85rem 1rem;
