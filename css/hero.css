@@ -283,7 +283,6 @@
   }
 
   .hero-status{
-    --fit-border-angle:0deg;
     position:relative;
     display:inline-flex; align-items:center; justify-content:center;
     gap:.7rem;
@@ -305,38 +304,16 @@
     position:absolute;
     inset:0;
     border-radius:inherit;
-    z-index:0;
-    padding:2px;
-    pointer-events:none;
-    background:conic-gradient(
-      from var(--fit-border-angle),
-      transparent 0%,
-      rgba(0,183,255,.15) 6%,
-      rgba(0,183,255,.85) 12%,
-      rgba(0,183,255,.55) 18%,
-      transparent 28%,
-      transparent 100%
-    );
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite:xor;
-    mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    mask-composite:exclude;
-    animation:fitBorderAngle 5s linear infinite;
-  }
-  .hero-status::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
     pointer-events:none;
     z-index:0;
     background:rgba(0,183,255,.16);
     opacity:0.2;
     animation:statusCtaBg 2.8s ease-in-out infinite;
+  }
+  .hero-status::after{
+    content:none;
+    display:none;
+    animation:none;
   }
   .hero-status-txt{
     position:relative; z-index:1;
@@ -359,9 +336,8 @@
   }
   @media (prefers-reduced-motion: reduce){
     .hero-status,
-    .hero-status::before,
-    .hero-status::after{ animation:none !important; }
-    .hero-status::after{ opacity:.35; }
+    .hero-status::before{ animation:none !important; }
+    .hero-status::before{ opacity:.35; }
   }
 
   /* foto do personal sangrando pela direita e dissolvendo no fundo */
@@ -376,11 +352,11 @@
   }
   .hero-photo-frame{ position:relative; width:100%; height:100%; overflow:hidden; }
   .hero-photo-frame img{
-    width:100%; height:100%; object-fit:cover; object-position:62% 20%;
-    filter:saturate(.95) contrast(1.04);
+    width:100%; height:100%; object-fit:cover; object-position:52% 18%;
+    filter:saturate(.98) contrast(1.03);
     animation:heroZoom 22s var(--ease) forwards;
-    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
-    mask-image:linear-gradient(180deg, transparent 0%, #000 18%, #000 100%);
+    -webkit-mask-image:linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
+    mask-image:linear-gradient(180deg, transparent 0%, #000 14%, #000 100%);
   }
   @keyframes heroZoom{
     from{ transform:scale(1.07); }
@@ -394,14 +370,14 @@
   @media (min-width:900px){
     /* a foto perde opacidade até desaparecer antes da coluna de texto */
     .hero-photo-frame img{
-      object-position:50% 8%;
-      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
-      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+      object-position:58% 16%;
+      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
+      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
     }
     .hero-photo-frame::after{
-      background:linear-gradient(180deg, rgba(7,9,13,.45) 0%, rgba(7,9,13,0) 30%, rgba(7,9,13,.28) 82%, rgba(7,9,13,.8) 100%);
-      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
-      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.22) 32%, rgba(0,0,0,.68) 58%, #000 84%);
+      background:linear-gradient(180deg, rgba(7,9,13,.28) 0%, rgba(7,9,13,0) 28%, rgba(7,9,13,.18) 78%, rgba(7,9,13,.72) 100%);
+      -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
+      mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
     }
   }
   .ph-empty{

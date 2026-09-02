@@ -167,8 +167,8 @@
     bottom: auto;
     width: 100%;
     height: auto;
-    aspect-ratio: 4 / 5;
-    max-height: min(48vh, 380px);
+    aspect-ratio: 3 / 4;
+    max-height: min(52vh, 440px);
     z-index: 1;
     flex-shrink: 0;
     order: 0;
@@ -177,7 +177,7 @@
 
   .hero-photo-frame img {
     object-fit: cover;
-    object-position: 50% 26%;
+    object-position: 50% 12%;
     -webkit-mask-image: none;
     mask-image: none;
     animation: none !important;
@@ -623,7 +623,6 @@
     #cta-float .cta-float-ico,
     .hero-status,
     .hero-status::before,
-    .hero-status::after,
     html.anim-ready .hero-method li {
       animation: none;
       opacity: 1;
@@ -634,12 +633,12 @@
 
 @media (max-width: 479px) {
   .hero-photo {
-    aspect-ratio: 4 / 5;
-    max-height: min(46vh, 360px);
+    aspect-ratio: 3 / 4;
+    max-height: min(50vh, 400px);
   }
 
   .hero-photo-frame img {
-    object-position: 50% 24%;
+    object-position: 50% 10%;
     animation: none !important;
     transform: none !important;
   }
