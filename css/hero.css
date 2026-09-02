@@ -348,6 +348,7 @@
   @media (min-width:900px){
     .hero-photo{
       left:auto; right:0; width:var(--hero-photo-w);
+      top:var(--hd-h);
     }
   }
   .hero-photo-frame{ position:relative; width:100%; height:100%; overflow:hidden; }
@@ -370,7 +371,7 @@
   @media (min-width:900px){
     /* a foto perde opacidade até desaparecer antes da coluna de texto */
     .hero-photo-frame img{
-      object-position:58% 16%;
+      object-position:58% 10%;
       -webkit-mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
       mask-image:linear-gradient(90deg, transparent 0%, rgba(0,0,0,.28) 18%, rgba(0,0,0,.78) 42%, #000 68%);
     }
