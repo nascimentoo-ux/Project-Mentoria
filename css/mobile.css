@@ -197,13 +197,7 @@
     font-size: clamp(0.9rem, 3.5vw, 1.02rem);
     text-align: center;
     margin-inline: auto;
-    text-wrap: pretty;
     line-height: 1.55;
-  }
-
-  #beneficios .lede .lede-split {
-    display: block;
-    height: 0.35rem;
   }
 
   .section-intro,

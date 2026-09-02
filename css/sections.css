@@ -17,7 +17,6 @@
   #transformacoes.section{
     padding-top: clamp(2rem, 5.5vw, 4.25rem);
   }
-  .lede-split{ display:none; }
   #final .final-panel{
     display:flex;
     flex-direction:column;
